@@ -7,7 +7,6 @@ public class MenuView {
 
     public int menuPrincipal(int tipoUsuario) {
         System.out.println("\n========== MENU PRINCIPAL ==========");
-        System.out.println("Usuário logado: " + (tipoUsuario == 1 ? "ADMIN" : "CLIENTE"));
         System.out.println("------------------------------------");
         System.out.println("1 - Listar cargas");
         System.out.println("0 - Sair");

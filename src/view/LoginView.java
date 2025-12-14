@@ -2,6 +2,8 @@ package view;
 
 import java.util.Scanner;
 
+import util.Limpar;
+
 public class LoginView {
     private Scanner input = new Scanner(System.in);
 
@@ -26,10 +28,12 @@ public class LoginView {
     }
 
     public void sucessoAdmin(String user) {
+        Limpar.terminal();
         System.out.println("Usuário ADMIN logado! Bem-vindo " + user + "\n");
     }
 
     public void sucessoCliente() {
+        Limpar.terminal();
         System.out.println("Usuário CLIENTE logado!\n");
     }
 }
