@@ -2,6 +2,7 @@ package controller;
 
 import model.Usuario;
 import view.LoginView;
+import util.ConfigLoader;
 
 public class LoginController {
 
@@ -9,9 +10,15 @@ public class LoginController {
         LoginView view = new LoginView();
         view.boasVindas();
 
-        // Usuários do sistema
-        Usuario admin = new Usuario("klabunde.lti", "iffar2025", 1);
-        Usuario cliente = new Usuario("buntech.lti", "buntech2025", 0);
+        Usuario admin = new Usuario(
+                ConfigLoader.get("admin.username"),
+                ConfigLoader.get("admin.password"),
+                Integer.parseInt(ConfigLoader.get("admin.role")));
+
+        Usuario cliente = new Usuario(
+                ConfigLoader.get("cliente.username"),
+                ConfigLoader.get("cliente.password"),
+                Integer.parseInt(ConfigLoader.get("cliente.role")));
 
         while (true) {
             String usuario = view.pedirUsuario();
