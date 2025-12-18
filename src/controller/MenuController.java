@@ -2,13 +2,14 @@ package controller;
 
 import util.Limpar;
 import view.MenuView;
-
 public class MenuController {
 
     private MenuView view;
+    private subMenuController submenu;
 
     public MenuController() {
         this.view = new MenuView();
+        this.submenu = new subMenuController(view);
     }
 
     public void exibirMenu(int tipoUsuario) {
@@ -31,7 +32,7 @@ public class MenuController {
             switch (opcao) {
                 case 1:
                     Limpar.terminal();
-                    submenuCargas();
+                    submenu.submenuCargas();
                     break;
 
                 case 2:
@@ -43,37 +44,6 @@ public class MenuController {
 
                 case 0:
                     view.sair();
-                    break;
-
-                default:
-                    view.invalido();
-            }
-        }
-    }
-
-    /* =========================
-       SUBMENU CARGAS
-       ========================= */
-    private void submenuCargas() {
-        int opcao = -1;
-
-        while (opcao != 0) {
-            opcao = view.menuCargas();
-
-            switch (opcao) {
-                case 1:
-                    Limpar.terminal();
-                    view.listarCargasSimuladas();
-                    break;
-
-                case 2:
-                case 3:
-                case 4:
-                    view.emConstrucao();
-                    break;
-
-                case 0:
-                    Limpar.terminal();
                     break;
 
                 default:
