@@ -14,9 +14,10 @@ public class MenuView {
         System.out.println("\n========== MENU PRINCIPAL (ADMIN) ==========");
         System.out.println("1 - Gerenciar cargas");
         System.out.println("2 - Gerenciar motoristas");
-        System.out.println("3 - Gerenciar tipos de carga");
-        System.out.println("4 - Gerar relatórios");
-        System.out.println("5 - Gerenciar usuários");
+        System.out.println("3 - Gerenciar carretas");
+        System.out.println("4 - Gerenciar tipos de carretas");
+        System.out.println("5 - Gerar relatórios");
+        System.out.println("6 - Gerenciar usuários");
         System.out.println("0 - Sair");
         System.out.print("Escolha: ");
 
@@ -58,6 +59,78 @@ public class MenuView {
 
         aguardarVoltar();
     }
+
+    public int menuMotoristas() {
+        System.out.println("\n========== MENU MOTORISTAS ==========");
+        System.out.println("1 - listar motoristas");
+        System.out.println("2 - Cadastrar motoristas");
+        System.out.println("3 - Alterar cadastro de motoristas");
+        System.out.println("4 - Excluir motoristas");
+        System.out.println("0 - Voltar");
+        System.out.print("Escolha: ");
+
+        return lerOpcao();
+    }
+
+    public int menuCarretas() {
+        System.out.println("\n========== MENU CARRETAS ==========");
+        System.out.println("1 - listar carretas");
+        System.out.println("2 - Cadastrar carretas");
+        System.out.println("3 - Alterar cadastro de carretas");
+        System.out.println("4 - Excluir carretas");
+        System.out.println("0 - Voltar");
+        System.out.print("Escolha: ");
+
+        return lerOpcao();
+    }
+
+    public int menuTipoCarretas() {
+        System.out.println("\n========== MENU TIPO DE CARRETAS ==========");
+        System.out.println("1 - listar tipos de carretas");
+        System.out.println("2 - Cadastrar tipos de carretas");
+        System.out.println("3 - Alterar cadastro de tipos de carretas");
+        System.out.println("4 - Excluir tipos de carretas");
+        System.out.println("0 - Voltar");
+        System.out.print("Escolha: ");
+
+        return lerOpcao();
+    }
+
+        
+    public void listarMotoristasSimulados() {
+        System.out.println("\n========== LISTA DE MOTORISTAS ==========");
+        System.out.println("ID   | NOME            | CPF             | STATUS");
+        System.out.println("-----------------------------------------------");
+        System.out.println("001  | Paulo Lenin     | 97103990042     | Em trânsito");
+        System.out.println("002  | Valdemiro Putin | 65056169005     | Ocioso");
+        System.out.println("003  | Ronaldo Trump   | 95665017060     | Aguardando coleta");
+        System.out.println("-----------------------------------------------");
+
+        aguardarVoltar();
+    }   
+    public void listarTiposCarretas() {
+        System.out.println("\n========== LISTA DE TIPOS DE CARRETA ==========");
+        System.out.println("ID   | TIPO                                 | CAPACIDADE MAX  | QUANT. DE PLACAS  |");
+        System.out.println("-----------------------------------------------");
+        System.out.println("001  | Carreta LS                        | 1300     | 1");
+        System.out.println("002  | Carreta Graneleiro 4 eixo         | 2000     | 1");
+        System.out.println("003  | Carreta sider                     | 3200     | 1");
+        System.out.println("-----------------------------------------------");
+
+        aguardarVoltar();
+    }
+    public void listarCarretas() {
+        System.out.println("\n========== LISTA DE CARRETAS ==========");
+        System.out.println("ID   | PLACA 1     | TIPO           | STATUS");
+        System.out.println("-----------------------------------------------");
+        System.out.println("001  | NAW-3193    | Carreta LS     | Em trânsito");
+        System.out.println("002  | HZB-7038    | Carreta LS     | Ocioso");
+        System.out.println("003  | JVE-1877    | Carreta LS     | Aguardando coleta");
+        System.out.println("-----------------------------------------------");
+
+        aguardarVoltar();
+    }    
+    
 
     /* =========================
        UTILITÁRIOS DE VIEW
