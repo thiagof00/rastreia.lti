@@ -12,19 +12,15 @@ public class CargasController {
         this.view = view;
     }
 
-    /* =========================
-       CADASTRO DE CARGA
-       ========================= */
+    /*
+     * =========================
+     * CADASTRO DE CARGA
+     * =========================
+     */
     public void cadastrar() {
         Carga carga = view.formularioCadastroCarga();
 
         if (carga == null) {
-            return;
-        }
-
-        if (CargaRepository.existeInvoice(carga.getInvoice())) {
-            System.out.println("Já existe uma carga com esse invoice.");
-            view.aguardarVoltar();
             return;
         }
 

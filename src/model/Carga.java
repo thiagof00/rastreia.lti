@@ -8,7 +8,7 @@ public class Carga {
     private String placaCarga2;
     private String notaFiscal;
 
-    public Carga(int invoice, String placaCaminhao, String placaCarga1, String placaCarga2, String notaFiscal){
+    public Carga(int invoice, String placaCaminhao, String placaCarga1, String placaCarga2, String notaFiscal) {
         this.invoice = invoice;
         this.placaCaminhao = placaCaminhao;
         this.placaCarga1 = placaCarga1;
@@ -27,9 +27,11 @@ public class Carga {
     public String getPlacaCarga1() {
         return placaCarga1;
     }
+
     public String getPlacaCarga2() {
         return placaCarga2;
     }
+
     public String getNotaFiscal() {
         return notaFiscal;
     }
