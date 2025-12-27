@@ -3,6 +3,7 @@ package view;
 import java.util.List;
 import java.util.Scanner;
 import model.*;
+import repository.TipoCarretaRepository;
 import util.Limpar;
 
 public class MenuView {
@@ -185,7 +186,7 @@ public class MenuView {
                     "%-12s | %-12s | %-14s | %-15s%n",
                     c.getPlaca1(),
                     c.getPlaca2(),
-                    c.getTipoCarreta(),
+                    c.getTipoCarreta().getTipo(),
                     c.getStatusCarreta());
         }
         aguardarVoltar();
@@ -297,19 +298,39 @@ public class MenuView {
             System.out.print("Placa 2: ");
             String placa2 = input.nextLine();
 
-            System.out.print("Tipo de Carreta: ");
-            String tipo = input.nextLine();
+            System.out.println("\nTipos de Carreta disponíveis:");
+        List<TipoCarreta> tipos = TipoCarretaRepository.listar();
 
-            System.out.print("Status da Carreta: ");
-            String status = input.nextLine();
+        for (int i = 0; i < tipos.size(); i++) {
+            TipoCarreta t = tipos.get(i);
+            System.out.println(
+                (i + 1) + " - " + t.getTipo() +
+                " | Capacidade: " + t.getCapacidade() +
+                " | Eixos: " + t.getQtdPlacas()
+            );
+        }
 
-            return new Carreta(placa1, placa2, tipo, status);
+        System.out.print("\nEscolha o tipo (número): ");
+        int opcao = Integer.parseInt(input.nextLine());
 
-        } catch (Exception e) {
-            System.out.println("Erro no preenchimento dos dados.");
+        if (opcao < 1 || opcao > tipos.size()) {
+            System.out.println("Tipo inválido.");
             aguardarVoltar();
             return null;
         }
+
+        TipoCarreta tipoSelecionado = tipos.get(opcao - 1);
+
+        System.out.print("Status da Carreta: ");
+        String status = input.nextLine();
+
+        return new Carreta(placa1, placa2, tipoSelecionado, status);
+
+    } catch (Exception e) {
+        System.out.println("Erro no preenchimento dos dados.");
+        aguardarVoltar();
+        return null;
+    }
     }
 
     public Caminhao formularioCadastroCaminhao() {

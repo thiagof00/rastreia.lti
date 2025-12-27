@@ -3,10 +3,10 @@ package model;
 public class Carreta {
     private String placa1;
     private String placa2;
-    private String tipoCarreta;
+    private TipoCarreta tipoCarreta;
     private String StatusCarreta;
 
-    public Carreta(String placa1, String placa2, String tipoCarreta, String StatusCarreta) {
+    public Carreta(String placa1, String placa2, TipoCarreta tipoCarreta, String StatusCarreta) {
         this.placa1 = placa1;
         this.placa2 = placa2;
         this.tipoCarreta = tipoCarreta;
@@ -21,7 +21,7 @@ public class Carreta {
         return placa2;
     }
 
-    public String getTipoCarreta() {
+    public TipoCarreta getTipoCarreta() {
         return tipoCarreta;
     }
 
