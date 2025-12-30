@@ -113,11 +113,12 @@ public class MenuView {
             return;
         }
 
-        System.out.println(" INVOICE | CAMINHÃO | CARRET. 1 | CARRET. 2 | NOTA FISCAL");
-        System.out.println("----------------------------------------------------------");
+        System.out.printf("%-4s | %-8s | %-10s | %-10s | %-10s | %-12s%n", "INVOICE", "CAMINHÃO", "CARRET. 1", "CARRET. 2", "NOTA FISCAL");
+        System.out.println("-".repeat(71));
         for (Carga c : cargas) {
             System.out.printf(
-                    "%-8d | %-8s | %-8s | %-8s | %-8s%n",
+                    "%-4d |%-8d | %-10s | %-10s | %-10s | %-12s%n",
+                    c.getId(),
                     c.getInvoice(),
                     c.getPlacaCaminhao(),
                     c.getPlacaCarga1(),
@@ -137,11 +138,12 @@ public class MenuView {
             return;
         }
 
-        System.out.println(" NOME            | CPF             | STATUS");
-        System.out.println("-----------------------------------------------");
+        System.out.printf("%-4s | %-15s | %-15s | %-15s%n", "ID", "NOME", "CPF", "STATUS");
+        System.out.println("-".repeat(58));
         for (Motorista m : motoristas) {
             System.out.printf(
-                    "%-15s | %-15s | %-15s%n",
+                    "%-4d | %-15s | %-15s | %-15s%n",
+                    m.getId(),
                     m.getNome(),
                     m.getCpf(),
                     m.getStatus());
@@ -158,11 +160,12 @@ public class MenuView {
             return;
         }
 
-        System.out.println(" TIPO            | CAPACIDADE    | Quantidade de Placas");
-        System.out.println("-----------------------------------------------");
+        System.out.printf("%-4s | %-15s | %s | %-15s%n","ID", "TIPO","CAPACIDADE","Quantidade de Placas");
+        System.out.println("-".repeat(53));
         for (TipoCarreta tc : tipoCarretas) {
             System.out.printf(
-                    "%-15s | %-15s | %-15s%n",
+                    "%-4d | %-15s | %-10s | %-15s%n",
+                    tc.getId(),
                     tc.getTipo(),
                     tc.getCapacidade(),
                     tc.getQtdPlacas());
@@ -179,11 +182,12 @@ public class MenuView {
             return;
         }
 
-        System.out.println(" PLACA 1     | PLACA 2     | TIPO           | STATUS");
-        System.out.println("-----------------------------------------------");
+        System.out.printf("%-4s | %-12s | %-12s | %-14s | %-15s%n","ID", "PLACA 1", "PLACA 2", "TIPO", "STATUS");
+        System.out.println("-".repeat(69));
         for (Carreta c : carretas) {
             System.out.printf(
-                    "%-12s | %-12s | %-14s | %-15s%n",
+                    "%-4d | %-12s | %-12s | %-14s | %-15s%n",
+                    c.getId(),
                     c.getPlaca1(),
                     c.getPlaca2(),
                     c.getTipoCarreta().getTipo(),
@@ -201,11 +205,12 @@ public class MenuView {
             return;
         }
 
-        System.out.println(" PLACA      | TIPO           | STATUS");
-        System.out.println("-----------------------------------------------");
+        System.out.printf("%-4s | %-12s | %-14s | %-15s%n", "ID", "PLACA", "TIPO", "STATUS");
+        System.out.println("-".repeat(54));
         for (Caminhao c : caminhoes) {
             System.out.printf(
-                    "%-12s | %-14s | %-15s%n",
+                    "%-4d | %-12s | %-14s | %-15s%n",
+                    c.getId(),
                     c.getPlaca(),
                     c.getTipo(),
                     c.getStatus());
@@ -279,6 +284,7 @@ public class MenuView {
 
             System.out.print("Quantidade de placas: ");
             int qtdPlacas = input.nextInt();
+            input.nextLine();
 
             return new TipoCarreta(tipo, capacidade, qtdPlacas);
 
@@ -386,6 +392,7 @@ public class MenuView {
     }
 
     public void sair() {
+        Limpar.terminal();
         System.out.println("Encerrando o sistema...");
     }
 

@@ -7,11 +7,13 @@ import model.Caminhao;
 public class CaminhaoRepository {
 
     private static List<Caminhao> caminhoes = new ArrayList<>(List.of(
-            new Caminhao("MNO2P34", "Volvo", "Ocioso"),
-            new Caminhao("QRS5T67", "Scania", "Em Manutenção"),
-            new Caminhao("TUV8901", "Mercedes-Benz", "Em Uso")));
-
+            new Caminhao(1,"MNO2P34", "Volvo", "Ocioso"),
+            new Caminhao(2,"QRS5T67", "Scania", "Em Manutenção"),
+            new Caminhao(3,"TUV8901", "Mercedes-Benz", "Em Uso")));
+    private static int id = 4;
+    
     public static void salvar(Caminhao caminhao) {
+        caminhao.setId(id++);
         caminhoes.add(caminhao);
     }
 

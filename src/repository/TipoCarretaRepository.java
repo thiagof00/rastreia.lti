@@ -7,11 +7,13 @@ import model.TipoCarreta;
 
 public class TipoCarretaRepository {
     private static List<TipoCarreta> tipoCarretas = new ArrayList<>(List.of(
-            new TipoCarreta("Sider", 20000, 1),
-            new TipoCarreta("Baú", 15000, 1),
-            new TipoCarreta("Bitrem", 30000, 2)));
+            new TipoCarreta(1,"Sider", 20000, 1),
+            new TipoCarreta(2,"Baú", 15000, 1),
+            new TipoCarreta(3,"Bitrem", 30000, 2)));
+    private static int id = 4;
 
     public static void salvar(TipoCarreta tipoCarreta) {
+        tipoCarreta.setId(id++);
         tipoCarretas.add(tipoCarreta);
     }
 

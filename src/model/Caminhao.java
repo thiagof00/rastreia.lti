@@ -5,11 +5,27 @@ public class Caminhao {
     private String placa;
     private String tipo;
     private String status;
+    private int id;
+
+    public Caminhao(int id, String placa, String tipo, String status) {
+        this.id = id;
+        this.placa = placa;
+        this.tipo = tipo;
+        this.status = status;
+    }
 
     public Caminhao(String placa, String tipo, String status) {
         this.placa = placa;
         this.tipo = tipo;
         this.status = status;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPlaca() {
