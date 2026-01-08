@@ -8,7 +8,7 @@ import model.Carreta;
 public class CarretaRepository {
     private static List<Carreta> carretas = new ArrayList<>(List.of(
             new Carreta(1,"XYZ1K23", "", 
-            TipoCarretaRepository.listar().get(0),
+            TipoCarretaRepository.listar().get(1),
              "Ocioso"),
 
             new Carreta(2,"ABC4J56", "", 

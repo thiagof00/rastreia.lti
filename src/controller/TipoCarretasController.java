@@ -1,7 +1,6 @@
 package controller;
 
 import model.TipoCarreta;
-import repository.MotoristaRepository;
 import repository.TipoCarretaRepository;
 import view.MenuView;
 
@@ -26,12 +25,14 @@ public class TipoCarretasController {
     public void excluir(){
         int id = view.formularioExcluirTipoCarreta();
 
-        boolean excluido = TipoCarretaRepository.excluir(id);
+        int excluido = TipoCarretaRepository.excluir(id);
 
-        if(excluido){
+        if(excluido == 1){
             System.out.println("Tipo removido com sucesso!");
+        }else if(excluido == 0){
+            System.out.println("Tipo não encontrado.");
         }else{
-            System.out.println("Tipo não encontrado");
+            System.out.println("Tipo associado a uma carreta, não é possível excluir.");
         }
         view.aguardarVoltar();
 
