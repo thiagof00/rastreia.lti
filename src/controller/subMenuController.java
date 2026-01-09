@@ -1,6 +1,5 @@
 package controller;
 
-import repository.*;
 import util.Limpar;
 import util.mostrar;
 import view.menu.*;
