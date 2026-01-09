@@ -4,22 +4,22 @@ public class Carreta {
     private String placa1;
     private String placa2;
     private TipoCarreta tipoCarreta;
-    private String StatusCarreta;
+    private String statusCarreta;
     private int id;
 
-    public Carreta(int id, String placa1, String placa2, TipoCarreta tipoCarreta, String StatusCarreta) {
+    public Carreta(int id, String placa1, String placa2, TipoCarreta tipoCarreta, String statusCarreta) {
         this.id = id;
         this.placa1 = placa1;
         this.placa2 = placa2;
         this.tipoCarreta = tipoCarreta;
-        this.StatusCarreta = StatusCarreta;
+        this.statusCarreta = statusCarreta;
     }
 
-    public Carreta(String placa1, String placa2, TipoCarreta tipoCarreta, String StatusCarreta) {
+    public Carreta(String placa1, String placa2, TipoCarreta tipoCarreta, String statusCarreta) {
         this.placa1 = placa1;
         this.placa2 = placa2;
         this.tipoCarreta = tipoCarreta;
-        this.StatusCarreta = StatusCarreta;
+        this.statusCarreta = statusCarreta;
     }
 
     public int getId() {
@@ -43,6 +43,10 @@ public class Carreta {
     }
 
     public String getStatusCarreta() {
-        return StatusCarreta;
+        return statusCarreta;
+    }
+
+    public void setStatus(String statusCarreta) {
+        this.statusCarreta = statusCarreta;
     }
 }

@@ -3,6 +3,8 @@ package view;
 import java.util.List;
 import java.util.Scanner;
 import model.*;
+import repository.CaminhaoRepository;
+import repository.CarretaRepository;
 import repository.MotoristaRepository;
 import repository.TipoCarretaRepository;
 import util.Limpar;
@@ -114,16 +116,17 @@ public class MenuView {
             return;
         }
 
-        System.out.printf("%-4s | %-8s | %-10s | %-10s | %-10s | %-10s%n", "ID", "INVOICE", "CAMINHÃO", "CARRET. 1", "CARRET. 2", "NOTA FISCAL");
+        System.out.printf("%-4s | %-8s | %-10s | %-10s | %-10s | %-10s%n", "ID", "INVOICE", "CAMINHÃO", "CARRET. 1",
+                "CARRET. 2", "NOTA FISCAL");
         System.out.println("-".repeat(71));
         for (Carga c : cargas) {
             System.out.printf(
                     "%-4d |%-8d | %-10s | %-10s | %-10s | %-10s%n",
                     c.getId(),
                     c.getInvoice(),
-                    c.getPlacaCaminhao(),
-                    c.getPlacaCarga1(),
-                    c.getPlacaCarga2(),
+                    c.getPlacaCaminhao().getPlaca(),
+                    c.getPlacaCarreta1().getPlaca1(),
+                    c.getPlacaCarreta2().getPlaca2(),
                     c.getNotaFiscal());
         }
 
@@ -161,7 +164,7 @@ public class MenuView {
             return;
         }
 
-        System.out.printf("%-4s | %-15s | %s | %-15s%n","ID", "TIPO","CAPACIDADE","Quantidade de Placas");
+        System.out.printf("%-4s | %-15s | %s | %-15s%n", "ID", "TIPO", "CAPACIDADE", "Quantidade de Placas");
         System.out.println("-".repeat(53));
         for (TipoCarreta tc : tipoCarretas) {
             System.out.printf(
@@ -183,7 +186,7 @@ public class MenuView {
             return;
         }
 
-        System.out.printf("%-4s | %-12s | %-12s | %-14s | %-15s%n","ID", "PLACA 1", "PLACA 2", "TIPO", "STATUS");
+        System.out.printf("%-4s | %-12s | %-12s | %-14s | %-15s%n", "ID", "PLACA 1", "PLACA 2", "TIPO", "STATUS");
         System.out.println("-".repeat(69));
         for (Carreta c : carretas) {
             System.out.printf(
@@ -232,19 +235,64 @@ public class MenuView {
             System.out.print("Invoice (número): ");
             int invoice = Integer.parseInt(input.nextLine());
 
-            System.out.print("Placa do caminhão: ");
-            String placaCaminhao = input.nextLine();
+            System.out.println("\nCaminhões disponiveis:");
+            List<Caminhao> caminhoes = CaminhaoRepository.listar();
 
-            System.out.print("Placa 1 da carga: ");
-            String placaCarga1 = input.nextLine();
+            for (int i = 0; i < caminhoes.size(); i++) {
+                Caminhao c = caminhoes.get(i);
+                if (c.getStatus().equals("Ocioso")) {
+                    System.out.println(
+                            (i + 1) + " | Placa: " + c.getPlaca() +
+                                    " | Tipo: " + c.getTipo() +
+                                    " | Status: " + c.getStatus());
+                }
+            }
 
-            System.out.print("Placa 2 da carga: ");
-            String placaCarga2 = input.nextLine();
+            System.out.print("\nEscolha o Caminhão (número): ");
+            int opcaoCaminhao = Integer.parseInt(input.nextLine());
+
+            if (opcaoCaminhao < 1 || opcaoCaminhao > caminhoes.size()
+                    || !caminhoes.get(opcaoCaminhao - 1).getStatus().equals("Ocioso")) {
+                System.out.println("Caminhão inválido.");
+                aguardarVoltar();
+                return null;
+            }
+
+            Caminhao caminhaoSelecionado = caminhoes.get(opcaoCaminhao - 1);
+
+            System.out.println("\nCarretas disponiveis:");
+            List<Carreta> carretas = CarretaRepository.listar();
+
+            for (int i = 0; i < carretas.size(); i++) {
+                Carreta c = carretas.get(i);
+                if (c.getStatusCarreta().equals("Ocioso")) {
+                    System.out.println(
+                            (i + 1) + " - " + c.getPlaca1() +
+                                    " - " + c.getPlaca2() +
+                                    " | Tipo: " + c.getTipoCarreta().getTipo() +
+                                    " | Status " + c.getStatusCarreta());
+                }
+            }
+
+            System.out.print("\nEscolha a carreta (número): ");
+            int opcaoCarreta = Integer.parseInt(input.nextLine());
+
+            if (opcaoCarreta < 1 || opcaoCarreta > caminhoes.size()
+                    || !caminhoes.get(opcaoCarreta - 1).getStatus().equals("Ocioso")) {
+                System.out.println("Carreta inválida.");
+                aguardarVoltar();
+                return null;
+            }
+
+            Carreta carretaSelecionada = carretas.get(opcaoCarreta - 1);
 
             System.out.print("Nota fiscal: ");
             String notaFiscal = input.nextLine();
 
-            return new Carga(invoice, placaCaminhao, placaCarga1, placaCarga2, notaFiscal);
+            caminhaoSelecionado.setStatus("Em uso");
+            carretaSelecionada.setStatus("Em uso");
+
+            return new Carga(invoice, caminhaoSelecionado, carretaSelecionada, carretaSelecionada, notaFiscal);
 
         } catch (Exception e) {
             System.out.println("Erro no preenchimento dos dados.");
@@ -299,80 +347,76 @@ public class MenuView {
     public Carreta formularioCadastroCarreta() {
         System.out.println("========== CADASTRO DE CARRETA ==========");
         try {
-            
 
             System.out.println("\nTipos de Carreta disponíveis:");
-        List<TipoCarreta> tipos = TipoCarretaRepository.listar();
+            List<TipoCarreta> tipos = TipoCarretaRepository.listar();
 
-        for (int i = 0; i < tipos.size(); i++) {
-            TipoCarreta t = tipos.get(i);
-            System.out.println(
-                (i + 1) + " - " + t.getTipo() +
-                " | Capacidade: " + t.getCapacidade() +
-                " | Eixos: " + t.getQtdPlacas()
-            );
-        }
+            for (int i = 0; i < tipos.size(); i++) {
+                TipoCarreta t = tipos.get(i);
+                System.out.println(
+                        (i + 1) + " - " + t.getTipo() +
+                                " | Capacidade: " + t.getCapacidade() +
+                                " | Eixos: " + t.getQtdPlacas());
+            }
 
-        System.out.print("\nEscolha o tipo (número): ");
-        int opcao = Integer.parseInt(input.nextLine());
+            System.out.print("\nEscolha o tipo (número): ");
+            int opcao = Integer.parseInt(input.nextLine());
 
-        if (opcao < 1 || opcao > tipos.size()) {
-            System.out.println("Tipo inválido.");
+            if (opcao < 1 || opcao > tipos.size()) {
+                System.out.println("Tipo inválido.");
+                aguardarVoltar();
+                return null;
+            }
+
+            TipoCarreta tipoSelecionado = tipos.get(opcao - 1);
+
+            System.out.print("Placa 1: ");
+            String placa1 = input.nextLine();
+
+            String placa2 = "";
+
+            if (tipoSelecionado.getQtdPlacas() == 2) {
+                System.out.print("Placa 2: ");
+                placa2 = input.nextLine();
+            }
+
+            String status = "";
+            int i = 0;
+            while (i == 0) {
+                System.out.print("Status da Carreta: ");
+                System.out.println("\n1 - Ocioso \n2 - Em Manutenção \n3 - Em Uso");
+                int statusInt = input.nextInt();
+                input.nextLine();
+                switch (statusInt) {
+                    case 1:
+                        status = "Ocioso";
+                        i = 1;
+                        break;
+                    case 2:
+                        status = "Em Manutenção";
+                        i = 1;
+                        break;
+                    default:
+                        System.out.println("\nOpção invalida.\n");
+
+                        break;
+                }
+            }
+
+            return new Carreta(placa1, placa2, tipoSelecionado, status);
+
+        } catch (Exception e) {
+            System.out.println("Erro no preenchimento dos dados.");
             aguardarVoltar();
             return null;
         }
-
-        TipoCarreta tipoSelecionado = tipos.get(opcao - 1);
-
-        System.out.print("Placa 1: ");
-        String placa1 = input.nextLine();
-
-        String placa2 = "";
-
-        if (tipoSelecionado.getQtdPlacas() == 2) {
-            System.out.print("Placa 2: ");
-            placa2 = input.nextLine();
-        }
-
-        String status = "";
-        int i = 0;
-        while (i == 0) {
-        System.out.print("Status da Carreta: ");
-        System.out.println("\n1 - Ocioso \n2 - Em Manutenção \n3 - Em Uso");
-        int statusInt = input.nextInt();
-        input.nextLine();
-            switch (statusInt) {
-                case 1:
-                    status = "Ocioso";
-                    i = 1;
-                    break;
-                case 2:
-                    status = "Em Manutenção";
-                    i = 1;
-                    break;
-                case 3:
-                    status = "Em Uso";
-                    i = 1;
-                    break;
-                default:
-                    System.out.println("\nOpção invalida.\n");
-
-                    break;
-            }
-        }
-
-        return new Carreta(placa1, placa2, tipoSelecionado, status);
-
-    } catch (Exception e) {
-        System.out.println("Erro no preenchimento dos dados.");
-        aguardarVoltar();
-        return null;
-    }
     }
 
     public Caminhao formularioCadastroCaminhao() {
         System.out.println("========== CADASTRO DE CAMINHÃO ==========");
         try {
+            
+
             System.out.print("Placa: ");
             String placa = input.nextLine();
 
@@ -392,12 +436,14 @@ public class MenuView {
     }
 
     /*
-    ==========================================================================================
-    VIEW DE DELETAR
-    ==========================================================================================
-    */
+     * =============================================================================
+     * =============
+     * VIEW DE DELETAR
+     * =============================================================================
+     * =============
+     */
 
-    public String formularioExcluirMotorista(){
+    public String formularioExcluirMotorista() {
 
         List<Motorista> motoristas = MotoristaRepository.listar();
         System.out.println("\n========== LISTA DE MOTORISTAS ==========");
@@ -412,7 +458,7 @@ public class MenuView {
                     m.getCpf(),
                     m.getStatus());
         }
-        
+
         System.out.println("Digite o cpf do motorista a ser excluido: ");
         String cpf = input.nextLine();
 
@@ -423,15 +469,15 @@ public class MenuView {
         }
 
         return cpf;
-    
+
     }
 
-    public int formularioExcluirTipoCarreta(){
+    public int formularioExcluirTipoCarreta() {
 
         List<TipoCarreta> tipoCarretas = TipoCarretaRepository.listar();
 
         System.out.println("\n========== LISTA DE TIPO DE CARRETAS ==========");
-        System.out.printf("%-4s | %-15s | %s | %-15s%n","ID", "TIPO","CAPACIDADE","Quantidade de Placas");
+        System.out.printf("%-4s | %-15s | %s | %-15s%n", "ID", "TIPO", "CAPACIDADE", "Quantidade de Placas");
         System.out.println("-".repeat(53));
         for (TipoCarreta tc : tipoCarretas) {
             System.out.printf(
@@ -442,15 +488,13 @@ public class MenuView {
                     tc.getQtdPlacas());
         }
 
-        
         System.out.println("Digite o id do tipo da carreta a ser excluido: ");
         int id = input.nextInt();
         input.nextLine();
 
         return id;
-    
-    }
 
+    }
 
     /*
      * =========================

@@ -3,26 +3,26 @@ package model;
 public class Carga {
 
     private int invoice;
-    private String placaCaminhao;
-    private String placaCarga1;
-    private String placaCarga2;
+    private Caminhao placaCaminhao;
+    private Carreta placaCarreta1;
+    private Carreta placaCarreta2;
     private String notaFiscal;
     private int id;
 
-    public Carga(int id, int invoice, String placaCaminhao, String placaCarga1, String placaCarga2, String notaFiscal) {
+    public Carga(int id, int invoice, Caminhao placaCaminhao, Carreta placaCarreta1, Carreta placaCarreta2, String notaFiscal) {
         this.id = id;
         this.invoice = invoice;
         this.placaCaminhao = placaCaminhao;
-        this.placaCarga1 = placaCarga1;
-        this.placaCarga2 = placaCarga2;
+        this.placaCarreta1 = placaCarreta1;
+        this.placaCarreta2 = placaCarreta2;
         this.notaFiscal = notaFiscal;
     }
 
-    public Carga(int invoice, String placaCaminhao, String placaCarga1, String placaCarga2, String notaFiscal) {
+    public Carga(int invoice, Caminhao placaCaminhao, Carreta placaCarreta1, Carreta placaCarreta2, String notaFiscal) {
         this.invoice = invoice;
         this.placaCaminhao = placaCaminhao;
-        this.placaCarga1 = placaCarga1;
-        this.placaCarga2 = placaCarga2;
+        this.placaCarreta1 = placaCarreta1;
+        this.placaCarreta2 = placaCarreta2;
         this.notaFiscal = notaFiscal;
     }
 
@@ -38,16 +38,16 @@ public class Carga {
         return invoice;
     }
 
-    public String getPlacaCaminhao() {
+    public Caminhao getPlacaCaminhao() {
         return placaCaminhao;
     }
 
-    public String getPlacaCarga1() {
-        return placaCarga1;
+    public Carreta getPlacaCarreta1() {
+        return placaCarreta1;
     }
 
-    public String getPlacaCarga2() {
-        return placaCarga2;
+    public Carreta getPlacaCarreta2() {
+        return placaCarreta2;
     }
 
     public String getNotaFiscal() {

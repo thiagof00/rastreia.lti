@@ -1,5 +1,6 @@
 import controller.LoginController;
 import controller.MenuController;
+import util.Limpar;
 
 public class App {
     public static void main(String[] args) {
@@ -12,6 +13,7 @@ public class App {
 
             // encerrar sistema
             if (resultado == -9) {
+                Limpar.terminal();
                 System.out.println("Sistema encerrado.");
                 break;
             }
