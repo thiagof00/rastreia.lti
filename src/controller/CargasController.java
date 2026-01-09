@@ -1,15 +1,19 @@
 package controller;
 
+import java.util.List;
+
 import model.Carga;
 import repository.CargaRepository;
-import view.MenuView;
-
+import util.aguardarVoltar;
+import view.form.CargaFormView;
+import view.list.CargaListView;
 public class CargasController {
 
-    private MenuView view;
-
-    public CargasController(MenuView view) {
-        this.view = view;
+    private CargaFormView formView;
+    private CargaListView listView;
+    public CargasController() {
+        this.formView = new CargaFormView();
+        this.listView = new CargaListView();
     }
 
     /*
@@ -18,7 +22,7 @@ public class CargasController {
      * =========================
      */
     public void cadastrar() {
-        Carga carga = view.formularioCadastroCarga();
+        Carga carga = formView.formularioCadastroCarga();
 
         if (carga == null) {
             return;
@@ -27,6 +31,10 @@ public class CargasController {
         CargaRepository.salvar(carga);
 
         System.out.println("Carga cadastrada com sucesso!");
-        view.aguardarVoltar();
+        aguardarVoltar.Voltar();;
+    }
+    public void listar(){
+        List<Carga> cargas = CargaRepository.listar();
+        listView.listarCargas(cargas);
     }
 }

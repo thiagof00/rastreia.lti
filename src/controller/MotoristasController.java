@@ -1,18 +1,34 @@
 package controller;
-
+import java.util.List;
 import model.Motorista;
 import repository.MotoristaRepository;
-import view.MenuView;
+import util.aguardarVoltar;
+import view.delete.MotoristaDeleteView;
+import view.form.MotoristaFormView;
+import view.list.MotoristaListView;
 
 public class MotoristasController {
-    private MenuView view;
 
-    public MotoristasController(MenuView view) {
-        this.view = view;
+    private MotoristaFormView formView;
+    private MotoristaDeleteView viewDelete;
+    private MotoristaListView listView;
+    public MotoristasController() {
+        this.formView = new MotoristaFormView();
+        this.viewDelete = new MotoristaDeleteView();
+        this.listView = new MotoristaListView();
     }
 
+    public void listar(){
+
+        List<Motorista> motoristas = MotoristaRepository.listar();
+
+        listView.listarMotoristas(motoristas);
+
+    }
+
+
     public void cadastrar() {
-        Motorista motorista = view.formularioCadastroMotorista();
+        Motorista motorista = formView.formularioCadastroMotorista();
 
         if (motorista == null) {
             return;
@@ -20,11 +36,11 @@ public class MotoristasController {
         MotoristaRepository.salvar(motorista);
 
         System.out.println("Motorista cadastrado com sucesso!");
-        view.aguardarVoltar();
+        aguardarVoltar.Voltar();
     }
     
     public void excluir(){
-        String cpf = view.formularioExcluirMotorista();
+        String cpf = viewDelete.formularioExcluirMotorista();
 
         if(cpf == null){
             return;
@@ -36,7 +52,7 @@ public class MotoristasController {
         }else{
             System.out.println("motorista não encontrado");
         }
-        view.aguardarVoltar();
+        aguardarVoltar.Voltar();
 
     }
 }
