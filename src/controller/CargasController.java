@@ -5,18 +5,12 @@ import repository.CargaRepository;
 import view.MenuView;
 
 public class CargasController {
-
     private MenuView view;
 
     public CargasController(MenuView view) {
         this.view = view;
     }
 
-    /*
-     * =========================
-     * CADASTRO DE CARGA
-     * =========================
-     */
     public void cadastrar() {
         Carga carga = view.formularioCadastroCarga();
 

@@ -17,7 +17,7 @@ public class Motorista {
         this.nome = nome;
         this.cpf = cpf;
         this.status = status;
-    }  
+    }
 
     public int getId() {
         return id;
@@ -37,5 +37,9 @@ public class Motorista {
 
     public String getStatus() {
         return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

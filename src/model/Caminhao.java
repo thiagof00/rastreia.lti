@@ -6,9 +6,8 @@ public class Caminhao {
     private String tipo;
     private String status;
     private int id;
-    
 
-    public Caminhao(int id,  String placa, String tipo, String status) {
+    public Caminhao(int id, String placa, String tipo, String status) {
         this.id = id;
         this.placa = placa;
         this.tipo = tipo;
@@ -29,7 +28,6 @@ public class Caminhao {
         this.id = id;
     }
 
-
     public String getPlaca() {
         return placa;
     }
@@ -42,7 +40,7 @@ public class Caminhao {
         return status;
     }
 
-    public void setStatus(String status){
+    public void setStatus(String status) {
         this.status = status;
     }
 }

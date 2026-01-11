@@ -116,18 +116,19 @@ public class MenuView {
             return;
         }
 
-        System.out.printf("%-4s | %-8s | %-10s | %-10s | %-10s | %-10s%n", "ID", "INVOICE", "CAMINHÃO", "CARRET. 1",
-                "CARRET. 2", "NOTA FISCAL");
-        System.out.println("-".repeat(71));
+        System.out.printf("%-4s | %-8s | %-10s | %-10s | %-10s | %-10s | %-12s%n", "ID", "INVOICE", "CAMINHÃO", "CARRET. 1",
+                "CARRET. 2", "NOTA FISCAL", "STATUS");
+        System.out.println("-".repeat(82));
         for (Carga c : cargas) {
             System.out.printf(
-                    "%-4d |%-8d | %-10s | %-10s | %-10s | %-10s%n",
+                    "%-4d | %-8d | %-10s | %-10s | %-10s | %-10s | %-12%n",
                     c.getId(),
                     c.getInvoice(),
                     c.getPlacaCaminhao().getPlaca(),
                     c.getPlacaCarreta1().getPlaca1(),
                     c.getPlacaCarreta2().getPlaca2(),
-                    c.getNotaFiscal());
+                    c.getNotaFiscal(),
+                    c.getStatus());
         }
 
         aguardarVoltar();
@@ -195,7 +196,7 @@ public class MenuView {
                     c.getPlaca1(),
                     c.getPlaca2(),
                     c.getTipoCarreta().getTipo(),
-                    c.getStatusCarreta());
+                    c.getStatus());
         }
         aguardarVoltar();
     }
@@ -243,8 +244,7 @@ public class MenuView {
                 if (c.getStatus().equals("Ocioso")) {
                     System.out.println(
                             (i + 1) + " | Placa: " + c.getPlaca() +
-                                    " | Tipo: " + c.getTipo() +
-                                    " | Status: " + c.getStatus());
+                                    " | Tipo: " + c.getTipo());
                 }
             }
 
@@ -265,12 +265,11 @@ public class MenuView {
 
             for (int i = 0; i < carretas.size(); i++) {
                 Carreta c = carretas.get(i);
-                if (c.getStatusCarreta().equals("Ocioso")) {
+                if (c.getStatus().equals("Ocioso")) {
                     System.out.println(
                             (i + 1) + " - " + c.getPlaca1() +
                                     " - " + c.getPlaca2() +
-                                    " | Tipo: " + c.getTipoCarreta().getTipo() +
-                                    " | Status " + c.getStatusCarreta());
+                                    " | Tipo: " + c.getTipoCarreta().getTipo());
                 }
             }
 
@@ -286,13 +285,39 @@ public class MenuView {
 
             Carreta carretaSelecionada = carretas.get(opcaoCarreta - 1);
 
+            System.out.println("\nMotoristas disponiveis:");
+            List<Motorista> motoristas = MotoristaRepository.listar();
+
+            for (int i = 0; i < motoristas.size(); i++) {
+                Motorista m = motoristas.get(i);
+                if (m.getStatus().equals("Ocioso")) {
+                    System.out.println(
+                            (i + 1) + " - " + m.getNome() +
+                                    " - " + m.getCpf());
+                }
+            }
+
+            System.out.print("\nEscolha o motorista (número): ");
+            int opcaoMotorista = Integer.parseInt(input.nextLine());
+
+            if (opcaoMotorista < 1 || opcaoMotorista > motoristas.size()
+                    || !motoristas.get(opcaoMotorista - 1).getStatus().equals("Ocioso")) {
+                System.out.println("Motorista inválido.");
+                aguardarVoltar();
+                return null;
+            }
+
+            Motorista motoristaSelecionado = motoristas.get(opcaoMotorista - 1);
+
             System.out.print("Nota fiscal: ");
             String notaFiscal = input.nextLine();
 
             caminhaoSelecionado.setStatus("Em uso");
             carretaSelecionada.setStatus("Em uso");
+            motoristaSelecionado.setStatus("Em Viagem");
 
-            return new Carga(invoice, caminhaoSelecionado, carretaSelecionada, carretaSelecionada, notaFiscal);
+            return new Carga(invoice, motoristaSelecionado, caminhaoSelecionado, carretaSelecionada, carretaSelecionada,
+                    notaFiscal, "Em viagem");
 
         } catch (Exception e) {
             System.out.println("Erro no preenchimento dos dados.");
@@ -415,7 +440,6 @@ public class MenuView {
     public Caminhao formularioCadastroCaminhao() {
         System.out.println("========== CADASTRO DE CAMINHÃO ==========");
         try {
-            
 
             System.out.print("Placa: ");
             String placa = input.nextLine();

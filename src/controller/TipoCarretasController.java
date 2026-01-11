@@ -22,16 +22,17 @@ public class TipoCarretasController {
         System.out.println("Tipo de Carreta cadastrado com sucesso!");
         view.aguardarVoltar();
     }
-    public void excluir(){
+
+    public void excluir() {
         int id = view.formularioExcluirTipoCarreta();
 
         int excluido = TipoCarretaRepository.excluir(id);
 
-        if(excluido == 1){
+        if (excluido == 1) {
             System.out.println("Tipo removido com sucesso!");
-        }else if(excluido == 0){
+        } else if (excluido == 0) {
             System.out.println("Tipo não encontrado.");
-        }else{
+        } else {
             System.out.println("Tipo associado a uma carreta, não é possível excluir.");
         }
         view.aguardarVoltar();

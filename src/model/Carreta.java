@@ -42,7 +42,7 @@ public class Carreta {
         return tipoCarreta;
     }
 
-    public String getStatusCarreta() {
+    public String getStatus() {
         return statusCarreta;
     }
 
