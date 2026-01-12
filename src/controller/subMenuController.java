@@ -1,23 +1,35 @@
 package controller;
 
-import repository.*;
 import util.Limpar;
-import view.MenuView;
+import util.mostrar;
+import view.menu.*;
 
 public class subMenuController {
 
-    private MenuView view;
-    private CargasController CargaController;
-    private MotoristasController MotoristasController;
-    private TipoCarretasController tipoCarretasController;
-    private CarretaController carretaController;
+    private final CargaMenuView cargaMenuView;
+    private final MotoristaMenuView motoristaMenuView;
+    private final CarretaMenuView carretaMenuView;
+    private final CaminhaoMenuView caminhaoMenuView;
+    private final TipoCarretaMenuView tipoCarretaMenuView;
 
-    public subMenuController(MenuView view) {
-        this.view = view;
-        this.CargaController = new CargasController(view);
-        this.MotoristasController = new MotoristasController(view);
-        this.tipoCarretasController = new TipoCarretasController(view);
-        this.carretaController = new CarretaController(view);
+    private final CargasController cargasController;
+    private final MotoristasController motoristasController;
+    private final CarretaController carretasController;
+    private final TipoCarretasController tipoCarretasController;
+    private final CaminhoesController caminhoesController;
+
+    public subMenuController() {
+        this.cargaMenuView = new CargaMenuView();
+        this.motoristaMenuView = new MotoristaMenuView();
+        this.carretaMenuView = new CarretaMenuView();
+        this.caminhaoMenuView = new CaminhaoMenuView();
+        this.tipoCarretaMenuView = new TipoCarretaMenuView();
+
+        this.cargasController = new CargasController();
+        this.motoristasController = new MotoristasController();
+        this.carretasController = new CarretaController();
+        this.tipoCarretasController = new TipoCarretasController();
+        this.caminhoesController = new CaminhoesController();
     }
 
     public void submenuCargas() {
@@ -25,21 +37,21 @@ public class subMenuController {
         int opcao = -1;
 
         while (opcao != 0) {
-            opcao = view.menuCargas();
+            opcao = cargaMenuView.menuCargas();
 
             switch (opcao) {
                 case 1:
                     Limpar.terminal();
-                    view.listarCargas(CargaRepository.listar());
+                    cargasController.listar();
                     break;
 
                 case 2:
                     Limpar.terminal();
-                    CargaController.cadastrar();
+                    cargasController.cadastrar();
                     break;
                 case 3:
                 case 4:
-                    view.emConstrucao();
+                    mostrar.emConstrucao();
                     break;
 
                 case 0:
@@ -47,7 +59,7 @@ public class subMenuController {
                     break;
 
                 default:
-                    view.invalido();
+                    mostrar.invalido();
             }
         }
     }
@@ -57,30 +69,30 @@ public class subMenuController {
         int opcao = -1;
 
         while (opcao != 0) {
-            opcao = view.menuMotoristas();
+            opcao = motoristaMenuView.menuMotoristas();
 
             switch (opcao) {
                 case 1:
                     Limpar.terminal();
-                    view.listarMotoristas(MotoristaRepository.listar());
+                    motoristasController.listar();
                     break;
 
                 case 2:
                     Limpar.terminal();
-                    MotoristasController.cadastrar();
+                    motoristasController.cadastrar();
                     break;
                 case 3:
-                    view.emConstrucao();
+                    mostrar.emConstrucao();
                     break;
                 case 4:
-                    MotoristasController.excluir();
+                    motoristasController.excluir();
                     break;
                 case 0:
                     Limpar.terminal();
                     break;
 
                 default:
-                    view.invalido();
+                    mostrar.invalido();
             }
         }
     }
@@ -90,12 +102,12 @@ public class subMenuController {
         int opcao = -1;
 
         while (opcao != 0) {
-            opcao = view.menuTipoCarretas();
+            opcao = tipoCarretaMenuView.menuTipoCarretas();
 
             switch (opcao) {
                 case 1:
                     Limpar.terminal();
-                    view.listarTiposCarretas(TipoCarretaRepository.listar());
+                    tipoCarretasController.listar();
                     break;
 
                 case 2:
@@ -103,7 +115,7 @@ public class subMenuController {
                     tipoCarretasController.cadastrar();
                     break;
                 case 3:
-                    view.emConstrucao();
+                    mostrar.emConstrucao();
                     break;
                 case 4:
                     tipoCarretasController.excluir();
@@ -114,7 +126,7 @@ public class subMenuController {
                     break;
 
                 default:
-                    view.invalido();
+                    mostrar.invalido();
             }
         }
     }
@@ -124,20 +136,20 @@ public class subMenuController {
         int opcao = -1;
 
         while (opcao != 0) {
-            opcao = view.menuCarretas();
+            opcao = carretaMenuView.menuCarretas();
 
             switch (opcao) {
                 case 1:
                     Limpar.terminal();
-                    view.listarCarretas(CarretaRepository.listar());
+                    carretasController.listar();
                     break;
                 case 2:
                     Limpar.terminal();
-                    carretaController.cadastrar();
+                    carretasController.cadastrar();
                     break;
                 case 3:
                 case 4:
-                    view.emConstrucao();
+                    mostrar.emConstrucao();
                     break;
 
                 case 0:
@@ -145,7 +157,7 @@ public class subMenuController {
                     break;
 
                 default:
-                    view.invalido();
+                    mostrar.invalido();
             }
         }
     }
@@ -154,20 +166,20 @@ public class subMenuController {
         int opcao = -1;
 
         while (opcao != 0) {
-            opcao = view.menuCaminhao();
+            opcao = caminhaoMenuView.menuCaminhao();
 
             switch (opcao) {
                 case 1:
                     Limpar.terminal();
-                    view.listarCaminhoes(CaminhaoRepository.listar());
+                    caminhoesController.listar();
                     break;
                 case 2:
                     Limpar.terminal();
-                    new CaminhoesController(view).cadastrar();
+                    caminhoesController.cadastrar();
                     break;
                 case 3:
                 case 4:
-                    view.emConstrucao();
+                    mostrar.emConstrucao();
                     break;
 
                 case 0:
@@ -175,7 +187,7 @@ public class subMenuController {
                     break;
 
                 default:
-                    view.invalido();
+                    mostrar.invalido();
             }
         }
     }

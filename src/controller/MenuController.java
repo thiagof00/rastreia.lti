@@ -1,17 +1,14 @@
 package controller;
 
-import repository.CargaRepository;
-import util.Limpar;
-import view.MenuView;
+import util.*;
+import view.menu.MenuPrincipalView;
 
 public class MenuController {
 
-    private MenuView view;
     private subMenuController submenu;
 
     public MenuController() {
-        this.view = new MenuView();
-        this.submenu = new subMenuController(view);
+        this.submenu = new subMenuController();
     }
 
     public void exibirMenu(int tipoUsuario) {
@@ -31,7 +28,7 @@ public class MenuController {
         int opcao = -1;
 
         while (opcao != 0) {
-            opcao = view.menuPrincipalAdmin();
+            opcao = MenuPrincipalView.menuPrincipalAdmin();
 
             switch (opcao) {
                 case 1:
@@ -57,15 +54,15 @@ public class MenuController {
                     break;
                 case 6:
                     Limpar.terminal();
-                    view.emConstrucao();
+                    mostrar.emConstrucao();
                     break;
 
                 case 0:
-                    view.sair();
+                    mostrar.sair();
                     return;
 
                 default:
-                    view.invalido();
+                    mostrar.invalido();
             }
         }
     }
@@ -79,19 +76,19 @@ public class MenuController {
         int opcao = -1;
 
         while (opcao != 0) {
-            opcao = view.menuPrincipalCliente();
+            opcao = MenuPrincipalView.menuPrincipalCliente();
 
             switch (opcao) {
                 case 1:
-                    view.listarCargas(CargaRepository.listar());
+                    ;
                     break;
 
                 case 0:
-                    view.sair();
+                    mostrar.sair();
                     return;
 
                 default:
-                    view.invalido();
+                    mostrar.invalido();
             }
         }
     }

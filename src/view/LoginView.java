@@ -19,6 +19,7 @@ public class LoginView {
     }
 
     public void boasVindas() {
+        Limpar.terminal();
         System.out.println("=====================================");
         System.out.println("           RASTREIA.LTI              ");
         System.out.println("=====================================");

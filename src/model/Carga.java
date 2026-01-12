@@ -3,27 +3,35 @@ package model;
 public class Carga {
 
     private int invoice;
-    private String placaCaminhao;
-    private String placaCarga1;
-    private String placaCarga2;
+    private Caminhao placaCaminhao;
+    private Carreta placaCarreta1;
+    private Carreta placaCarreta2;
     private String notaFiscal;
     private int id;
+    private Motorista motorista;
+    private String status;
 
-    public Carga(int id, int invoice, String placaCaminhao, String placaCarga1, String placaCarga2, String notaFiscal) {
+    public Carga(int id, int invoice, Motorista motorista, Caminhao placaCaminhao, Carreta placaCarreta1,
+            Carreta placaCarreta2, String notaFiscal, String status) {
         this.id = id;
         this.invoice = invoice;
+        this.motorista = motorista;
         this.placaCaminhao = placaCaminhao;
-        this.placaCarga1 = placaCarga1;
-        this.placaCarga2 = placaCarga2;
+        this.placaCarreta1 = placaCarreta1;
+        this.placaCarreta2 = placaCarreta2;
         this.notaFiscal = notaFiscal;
+        this.status = status;
     }
 
-    public Carga(int invoice, String placaCaminhao, String placaCarga1, String placaCarga2, String notaFiscal) {
+    public Carga(int invoice, Motorista motorista, Caminhao placaCaminhao, Carreta placaCarreta1, Carreta placaCarreta2,
+            String notaFiscal, String status) {
         this.invoice = invoice;
+        this.motorista = motorista;
         this.placaCaminhao = placaCaminhao;
-        this.placaCarga1 = placaCarga1;
-        this.placaCarga2 = placaCarga2;
+        this.placaCarreta1 = placaCarreta1;
+        this.placaCarreta2 = placaCarreta2;
         this.notaFiscal = notaFiscal;
+        this.status = status;
     }
 
     public int getId() {
@@ -38,20 +46,28 @@ public class Carga {
         return invoice;
     }
 
-    public String getPlacaCaminhao() {
+    public Motorista getMotorista() {
+        return motorista;
+    }
+
+    public Caminhao getPlacaCaminhao() {
         return placaCaminhao;
     }
 
-    public String getPlacaCarga1() {
-        return placaCarga1;
+    public Carreta getPlacaCarreta1() {
+        return placaCarreta1;
     }
 
-    public String getPlacaCarga2() {
-        return placaCarga2;
+    public Carreta getPlacaCarreta2() {
+        return placaCarreta2;
     }
 
     public String getNotaFiscal() {
         return notaFiscal;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
 }

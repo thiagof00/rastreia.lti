@@ -1,18 +1,23 @@
 package controller;
 
+import java.util.List;
+
 import model.Carreta;
-import view.MenuView;
+import view.form.CarretaFormView;
+import view.list.CarretaListView;
 import repository.CarretaRepository;
+import util.aguardarVoltar;
 
 public class CarretaController {
-    private MenuView view;
-
-    public CarretaController(MenuView view) {
-        this.view = view;
+    private CarretaFormView formView;
+    private CarretaListView listView;
+    public CarretaController() {
+        this.formView = new CarretaFormView();
+        this.listView = new CarretaListView();
     }
 
     public void cadastrar() {
-        Carreta carreta = view.formularioCadastroCarreta();
+        Carreta carreta = formView.formularioCadastroCarreta();
 
         if (carreta == null) {
             return;
@@ -20,6 +25,11 @@ public class CarretaController {
         CarretaRepository.salvar(carreta);
 
         System.out.println("Carreta cadastrada com sucesso!");
-        view.aguardarVoltar();
+        aguardarVoltar.Voltar();;
+    }
+
+    public void listar(){
+        List<Carreta> carretas = CarretaRepository.listar();
+         listView.listarCarretas(carretas);
     }
 }
