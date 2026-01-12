@@ -11,6 +11,7 @@ public class CargasController {
 
     private CargaFormView formView;
     private CargaListView listView;
+
     public CargasController() {
         this.formView = new CargaFormView();
         this.listView = new CargaListView();
@@ -31,7 +32,7 @@ public class CargasController {
         CargaRepository.salvar(carga);
 
         System.out.println("Carga cadastrada com sucesso!");
-        aguardarVoltar.Voltar();;
+        aguardarVoltar.Voltar();
     }
     public void listar(){
         List<Carga> cargas = CargaRepository.listar();

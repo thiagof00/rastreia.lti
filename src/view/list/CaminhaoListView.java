@@ -9,13 +9,11 @@ public class CaminhaoListView {
 
     public void listarCaminhoes(List<Caminhao> caminhoes) {
         System.out.println("\n========== LISTA DE CAMINHÕES ==========");
-
         if (caminhoes.isEmpty()) {
             System.out.println("Nenhum caminhão cadastrado.");
             aguardarVoltar.Voltar();
             return;
         }
-
         System.out.printf("%-4s | %-12s | %-14s | %-15s%n", "ID", "PLACA", "TIPO", "STATUS");
         System.out.println("-".repeat(54));
         for (Caminhao c : caminhoes) {
@@ -27,5 +25,5 @@ public class CaminhaoListView {
                     c.getStatus());
         }
         aguardarVoltar.Voltar();
-    }
+        }
 }

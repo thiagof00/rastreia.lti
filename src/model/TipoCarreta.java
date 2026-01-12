@@ -13,7 +13,7 @@ public class TipoCarreta {
         this.qtdPlacas = qtdPlacas;
     }
 
-    public TipoCarreta(String tipo, int capacidade, int qtdPlacas){
+    public TipoCarreta(String tipo, int capacidade, int qtdPlacas) {
         this.tipo = tipo;
         this.capacidade = capacidade;
         this.qtdPlacas = qtdPlacas;

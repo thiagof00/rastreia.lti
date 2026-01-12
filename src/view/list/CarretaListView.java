@@ -9,14 +9,13 @@ public class CarretaListView {
 
     public void listarCarretas(List<Carreta> carretas) {
         System.out.println("========== LISTA DE CARRETAS ==========");
-
         if (carretas.isEmpty()) {
             System.out.println("Nenhuma carreta cadastrada.");
             aguardarVoltar.Voltar();
             return;
         }
 
-        System.out.printf("%-4s | %-12s | %-12s | %-14s | %-15s%n","ID", "PLACA 1", "PLACA 2", "TIPO", "STATUS");
+        System.out.printf("%-4s | %-12s | %-12s | %-14s | %-15s%n", "ID", "PLACA 1", "PLACA 2", "TIPO", "STATUS");
         System.out.println("-".repeat(69));
         for (Carreta c : carretas) {
             System.out.printf(
@@ -25,7 +24,7 @@ public class CarretaListView {
                     c.getPlaca1(),
                     c.getPlaca2(),
                     c.getTipoCarreta().getTipo(),
-                    c.getStatusCarreta());
+                    c.getStatus());
         }
         aguardarVoltar.Voltar();
     }

@@ -16,9 +16,10 @@ public class MotoristaRepository {
         motorista.setId(id++);
         motoristas.add(motorista);
     }
-    public static boolean excluir(String cpf){
+
+    public static boolean excluir(String cpf) {
         return motoristas.removeIf(mot -> mot.getCpf().equals(cpf));
-        
+
     }
 
     public static List<Motorista> listar() {
