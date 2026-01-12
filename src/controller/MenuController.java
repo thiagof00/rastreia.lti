@@ -6,9 +6,10 @@ import view.menu.MenuPrincipalView;
 public class MenuController {
 
     private subMenuController submenu;
-
+    private CargasController listview;
     public MenuController() {
         this.submenu = new subMenuController();
+        this.listview = new CargasController();
     }
 
     public void exibirMenu(int tipoUsuario) {
@@ -76,7 +77,7 @@ public class MenuController {
 
             switch (opcao) {
                 case 1:
-                    ;
+                    listview.listar();
                     break;
 
                 case 0:
