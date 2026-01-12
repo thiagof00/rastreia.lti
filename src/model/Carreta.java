@@ -1,24 +1,27 @@
 package model;
 
 public class Carreta {
-    private String placa1;
-    private String placa2;
-    private TipoCarreta tipoCarreta;
+    private String placa;
+    private String tipo;
+    private int peso_max;
+    private int metragem;
     private String statusCarreta;
     private int id;
 
-    public Carreta(int id, String placa1, String placa2, TipoCarreta tipoCarreta, String statusCarreta) {
+    public Carreta(int id, String placa, String tipo, String statusCarreta, int peso_max, int metragem) {
         this.id = id;
-        this.placa1 = placa1;
-        this.placa2 = placa2;
-        this.tipoCarreta = tipoCarreta;
+        this.placa = placa;
+        this.tipo = tipo;
+        this.peso_max = peso_max;
+        this.metragem = metragem;
         this.statusCarreta = statusCarreta;
     }
 
-    public Carreta(String placa1, String placa2, TipoCarreta tipoCarreta, String statusCarreta) {
-        this.placa1 = placa1;
-        this.placa2 = placa2;
-        this.tipoCarreta = tipoCarreta;
+    public Carreta(String placa, String tipo, String statusCarreta, int peso_max, int metragem) {
+        this.placa = placa;
+        this.tipo = tipo;
+        this.peso_max = peso_max;
+        this.metragem = metragem;
         this.statusCarreta = statusCarreta;
     }
 
@@ -30,16 +33,19 @@ public class Carreta {
         this.id = id;
     }
 
-    public String getPlaca1() {
-        return placa1;
+    public String getPlaca() {
+        return placa;
     }
 
-    public String getPlaca2() {
-        return placa2;
+    public String getTipo() {
+        return tipo;
     }
 
-    public TipoCarreta getTipoCarreta() {
-        return tipoCarreta;
+    public int getPeso_max() {
+        return peso_max;
+    }
+    public int getMetragem(){
+        return metragem;
     }
 
     public String getStatus() {

@@ -53,9 +53,8 @@ public class CargaFormView {
                 Carreta c = carretas.get(i);
                 if (c.getStatus().equals("Ocioso")) {
                     System.out.println(
-                            (i + 1) + " - " + c.getPlaca1() +
-                                    " - " + c.getPlaca2() +
-                                    " | Tipo: " + c.getTipoCarreta().getTipo());
+                            (i + 1) + " - " + c.getPlaca() +
+                                    " | Tipo: " + c.getTipo());
                 }
             }
 

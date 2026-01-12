@@ -3,33 +3,33 @@ package model;
 public class Carga {
 
     private int invoice;
-    private Caminhao placaCaminhao;
-    private Carreta placaCarreta1;
-    private Carreta placaCarreta2;
+    private Caminhao caminhao;
+    private Carreta carreta1;
+    private Carreta carreta2;
     private String notaFiscal;
     private int id;
     private Motorista motorista;
     private String status;
 
-    public Carga(int id, int invoice, Motorista motorista, Caminhao placaCaminhao, Carreta placaCarreta1,
-            Carreta placaCarreta2, String notaFiscal, String status) {
+    public Carga(int id, int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1,
+            Carreta carreta2, String notaFiscal, String status) {
         this.id = id;
         this.invoice = invoice;
         this.motorista = motorista;
-        this.placaCaminhao = placaCaminhao;
-        this.placaCarreta1 = placaCarreta1;
-        this.placaCarreta2 = placaCarreta2;
+        this.caminhao = caminhao;
+        this.carreta1 = carreta1;
+        this.carreta2 = carreta2;
         this.notaFiscal = notaFiscal;
         this.status = status;
     }
 
-    public Carga(int invoice, Motorista motorista, Caminhao placaCaminhao, Carreta placaCarreta1, Carreta placaCarreta2,
+    public Carga(int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, Carreta carreta2,
             String notaFiscal, String status) {
         this.invoice = invoice;
         this.motorista = motorista;
-        this.placaCaminhao = placaCaminhao;
-        this.placaCarreta1 = placaCarreta1;
-        this.placaCarreta2 = placaCarreta2;
+        this.caminhao = caminhao;
+        this.carreta1 = carreta1;
+        this.carreta2 = carreta2;
         this.notaFiscal = notaFiscal;
         this.status = status;
     }
@@ -50,16 +50,16 @@ public class Carga {
         return motorista;
     }
 
-    public Caminhao getPlacaCaminhao() {
-        return placaCaminhao;
+    public Caminhao getCaminhao() {
+        return caminhao;
     }
 
-    public Carreta getPlacaCarreta1() {
-        return placaCarreta1;
+    public Carreta getCarreta1() {
+        return carreta1;
     }
 
-    public Carreta getPlacaCarreta2() {
-        return placaCarreta2;
+    public Carreta getCarreta2() {
+        return carreta2;
     }
 
     public String getNotaFiscal() {

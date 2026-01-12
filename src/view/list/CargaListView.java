@@ -22,9 +22,9 @@ public class CargaListView {
                     "%-4d | %-8d | %-10s | %-10s | %-10s | %-10s | %-12s%n",
                     c.getId(),
                     c.getInvoice(),
-                    c.getPlacaCaminhao().getPlaca(),
-                    c.getPlacaCarreta1().getPlaca1(),
-                    c.getPlacaCarreta2().getPlaca2(),
+                    c.getCaminhao().getPlaca(),
+                    c.getCarreta1().getPlaca(),
+                    c.getCarreta2().getPlaca(),
                     c.getNotaFiscal(),
                     c.getStatus());
         }

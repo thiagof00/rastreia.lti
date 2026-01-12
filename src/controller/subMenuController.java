@@ -10,12 +10,10 @@ public class subMenuController {
     private final MotoristaMenuView motoristaMenuView;
     private final CarretaMenuView carretaMenuView;
     private final CaminhaoMenuView caminhaoMenuView;
-    private final TipoCarretaMenuView tipoCarretaMenuView;
 
     private final CargasController cargasController;
     private final MotoristasController motoristasController;
     private final CarretaController carretasController;
-    private final TipoCarretasController tipoCarretasController;
     private final CaminhoesController caminhoesController;
 
     public subMenuController() {
@@ -23,12 +21,10 @@ public class subMenuController {
         this.motoristaMenuView = new MotoristaMenuView();
         this.carretaMenuView = new CarretaMenuView();
         this.caminhaoMenuView = new CaminhaoMenuView();
-        this.tipoCarretaMenuView = new TipoCarretaMenuView();
 
         this.cargasController = new CargasController();
         this.motoristasController = new MotoristasController();
         this.carretasController = new CarretaController();
-        this.tipoCarretasController = new TipoCarretasController();
         this.caminhoesController = new CaminhoesController();
     }
 
@@ -97,39 +93,7 @@ public class subMenuController {
         }
     }
 
-    public void submenuTipoCarreta() {
 
-        int opcao = -1;
-
-        while (opcao != 0) {
-            opcao = tipoCarretaMenuView.menuTipoCarretas();
-
-            switch (opcao) {
-                case 1:
-                    Limpar.terminal();
-                    tipoCarretasController.listar();
-                    break;
-
-                case 2:
-                    Limpar.terminal();
-                    tipoCarretasController.cadastrar();
-                    break;
-                case 3:
-                    mostrar.emConstrucao();
-                    break;
-                case 4:
-                    tipoCarretasController.excluir();
-                    break;
-
-                case 0:
-                    Limpar.terminal();
-                    break;
-
-                default:
-                    mostrar.invalido();
-            }
-        }
-    }
 
     public void submenuCarreta() {
 

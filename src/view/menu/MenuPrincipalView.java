@@ -10,9 +10,8 @@ public class MenuPrincipalView {
         System.out.println("1 - Gerenciar cargas");
         System.out.println("2 - Gerenciar motoristas");
         System.out.println("3 - Gerenciar carretas");
-        System.out.println("4 - Gerenciar tipos de carretas");
-        System.out.println("5 - Gerenciar caminhões");
-        System.out.println("6 - Gerenciar usuários");
+        System.out.println("4 - Gerenciar caminhões");
+        System.out.println("5 - Gerenciar usuários");
         System.out.println("0 - Sair");
         System.out.print("Escolha: ");
 
