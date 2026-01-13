@@ -2,10 +2,7 @@ package view.delete;
 
 import java.util.List;
 import java.util.Scanner;
-
-import model.Caminhao;
 import model.Carreta;
-import repository.CaminhaoRepository;
 import repository.CarretaRepository;
 
 public class CarretaDeleteView {

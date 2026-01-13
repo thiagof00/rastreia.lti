@@ -33,7 +33,7 @@ public class CarretaFormView {
                 System.out.println("\nStatus da Carreta:");
                 System.out.println("1 - Ocioso");
                 System.out.println("2 - Em Manutenção");
-                System.out.println("3 - Em Uso");
+                System.out.println("3 - Em Viagem");
                 System.out.print("Escolha uma opção: ");
 
                 int opcao = Integer.parseInt(input.nextLine());
