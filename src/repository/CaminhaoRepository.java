@@ -20,4 +20,8 @@ public class CaminhaoRepository {
     public static List<Caminhao> listar() {
         return caminhoes;
     }
+
+    public static boolean excluir(int id) {
+        return caminhoes.removeIf(cam -> cam.getId() == id);
+    }  
 }

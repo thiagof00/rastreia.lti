@@ -141,8 +141,11 @@ public class subMenuController {
                     Limpar.terminal();
                     caminhoesController.cadastrar();
                     break;
-                case 3:
                 case 4:
+                    Limpar.terminal();    
+                    caminhoesController.excluir();
+                    break;
+                case 3:
                     mostrar.emConstrucao();
                     break;
 
