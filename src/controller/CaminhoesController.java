@@ -13,12 +13,12 @@ import view.list.CaminhaoListView;
 public class CaminhoesController {
     private CaminhaoFormView formView;
     private CaminhaoListView listView;
-    private CaminhaoDeleteView viewDelete;
+    private CaminhaoDeleteView deleteView;
 
     public CaminhoesController() {
         this.formView = new CaminhaoFormView();
         this.listView = new CaminhaoListView();
-        this.viewDelete = new CaminhaoDeleteView();
+        this.deleteView = new CaminhaoDeleteView();
     }
 
     public void cadastrar() {
@@ -38,7 +38,7 @@ public class CaminhoesController {
     }
 
     public void excluir(){
-        int id = viewDelete.formularioExcluirCaminhao();
+        int id = deleteView.formularioExcluirCaminhao();
 
         List<Carga> cargas = CargaRepository.listar();
         for (Carga carga : cargas) {

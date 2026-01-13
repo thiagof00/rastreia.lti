@@ -4,10 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import model.Caminhao;
-import model.Carga;
 import repository.CaminhaoRepository;
-import repository.CargaRepository;
-import util.*;
 
 public class CaminhaoDeleteView {
     Scanner input = new Scanner(System.in);
@@ -17,7 +14,7 @@ public class CaminhaoDeleteView {
         List<Caminhao> caminhoes = CaminhaoRepository.listar();
         System.out.println("\n========== LISTA DE CAMINHÕES ==========");
 
-        System.out.printf("%-4s | %-15s | %-15s | %-15s%n", "ID", "NOME", "CPF", "STATUS");
+        System.out.printf("%-4s | %-15s | %-15s | %-15s%n", "ID", "PLACA", "TIPO", "STATUS");
         System.out.println("-".repeat(58));
         for (Caminhao c : caminhoes) {
             System.out.printf(
