@@ -5,7 +5,6 @@ import model.Caminhao;
 import model.Carga;
 import repository.CaminhaoRepository;
 import repository.CargaRepository;
-import repository.MotoristaRepository;
 import util.aguardarVoltar;
 import view.delete.CaminhaoDeleteView;
 import view.form.CaminhaoFormView;

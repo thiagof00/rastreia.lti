@@ -1,7 +1,9 @@
 package controller;
 
+import repository.EtapasTransporteRepository;
 import util.Limpar;
 import util.mostrar;
+import view.list.EtapasTransporteListView;
 import view.menu.*;
 
 public class subMenuController {
@@ -10,6 +12,7 @@ public class subMenuController {
     private final MotoristaMenuView motoristaMenuView;
     private final CarretaMenuView carretaMenuView;
     private final CaminhaoMenuView caminhaoMenuView;
+    private final EtapasTransporteListView etapasTransporteListView;
 
     private final CargasController cargasController;
     private final MotoristasController motoristasController;
@@ -21,7 +24,7 @@ public class subMenuController {
         this.motoristaMenuView = new MotoristaMenuView();
         this.carretaMenuView = new CarretaMenuView();
         this.caminhaoMenuView = new CaminhaoMenuView();
-
+        this.etapasTransporteListView = new EtapasTransporteListView();
         this.cargasController = new CargasController();
         this.motoristasController = new MotoristasController();
         this.carretasController = new CarretaController();
@@ -46,6 +49,8 @@ public class subMenuController {
                     cargasController.cadastrar();
                     break;
                 case 3:
+                    Limpar.terminal();
+                    etapasTransporteListView.listarEtapas(EtapasTransporteRepository.listar());
                 case 4:
                     mostrar.emConstrucao();
                     break;

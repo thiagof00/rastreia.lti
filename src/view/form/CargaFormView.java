@@ -96,13 +96,21 @@ public class CargaFormView {
 
             System.out.print("Nota fiscal: ");
             String notaFiscal = input.nextLine();
+            
+            System.out.print("PO: ");
+            String PO = input.nextLine();
+
+            System.out.print("Origem: ");
+            String origem = input.nextLine();
+
+            System.out.print("Destino: ");
+            String destino = input.nextLine();
 
             caminhaoSelecionado.setStatus("Em uso");
             carretaSelecionada.setStatus("Em uso");
             motoristaSelecionado.setStatus("Em Viagem");
 
-            return new Carga(invoice, motoristaSelecionado, caminhaoSelecionado, carretaSelecionada, carretaSelecionada,
-                    notaFiscal, "Em viagem");
+            return new Carga(invoice, motoristaSelecionado, caminhaoSelecionado, carretaSelecionada, carretaSelecionada, PO, notaFiscal,origem,destino, "Em viagem");
 
         } catch (Exception e) {
             System.out.println("Erro no preenchimento dos dados.");

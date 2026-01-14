@@ -7,7 +7,6 @@ import model.Carreta;
 import view.delete.CarretaDeleteView;
 import view.form.CarretaFormView;
 import view.list.CarretaListView;
-import repository.CaminhaoRepository;
 import repository.CargaRepository;
 import repository.CarretaRepository;
 import util.aguardarVoltar;

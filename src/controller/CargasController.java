@@ -3,7 +3,9 @@ package controller;
 import java.util.List;
 
 import model.Carga;
+import model.EtapasTransporte;
 import repository.CargaRepository;
+import repository.EtapasTransporteRepository;
 import util.aguardarVoltar;
 import view.form.CargaFormView;
 import view.list.CargaListView;
@@ -23,13 +25,15 @@ public class CargasController {
      * =========================
      */
     public void cadastrar() {
-        Carga carga = formView.formularioCadastroCarga();
+        Carga cargaEetapa = formView.formularioCadastroCarga();
+        
+        Carga carga = new Carga(cargaEetapa.getInvoice(), cargaEetapa.getPO(), cargaEetapa.getNotaFiscal(), cargaEetapa.getOrigem(), cargaEetapa.getDestino(), cargaEetapa.getStatus());
 
-        if (carga == null) {
-            return;
-        }
+        EtapasTransporte etapa = new EtapasTransporte(carga, cargaEetapa.getCaminhao(), cargaEetapa.getCarreta1(), cargaEetapa.getCarreta2(), cargaEetapa.getMotorista(), cargaEetapa.getOrigem(), cargaEetapa.getDestino(), cargaEetapa.getStatus());
 
         CargaRepository.salvar(carga);
+
+        EtapasTransporteRepository.salvar(etapa);
 
         System.out.println("Carga cadastrada com sucesso!");
         aguardarVoltar.Voltar();
