@@ -27,9 +27,12 @@ public class CargasController {
     public void cadastrar() {
         Carga cargaEetapa = formView.formularioCadastroCarga();
         
-        Carga carga = new Carga(cargaEetapa.getInvoice(), cargaEetapa.getPO(), cargaEetapa.getNotaFiscal(), cargaEetapa.getOrigem(), cargaEetapa.getDestino(), cargaEetapa.getStatus());
+        if (cargaEetapa == null){
+            return;
+        }
+        Carga carga = new Carga(cargaEetapa.getInvoice(), cargaEetapa.getPO(), cargaEetapa.getNotaFiscal(), cargaEetapa.getOrigem(), cargaEetapa.getLocalidade(), cargaEetapa.getDestino(), cargaEetapa.getStatus());
 
-        EtapasTransporte etapa = new EtapasTransporte(carga, cargaEetapa.getCaminhao(), cargaEetapa.getCarreta1(), cargaEetapa.getCarreta2(), cargaEetapa.getMotorista(), cargaEetapa.getOrigem(), cargaEetapa.getDestino(), cargaEetapa.getStatus());
+        EtapasTransporte etapa = new EtapasTransporte(carga, cargaEetapa.getCaminhao(), cargaEetapa.getCarreta1(), cargaEetapa.getCarreta2(), cargaEetapa.getMotorista(), cargaEetapa.getOrigem(), cargaEetapa.getproximaParada(), cargaEetapa.getStatus());
 
         CargaRepository.salvar(carga);
 

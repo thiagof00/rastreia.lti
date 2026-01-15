@@ -6,7 +6,7 @@ import model.EtapasTransporte;
 
 public class EtapasTransporteRepository {
     
-    private static List<EtapasTransporte> etapasTransportes = new ArrayList();
+    private static List<EtapasTransporte> etapasTransportes = new ArrayList<>();
     private static int id = 1;
 
     public static void salvar(EtapasTransporte etapa) {

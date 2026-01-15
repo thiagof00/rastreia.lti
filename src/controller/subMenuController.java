@@ -1,34 +1,33 @@
 package controller;
 
-import repository.EtapasTransporteRepository;
 import util.Limpar;
 import util.mostrar;
-import view.list.EtapasTransporteListView;
 import view.menu.*;
 
 public class subMenuController {
 
-    private final CargaMenuView cargaMenuView;
-    private final MotoristaMenuView motoristaMenuView;
-    private final CarretaMenuView carretaMenuView;
-    private final CaminhaoMenuView caminhaoMenuView;
-    private final EtapasTransporteListView etapasTransporteListView;
+    private CargaMenuView cargaMenuView;
+    private MotoristaMenuView motoristaMenuView;
+    private CarretaMenuView carretaMenuView;
+    private CaminhaoMenuView caminhaoMenuView;
 
-    private final CargasController cargasController;
-    private final MotoristasController motoristasController;
-    private final CarretaController carretasController;
-    private final CaminhoesController caminhoesController;
+    private CargasController cargasController;
+    private MotoristasController motoristasController;
+    private CarretaController carretasController;
+    private CaminhoesController caminhoesController;
+    private EtapasController etapasController;
+
 
     public subMenuController() {
         this.cargaMenuView = new CargaMenuView();
         this.motoristaMenuView = new MotoristaMenuView();
         this.carretaMenuView = new CarretaMenuView();
         this.caminhaoMenuView = new CaminhaoMenuView();
-        this.etapasTransporteListView = new EtapasTransporteListView();
         this.cargasController = new CargasController();
         this.motoristasController = new MotoristasController();
         this.carretasController = new CarretaController();
         this.caminhoesController = new CaminhoesController();
+        this.etapasController = new EtapasController();
     }
 
     public void submenuCargas() {
@@ -50,7 +49,8 @@ public class subMenuController {
                     break;
                 case 3:
                     Limpar.terminal();
-                    etapasTransporteListView.listarEtapas(EtapasTransporteRepository.listar());
+                    etapasController.listar();
+                    break;
                 case 4:
                     mostrar.emConstrucao();
                     break;

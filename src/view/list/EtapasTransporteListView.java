@@ -9,27 +9,38 @@ public class EtapasTransporteListView {
 
     public void listarEtapas(List<EtapasTransporte> etapas) {
         System.out.println("\n========== LISTA DE ETAPAS ==========");
+
         if (etapas.isEmpty()) {
-            System.out.println("Nenhuma carga cadastrada.");
+            System.out.println("Nenhuma etapa cadastrada.");
             aguardarVoltar.Voltar();
             return;
         }
+        System.out.printf(
+                "%-4s | %-8s | %-10s | %-7s | %-14s | %-14s | %-14s | %-14s | %-9s | %-10s | %-10s | %-12s\n", "ID", "Invoice", "PO", "NF", "Origem", "Localidade", "Prox Parada", "Destino", "Caminhão", "Carreta 1", "Carreta 2", "Status");
+        System.out.println("-".repeat(150));
 
-        
-        System.out.println("-".repeat(96));
         for (EtapasTransporte e : etapas) {
             Carga c = e.getCarga();
+
+            String placaCarreta2;
+             if(c.getCarreta2() != null){
+                    placaCarreta2 = c.getCarreta2().getPlaca();
+                }else{
+                    placaCarreta2 = "—"; }
             System.out.printf(
-                    "%d | %d | %s | %s | %s | %s | %s | %s | %s | %s%n",
+
+                    "%-4d | %-8d | %-10s | %-7s | %-14s | %-14s | %-14s | %-14s | %-9s | %-10s | %-10s | %-12s\n",
                     e.getId(),
                     c.getInvoice(),
                     c.getPO(),
                     c.getNotaFiscal(),
                     c.getOrigem(),
+                    e.getLocalidade(),
+                    e.getProximaParada(),
                     c.getDestino(),
                     e.getCaminhao().getPlaca(),
                     e.getCarreta().getPlaca(),
-                    e.getCarreta2().getPlaca(),
+                    placaCarreta2,
                     e.getStatus());
         }
 

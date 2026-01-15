@@ -11,10 +11,12 @@ public class Carga {
     private Motorista motorista;
     private String status;
     private String destino;
+    private String localidade;
+    private String proximaParada;
     private String origem;
     private String PO;
 
-    public Carga(int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, Carreta carreta2, String PO, String notaFiscal, String origem, String destino, String status) {
+    public Carga(int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, Carreta carreta2, String PO, String notaFiscal, String origem, String localidade, String proximaParada, String destino, String status) {
         this.invoice = invoice;
         this.motorista = motorista;
         this.caminhao = caminhao;
@@ -23,11 +25,13 @@ public class Carga {
         this.PO = PO;
         this.notaFiscal = notaFiscal;
         this.origem = origem;
+        this.localidade = localidade;
+        this.proximaParada = proximaParada;
         this.destino = destino;
         this.status = status;
     }
 
-    public Carga(int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, String PO, String notaFiscal, String origem, String destino, String status) {
+    public Carga(int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, String PO, String notaFiscal, String origem,  String localidade, String proximaParada, String destino, String status) {
         this.invoice = invoice;
         this.motorista = motorista;
         this.caminhao = caminhao;
@@ -35,23 +39,27 @@ public class Carga {
         this.PO = PO;
         this.notaFiscal = notaFiscal;
         this.origem = origem;
+        this.localidade = localidade;
+        this.proximaParada = proximaParada;
         this.destino = destino;
         this.status = status;
     }
-    public Carga(int id, int invoice, String PO, String notaFiscal, String origem, String destino, String status){
+    public Carga(int id, int invoice, String PO, String notaFiscal, String origem, String localidade, String destino, String status){
         this.id = id;
         this.invoice = invoice;
         this.PO = PO;
         this.notaFiscal = notaFiscal;
         this.origem = origem;
+        this.localidade = localidade;
         this.destino = destino;
         this.status = status;
     }
-    public Carga(int invoice, String PO, String notaFiscal, String origem, String destino, String status){
+    public Carga(int invoice, String PO, String notaFiscal, String origem, String localidade, String destino, String status){
         this.invoice = invoice;
         this.PO = PO;
         this.notaFiscal = notaFiscal;
         this.origem = origem;
+        this.localidade = localidade;
         this.destino = destino;
         this.status = status;
     }
@@ -73,6 +81,12 @@ public class Carga {
 
     public String getOrigem() {
         return origem;
+    }
+    public String getLocalidade(){
+        return localidade;
+    }
+    public String getproximaParada(){
+        return proximaParada;
     }
 
     public String getDestino() {

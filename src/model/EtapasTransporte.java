@@ -9,52 +9,52 @@ public class EtapasTransporte {
     private Carreta carreta2;
     private Motorista motorista;
     private String status;
-    private String origem;
-    private String destino;
+    private String localidade;
+    private String proximaParada;
 
 
 
     
-    public EtapasTransporte(int id, Carga carga, Caminhao caminhao, Carreta carreta, Carreta carreta2, Motorista motorista, String origem, String destino, String status) {
+    public EtapasTransporte(int id, Carga carga, Caminhao caminhao, Carreta carreta, Carreta carreta2, Motorista motorista, String localidade, String proximaParada, String status) {
         this.id = id;
         this.carga = carga;
         this.caminhao = caminhao;
         this.carreta = carreta;
         this.carreta2 = carreta2;
         this.motorista = motorista;
-        this.origem = origem;
-        this.destino = destino;
+        this.localidade = localidade;
+        this.proximaParada = proximaParada;
         this.status = status;
     }
 
-    public EtapasTransporte( Carga carga, Caminhao caminhao, Carreta carreta, Carreta carreta2, Motorista motorista, String origem, String destino, String status) {
+    public EtapasTransporte( Carga carga, Caminhao caminhao, Carreta carreta, Carreta carreta2, Motorista motorista, String localidade, String proximaParada, String status) {
         this.carga = carga;
         this.caminhao = caminhao;
         this.carreta = carreta;
         this.carreta2 = carreta2;
         this.motorista = motorista;
-        this.origem = origem;
-        this.destino = destino;
+        this.localidade = localidade;
+        this.proximaParada = proximaParada;
         this.status = status;
     }
 
-    public EtapasTransporte(int id, Carga carga, Caminhao caminhao, Carreta carreta, Motorista motorista, String origem, String destino, String status) {
+    public EtapasTransporte(int id, Carga carga, Caminhao caminhao, Carreta carreta, Motorista motorista, String localidade, String proximaParada, String status) {
         this.id = id;
         this.carga = carga;
         this.caminhao = caminhao;
         this.carreta = carreta;
         this.motorista = motorista;
-        this.origem = origem;
-        this.destino = destino;
+        this.localidade = localidade;
+        this.proximaParada = proximaParada;
         this.status = status;
     }
-    public EtapasTransporte( Carga carga, Caminhao caminhao, Carreta carreta, Motorista motorista, String origem, String destino, String status) {
+    public EtapasTransporte( Carga carga, Caminhao caminhao, Carreta carreta, Motorista motorista, String localidade, String proximaParada, String status) {
         this.carga = carga;
         this.caminhao = caminhao;
         this.carreta = carreta;
         this.motorista = motorista;
-        this.origem = origem;
-        this.destino = destino;
+        this.localidade = localidade;
+        this.proximaParada = proximaParada;
         this.status = status;
     }
 
@@ -86,12 +86,12 @@ public class EtapasTransporte {
         return carreta2;
     }
     
-    public String getOrigem(){
-        return origem;
+    public String getLocalidade(){
+        return localidade;
     }
 
-    public String getDestino() {
-    return destino;
+    public String getProximaParada() {
+    return proximaParada;
     }
 
     public String getStatus() {
