@@ -27,7 +27,7 @@ public class CarretaDeleteView {
         }
         
         System.out.println("Digite o ID da carreta a ser excluida: ");
-        int id = input.nextInt();      
+        int id = Integer.parseInt(input.nextLine());      
         
         return id;
     }

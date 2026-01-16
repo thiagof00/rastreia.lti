@@ -15,10 +15,10 @@ public class EtapasController {
         this.listView = new EtapasTransporteListView();
     }
 
-    public void listar(){
+    public void listar(int id){
         List<EtapasTransporte> etapas = EtapasTransporteRepository.listar();
         
-        listView.listarEtapas(etapas);
+        listView.listarEtapas(etapas, id);
         
     }
 }

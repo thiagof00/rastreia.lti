@@ -7,7 +7,7 @@ import model.EtapasTransporte;
 
 public class EtapasTransporteListView {
 
-    public void listarEtapas(List<EtapasTransporte> etapas) {
+    public void listarEtapas(List<EtapasTransporte> etapas, int id) {
         System.out.println("\n========== LISTA DE ETAPAS ==========");
 
         if (etapas.isEmpty()) {
@@ -21,6 +21,8 @@ public class EtapasTransporteListView {
 
         for (EtapasTransporte e : etapas) {
             Carga c = e.getCarga();
+
+            if(id == c.getId()){
 
             String placaCarreta2;
              if(c.getCarreta2() != null){
@@ -42,7 +44,7 @@ public class EtapasTransporteListView {
                     e.getCarreta().getPlaca(),
                     placaCarreta2,
                     e.getStatus());
-        }
+        }}
 
         aguardarVoltar.Voltar();
     }

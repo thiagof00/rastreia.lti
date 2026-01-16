@@ -13,10 +13,12 @@ public class CargasController {
 
     private CargaFormView formView;
     private CargaListView listView;
+    private EtapasController etapasController;
 
     public CargasController() {
         this.formView = new CargaFormView();
         this.listView = new CargaListView();
+        this.etapasController = new EtapasController();
     }
 
     /*
@@ -41,8 +43,17 @@ public class CargasController {
         System.out.println("Carga cadastrada com sucesso!");
         aguardarVoltar.Voltar();
     }
+    public void listarComEtapa(){
+        List<Carga> cargas = CargaRepository.listar();
+        int escolhaEtapa = listView.listarCargas(cargas);
+        if (escolhaEtapa == 0) {
+            return;
+        } else {
+            etapasController.listar(escolhaEtapa);
+        }
+    }
+
     public void listar(){
         List<Carga> cargas = CargaRepository.listar();
-        listView.listarCargas(cargas);
     }
 }

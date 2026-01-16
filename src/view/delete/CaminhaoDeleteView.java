@@ -26,7 +26,7 @@ public class CaminhaoDeleteView {
         }
         
         System.out.println("Digite o ID do caminhão a ser excluido: ");
-        int id = input.nextInt();      
+        int id = Integer.parseInt(input.nextLine());      
         
         return id;
     

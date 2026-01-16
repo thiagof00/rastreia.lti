@@ -15,7 +15,6 @@ public class subMenuController {
     private MotoristasController motoristasController;
     private CarretaController carretasController;
     private CaminhoesController caminhoesController;
-    private EtapasController etapasController;
 
 
     public subMenuController() {
@@ -27,7 +26,6 @@ public class subMenuController {
         this.motoristasController = new MotoristasController();
         this.carretasController = new CarretaController();
         this.caminhoesController = new CaminhoesController();
-        this.etapasController = new EtapasController();
     }
 
     public void submenuCargas() {
@@ -40,17 +38,14 @@ public class subMenuController {
             switch (opcao) {
                 case 1:
                     Limpar.terminal();
-                    cargasController.listar();
+                    cargasController.listarComEtapa();
                     break;
 
                 case 2:
                     Limpar.terminal();
                     cargasController.cadastrar();
                     break;
-                case 3:
-                    Limpar.terminal();
-                    etapasController.listar();
-                    break;
+                case 3:                   
                 case 4:
                     mostrar.emConstrucao();
                     break;
@@ -61,6 +56,7 @@ public class subMenuController {
 
                 default:
                     mostrar.invalido();
+                    break;
             }
         }
     }
