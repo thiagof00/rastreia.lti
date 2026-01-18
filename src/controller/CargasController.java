@@ -9,16 +9,19 @@ import repository.EtapasTransporteRepository;
 import util.aguardarVoltar;
 import view.form.CargaFormView;
 import view.list.CargaListView;
+import view.update.CargaUpdateView;
 public class CargasController {
 
     private CargaFormView formView;
     private CargaListView listView;
     private EtapasController etapasController;
+    private CargaUpdateView cargaUpdateView;
 
     public CargasController() {
         this.formView = new CargaFormView();
         this.listView = new CargaListView();
         this.etapasController = new EtapasController();
+        this.cargaUpdateView = new CargaUpdateView();
     }
 
     /*
@@ -52,8 +55,33 @@ public class CargasController {
             etapasController.listar(escolhaEtapa);
         }
     }
-
-    public void listar(){
+    public void alterar(){
         List<Carga> cargas = CargaRepository.listar();
+        Carga cargaAlterada = cargaUpdateView.updateCarga(cargas);
+        int j=0;
+        for (int i = 0; i < cargas.size(); i++) {
+            if (cargas.get(i).getId() == cargaAlterada.getId()){
+                j = i;
+            }
+        }
+
+        cargas.get(j).setInvoice(cargaAlterada.getInvoice());
+        cargas.get(j).setPO(cargaAlterada.getPO());
+        cargas.get(j).setNotaFiscal(cargaAlterada.getNotaFiscal());
+        cargas.get(j).setLocalidade(cargaAlterada.getLocalidade());
+        cargas.get(j).setDestino(cargaAlterada.getDestino());
+        cargas.get(j).setOrigem(cargaAlterada.getOrigem());
+
+        
+        EtapasTransporte etapa = new EtapasTransporte(cargas.get(j), cargaAlterada.getCaminhao(), cargaAlterada.getCarreta1(), cargaAlterada.getCarreta2(), cargaAlterada.getMotorista(), cargaAlterada.getLocalidade(),cargaAlterada.getproximaParada(), cargaAlterada.getStatus());
+        EtapasTransporteRepository.salvar(etapa);
+        System.out.println("Carga alterado com sucesso!");
+
+
+
+    }
+    public void listar(){
+    List<Carga> cargas = CargaRepository.listar();
+
     }
 }

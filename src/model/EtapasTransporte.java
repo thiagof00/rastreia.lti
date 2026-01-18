@@ -97,6 +97,8 @@ public class EtapasTransporte {
     public String getStatus() {
     return status;
     }
-    
+    public void setLocalidade(String novaLocalidade){
+        this.localidade = novaLocalidade;
+    }
 
 }

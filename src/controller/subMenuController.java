@@ -45,7 +45,8 @@ public class subMenuController {
                     Limpar.terminal();
                     cargasController.cadastrar();
                     break;
-                case 3:                   
+                case 3:        
+                    cargasController.alterar();           
                 case 4:
                     mostrar.emConstrucao();
                     break;
