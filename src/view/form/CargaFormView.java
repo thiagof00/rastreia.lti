@@ -2,7 +2,6 @@ package view.form;
 
 import java.util.List;
 import java.util.Scanner;
-
 import model.Caminhao;
 import model.Carga;
 import model.Carreta;
@@ -16,8 +15,9 @@ public class CargaFormView {
 
     Scanner input = new Scanner(System.in);
     Carreta carretaSelecionada2;
+
     public Carga formularioCadastroCarga() {
-        
+
         System.out.println("========== CADASTRO DE CARGA ==========");
         try {
 

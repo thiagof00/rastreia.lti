@@ -8,7 +8,7 @@ import repository.CarretaRepository;
 public class CarretaDeleteView {
     Scanner input = new Scanner(System.in);
 
-    public int formularioExcluirCarreta(){
+    public int formularioExcluirCarreta() {
 
         List<Carreta> carretas = CarretaRepository.listar();
         System.out.println("\n========== LISTA DE CARRETAS ==========");
@@ -25,10 +25,10 @@ public class CarretaDeleteView {
                     c.getMetragem(),
                     c.getStatus());
         }
-        
+
         System.out.println("Digite o ID da carreta a ser excluida: ");
-        int id = Integer.parseInt(input.nextLine());      
-        
+        int id = Integer.parseInt(input.nextLine());
+
         return id;
     }
 }

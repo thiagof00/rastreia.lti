@@ -4,7 +4,9 @@ import util.lerOpcao;
 
 public class MenuPrincipalView {
 
-    private MenuPrincipalView(){}
+    private MenuPrincipalView() {
+    }
+
     public static int menuPrincipalAdmin() {
         System.out.println("\n========== MENU PRINCIPAL (ADMIN) ==========");
         System.out.println("1 - Gerenciar cargas");

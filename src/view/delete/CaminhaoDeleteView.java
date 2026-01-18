@@ -9,7 +9,7 @@ import repository.CaminhaoRepository;
 public class CaminhaoDeleteView {
     Scanner input = new Scanner(System.in);
 
-    public int formularioExcluirCaminhao(){
+    public int formularioExcluirCaminhao() {
 
         List<Caminhao> caminhoes = CaminhaoRepository.listar();
         System.out.println("\n========== LISTA DE CAMINHÕES ==========");
@@ -24,11 +24,11 @@ public class CaminhaoDeleteView {
                     c.getTipo(),
                     c.getStatus());
         }
-        
+
         System.out.println("Digite o ID do caminhão a ser excluido: ");
-        int id = Integer.parseInt(input.nextLine());      
-        
+        int id = Integer.parseInt(input.nextLine());
+
         return id;
-    
+
     }
 }

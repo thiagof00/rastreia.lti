@@ -1,6 +1,5 @@
 package controller;
 
-
 import java.util.List;
 
 import model.EtapasTransporte;
@@ -11,14 +10,14 @@ public class EtapasController {
 
     private EtapasTransporteListView listView;
 
-    public EtapasController(){
+    public EtapasController() {
         this.listView = new EtapasTransporteListView();
     }
 
-    public void listar(int id){
+    public void listar(int id) {
         List<EtapasTransporte> etapas = EtapasTransporteRepository.listar();
-        
+
         listView.listarEtapas(etapas, id);
-        
+
     }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import model.EtapasTransporte;
 
 public class EtapasTransporteRepository {
-    
+
     private static List<EtapasTransporte> etapasTransportes = new ArrayList<>();
     private static int id = 1;
 

@@ -1,14 +1,15 @@
 package controller;
-import java.util.List;
 
+import java.util.List;
 import model.Caminhao;
-import model.Carga;
+import model.EtapasTransporte;
 import repository.CaminhaoRepository;
-import repository.CargaRepository;
+import repository.EtapasTransporteRepository;
 import util.aguardarVoltar;
 import view.delete.CaminhaoDeleteView;
 import view.form.CaminhaoFormView;
 import view.list.CaminhaoListView;
+
 public class CaminhoesController {
     private CaminhaoFormView formView;
     private CaminhaoListView listView;
@@ -29,20 +30,23 @@ public class CaminhoesController {
         repository.CaminhaoRepository.salvar(caminhao);
 
         System.out.println("Caminhão cadastrado com sucesso!");
-        aguardarVoltar.Voltar();;
+        aguardarVoltar.Voltar();
+        ;
     }
-    public void listar(){
+
+    public void listar() {
         List<Caminhao> caminhoes = CaminhaoRepository.listar();
         listView.listarCaminhoes(caminhoes);
     }
 
-    public void excluir(){
+    public void excluir() {
         int id = deleteView.formularioExcluirCaminhao();
 
-        List<Carga> cargas = CargaRepository.listar();
-        for (Carga carga : cargas) {
-            if(carga.getCaminhao().getId() == id) {
-                System.out.println("Caminhão relacionado a um registro de carga, não foi possivel excluir.");
+        List<EtapasTransporte> etapasTransportes = EtapasTransporteRepository.listar();
+        for (EtapasTransporte etapa : etapasTransportes) {
+            if (etapa.getCaminhao().getId() == id) {
+                System.out
+                        .println("Caminhão relacionado a um registro de etapa de uma carga, não foi possivel excluir.");
                 aguardarVoltar.Voltar();
                 return;
             }
@@ -56,9 +60,9 @@ public class CaminhoesController {
 
         boolean excluido = CaminhaoRepository.excluir(id);
 
-        if(excluido){
+        if (excluido) {
             System.out.println("Caminhão removido com sucesso!");
-        }else{
+        } else {
             System.out.println("Caminhão não encontrado");
         }
         aguardarVoltar.Voltar();

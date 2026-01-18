@@ -1,7 +1,6 @@
 package view.list;
 
 import java.util.List;
-
 import model.Caminhao;
 import util.*;
 
@@ -25,5 +24,5 @@ public class CaminhaoListView {
                     c.getStatus());
         }
         aguardarVoltar.Voltar();
-        }
+    }
 }

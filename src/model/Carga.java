@@ -16,7 +16,8 @@ public class Carga {
     private String origem;
     private String PO;
 
-    public Carga(int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, Carreta carreta2, String PO, String notaFiscal, String origem, String localidade, String proximaParada, String destino, String status) {
+    public Carga(int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, Carreta carreta2, String PO,
+            String notaFiscal, String origem, String localidade, String proximaParada, String destino, String status) {
         this.invoice = invoice;
         this.motorista = motorista;
         this.caminhao = caminhao;
@@ -31,7 +32,8 @@ public class Carga {
         this.status = status;
     }
 
-    public Carga(int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, String PO, String notaFiscal, String origem,  String localidade, String proximaParada, String destino, String status) {
+    public Carga(int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, String PO, String notaFiscal,
+            String origem, String localidade, String proximaParada, String destino, String status) {
         this.invoice = invoice;
         this.motorista = motorista;
         this.caminhao = caminhao;
@@ -44,7 +46,9 @@ public class Carga {
         this.destino = destino;
         this.status = status;
     }
-    public Carga(int id, int invoice, String PO, String notaFiscal, String origem, String localidade, String destino, String status){
+
+    public Carga(int id, int invoice, String PO, String notaFiscal, String origem, String localidade, String destino,
+            String status) {
         this.id = id;
         this.invoice = invoice;
         this.PO = PO;
@@ -54,7 +58,9 @@ public class Carga {
         this.destino = destino;
         this.status = status;
     }
-    public Carga(int invoice, String PO, String notaFiscal, String origem, String localidade, String destino, String status){
+
+    public Carga(int invoice, String PO, String notaFiscal, String origem, String localidade, String destino,
+            String status) {
         this.invoice = invoice;
         this.PO = PO;
         this.notaFiscal = notaFiscal;
@@ -64,7 +70,9 @@ public class Carga {
         this.status = status;
     }
 
-    public Carga(int id, int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, Carreta carreta2, String PO, String notaFiscal, String origem, String localidade, String proximaParada, String destino, String status) {
+    public Carga(int id, int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, Carreta carreta2,
+            String PO, String notaFiscal, String origem, String localidade, String proximaParada, String destino,
+            String status) {
         this.id = id;
         this.invoice = invoice;
         this.motorista = motorista;
@@ -79,7 +87,9 @@ public class Carga {
         this.destino = destino;
         this.status = status;
     }
-    public Carga(int id, int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, String PO, String notaFiscal, String origem,  String localidade, String proximaParada, String destino, String status) {
+
+    public Carga(int id, int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, String PO,
+            String notaFiscal, String origem, String localidade, String proximaParada, String destino, String status) {
         this.id = id;
         this.invoice = invoice;
         this.motorista = motorista;
@@ -109,7 +119,7 @@ public class Carga {
     public void setInvoice(int novoInvoice) {
         this.invoice = novoInvoice;
     }
-    
+
     public String getPO() {
         return PO;
     }
@@ -126,7 +136,7 @@ public class Carga {
         this.origem = novaOrigem;
     }
 
-    public String getLocalidade(){
+    public String getLocalidade() {
         return localidade;
     }
 
@@ -134,7 +144,7 @@ public class Carga {
         this.localidade = novaLocalidade;
     }
 
-    public String getproximaParada(){
+    public String getproximaParada() {
         return proximaParada;
     }
 
@@ -172,6 +182,10 @@ public class Carga {
 
     public String getStatus() {
         return status;
+    }
+
+    public void setStatus(String novoStatus) {
+        this.status = novoStatus;
     }
 
 }

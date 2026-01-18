@@ -1,7 +1,6 @@
 package view.list;
 
 import java.util.List;
-
 import model.Carreta;
 import util.*;
 
@@ -15,7 +14,8 @@ public class CarretaListView {
             return;
         }
 
-        System.out.printf("%-4s | %-12s | %-12s | %-8s | %-8s | %-15s%n", "ID", "PLACA", "TIPO", "PESO MAX", "METRAGEM", "STATUS");
+        System.out.printf("%-4s | %-12s | %-12s | %-8s | %-8s | %-15s%n", "ID", "PLACA", "TIPO", "PESO MAX", "METRAGEM",
+                "STATUS");
         System.out.println("-".repeat(74));
         for (Carreta c : carretas) {
             System.out.printf(

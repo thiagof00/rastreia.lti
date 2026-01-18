@@ -1,7 +1,6 @@
 package view.form;
 
 import java.util.Scanner;
-
 import model.Carreta;
 import util.aguardarVoltar;
 
@@ -61,8 +60,7 @@ public class CarretaFormView {
                     tipo,
                     status,
                     pesoMax,
-                    metragem
-            );
+                    metragem);
 
         } catch (Exception e) {
             System.out.println("Erro no preenchimento dos dados.");

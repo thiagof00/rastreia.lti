@@ -44,7 +44,8 @@ public class Carreta {
     public int getPeso_max() {
         return peso_max;
     }
-    public int getMetragem(){
+
+    public int getMetragem() {
         return metragem;
     }
 

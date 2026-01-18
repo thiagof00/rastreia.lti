@@ -2,16 +2,15 @@ package view.delete;
 
 import java.util.List;
 import java.util.Scanner;
-
 import model.Motorista;
 import repository.MotoristaRepository;
 import util.*;
 
 public class MotoristaDeleteView {
 
-        Scanner input = new Scanner(System.in);
+    Scanner input = new Scanner(System.in);
 
-    public String formularioExcluirMotorista(){
+    public String formularioExcluirMotorista() {
 
         List<Motorista> motoristas = MotoristaRepository.listar();
         System.out.println("\n========== LISTA DE MOTORISTAS ==========");
@@ -26,7 +25,7 @@ public class MotoristaDeleteView {
                     m.getCpf(),
                     m.getStatus());
         }
-        
+
         System.out.println("Digite o cpf do motorista a ser excluido: ");
         String cpf = input.nextLine();
 
@@ -37,6 +36,6 @@ public class MotoristaDeleteView {
         }
 
         return cpf;
-    
+
     }
 }

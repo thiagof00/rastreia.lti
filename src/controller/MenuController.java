@@ -7,6 +7,7 @@ public class MenuController {
 
     private subMenuController submenu;
     private CargasController listview;
+
     public MenuController() {
         this.submenu = new subMenuController();
         this.listview = new CargasController();
@@ -77,7 +78,7 @@ public class MenuController {
 
             switch (opcao) {
                 case 1:
-                    listview.listar();
+                    listview.listarComEtapa();
                     break;
 
                 case 0:

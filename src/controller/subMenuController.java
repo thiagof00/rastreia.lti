@@ -16,7 +16,6 @@ public class subMenuController {
     private CarretaController carretasController;
     private CaminhoesController caminhoesController;
 
-
     public subMenuController() {
         this.cargaMenuView = new CargaMenuView();
         this.motoristaMenuView = new MotoristaMenuView();
@@ -45,10 +44,15 @@ public class subMenuController {
                     Limpar.terminal();
                     cargasController.cadastrar();
                     break;
-                case 3:        
-                    cargasController.alterar();           
+
+                case 3:
+                    Limpar.terminal();
+                    cargasController.alterar();
+                    break;
+
                 case 4:
-                    mostrar.emConstrucao();
+                    Limpar.terminal();
+                    cargasController.alterarStatus();
                     break;
 
                 case 0:
@@ -94,8 +98,6 @@ public class subMenuController {
             }
         }
     }
-
-
 
     public void submenuCarreta() {
 
@@ -147,7 +149,7 @@ public class subMenuController {
                     caminhoesController.cadastrar();
                     break;
                 case 4:
-                    Limpar.terminal();    
+                    Limpar.terminal();
                     caminhoesController.excluir();
                     break;
                 case 3:

@@ -4,12 +4,13 @@ import java.util.List;
 import java.util.Scanner;
 import model.Carga;
 import util.*;
+
 public class CargaListView {
-        
-        Scanner input = new Scanner(System.in);
+
+    Scanner input = new Scanner(System.in);
 
     public int listarCargas(List<Carga> cargas) {
-        
+
         System.out.println("\n========== LISTA DE CARGAS ==========");
         if (cargas.isEmpty()) {
             System.out.println("Nenhuma carga cadastrada.");
@@ -34,7 +35,7 @@ public class CargaListView {
 
         System.out.println("\nDeseja verificar as etapas de uma carga? (Digite 0 para voltar): ");
         int escolhaEtapa = Integer.parseInt(input.nextLine());
-        
+
         return escolhaEtapa;
 
     }

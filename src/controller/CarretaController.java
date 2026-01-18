@@ -1,20 +1,20 @@
 package controller;
 
 import java.util.List;
-
-import model.Carga;
 import model.Carreta;
+import model.EtapasTransporte;
+import repository.CarretaRepository;
+import repository.EtapasTransporteRepository;
+import util.aguardarVoltar;
 import view.delete.CarretaDeleteView;
 import view.form.CarretaFormView;
 import view.list.CarretaListView;
-import repository.CargaRepository;
-import repository.CarretaRepository;
-import util.aguardarVoltar;
 
 public class CarretaController {
     private CarretaFormView formView;
     private CarretaListView listView;
     private CarretaDeleteView deleteView;
+
     public CarretaController() {
         this.formView = new CarretaFormView();
         this.listView = new CarretaListView();
@@ -30,20 +30,20 @@ public class CarretaController {
         CarretaRepository.salvar(carreta);
 
         System.out.println("Carreta cadastrada com sucesso!");
-        aguardarVoltar.Voltar();;
+        aguardarVoltar.Voltar();
     }
 
-    public void listar(){
+    public void listar() {
         List<Carreta> carretas = CarretaRepository.listar();
-         listView.listarCarretas(carretas);
+        listView.listarCarretas(carretas);
     }
 
-    public void excluir(){
+    public void excluir() {
         int id = deleteView.formularioExcluirCarreta();
 
-        List<Carga> cargas = CargaRepository.listar();
-        for (Carga carga : cargas) {
-            if(carga.getCarreta1().getId() == id || carga.getCarreta2().getId() == id) {
+        List<EtapasTransporte> etapasTransportes = EtapasTransporteRepository.listar();
+        for (EtapasTransporte etapa : etapasTransportes) {
+            if (etapa.getCarreta().getId() == id || etapa.getCarreta2().getId() == id) {
                 System.out.println("Carreta relacionada a um registro de carga, não foi possivel excluir.");
                 aguardarVoltar.Voltar();
                 return;
@@ -58,9 +58,9 @@ public class CarretaController {
 
         boolean excluido = CarretaRepository.excluir(id);
 
-        if(excluido){
+        if (excluido) {
             System.out.println("Carreta removida com sucesso!");
-        }else{
+        } else {
             System.out.println("Carreta não encontrada");
         }
         aguardarVoltar.Voltar();

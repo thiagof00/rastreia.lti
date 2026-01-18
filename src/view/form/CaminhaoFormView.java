@@ -1,13 +1,12 @@
 package view.form;
 
 import java.util.Scanner;
-
 import model.Caminhao;
 import util.*;
 
 public class CaminhaoFormView {
 
-        Scanner input = new Scanner(System.in);
+    Scanner input = new Scanner(System.in);
 
     public Caminhao formularioCadastroCaminhao() {
         System.out.println("========== CADASTRO DE CAMINHÃO ==========");
