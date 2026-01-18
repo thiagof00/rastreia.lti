@@ -36,23 +36,23 @@ public class CargaUpdateView {
                 return null;
             }
 
-            System.out.printf("%-4s | %-8s | %-13s | %-11s | %-15s | %-15s | %-12s%n", "ID", "INVOICE", "PO",
-                    "NOTA FISCAL",
-                    "ORIGEM", "DESTINO", "STATUS");
-            System.out.println("-".repeat(96));
+            System.out.printf("%-4s | %-8s | %-13s | %-11s | %-15s | %-15s | %-15s | %-12s\n", "ID", "INVOICE", "PO",
+                    "NOTA FISCAL", "ORIGEM", "LOCALIDADE", "DESTINO", "STATUS");
+            System.out.println("-".repeat(109));
             for (Carga c : cargas) {
                 System.out.printf(
-                        "%-4d | %-8d | %-13s | %-11s | %-15s | %-15s | %-12s%n",
+                        "%-4d | %-8d | %-13s | %-11s | %-15s | %-15s | %-15s | %-12s\n",
                         c.getId(),
                         c.getInvoice(),
                         c.getPO(),
                         c.getNotaFiscal(),
                         c.getOrigem(),
+                        c.getLocalidade(),
                         c.getDestino(),
                         c.getStatus());
             }
 
-            System.out.println("Digite a carga para alterar");
+            System.out.println("\nDigite a carga para alterar");
             int escolhaCarga = Integer.parseInt(input.nextLine());
 
             List<EtapasTransporte> etapas = EtapasTransporteRepository.listar();
@@ -68,7 +68,7 @@ public class CargaUpdateView {
                             "%-4s | %-8s | %-10s | %-7s | %-14s | %-14s | %-14s | %-14s | %-9s | %-10s | %-10s | %-12s\n",
                             "ID", "Invoice", "PO", "NF", "Origem", "Localidade", "Prox Parada", "Destino", "Caminhão",
                             "Carreta 1", "Carreta 2", "Status");
-                    System.out.println("-".repeat(150));
+                    System.out.println("-".repeat(160));
 
                     String placaCarreta2;
                     if (c.getCarreta2() != null) {
@@ -151,7 +151,7 @@ public class CargaUpdateView {
                 carretaSelecionada = carretas.get(opcaoCarreta - 1);
             }
 
-            System.out.println("Selecione a segunda carreta, digite 0 caso não apareça uma disponivel para uso: ");
+            System.out.println("\nSelecione a segunda carreta, digite 0 caso não utilize: ");
             System.out.println("\nCarretas disponiveis:");
 
             for (int i = 0; i < carretas.size(); i++) {
@@ -204,20 +204,20 @@ public class CargaUpdateView {
                 etapaSelecionada.getMotorista().setStatus("Ocioso");
             }
 
-            System.out.print("Nota fiscal: ");
+            System.out.print("\nNota fiscal: ");
             String notaFiscal = input.nextLine();
 
-            System.out.print("PO: ");
+            System.out.print("\nPO: ");
             String PO = input.nextLine();
 
-            System.out.print("Origem: ");
+            System.out.print("\nOrigem: ");
             String origem = input.nextLine();
 
             respLocalidade = etapaSelecionada.getLocalidade();
 
-            System.out.print("Próxima parada: ");
+            System.out.print("\nPróxima parada: ");
             String proximaParada = input.nextLine();
-            System.out.print("Destino: ");
+            System.out.print("\nDestino: ");
             String destino = input.nextLine();
 
             if (verificaValores(invoice))

@@ -72,7 +72,7 @@ public class CargaFormView {
 
             Carreta carretaSelecionada = carretas.get(opcaoCarreta - 1);
 
-            System.out.println("Selecione a segunda carreta, digite 0 caso não apareça uma disponivel para uso: ");
+            System.out.println("\nSelecione a segunda carreta, digite 0 caso não utilize: ");
             System.out.println("\nCarretas disponiveis:");
 
             for (int i = 0; i < carretas.size(); i++) {
@@ -122,19 +122,20 @@ public class CargaFormView {
 
             Motorista motoristaSelecionado = motoristas.get(opcaoMotorista - 1);
 
-            System.out.print("Nota fiscal: ");
+            System.out.print("\nNota fiscal: ");
             String notaFiscal = input.nextLine();
 
-            System.out.print("PO: ");
+            System.out.print("\nPO: ");
             String PO = input.nextLine();
 
-            System.out.print("Origem: ");
+            System.out.print("\nOrigem: ");
             String origem = input.nextLine();
 
-            System.out.print("Próxima parada após a origem: ");
+            System.out.print("\nPróxima parada após a origem: ");
             String proximaParada = input.nextLine();
-            System.out.print("Destino: ");
+            System.out.print("\nDestino: ");
             String destino = input.nextLine();
+            System.out.println();
 
             caminhaoSelecionado.setStatus("Em uso");
             carretaSelecionada.setStatus("Em uso");

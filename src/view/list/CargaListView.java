@@ -18,17 +18,19 @@ public class CargaListView {
             return 0;
         }
 
-        System.out.printf("%-4s | %-8s | %-13s | %-11s | %-15s | %-15s | %-12s%n", "ID", "INVOICE", "PO", "NOTA FISCAL",
-                "ORIGEM", "DESTINO", "STATUS");
-        System.out.println("-".repeat(96));
+        System.out.printf("%-4s | %-8s | %-13s | %-11s | %-15s | %-15s | %-15s | %-12s%n", "ID", "INVOICE", "PO",
+                "NOTA FISCAL",
+                "ORIGEM", "LOCALIDADE", "DESTINO", "STATUS");
+        System.out.println("-".repeat(109));
         for (Carga c : cargas) {
             System.out.printf(
-                    "%-4d | %-8d | %-13s | %-11s | %-15s | %-15s | %-12s%n",
+                    "%-4d | %-8d | %-13s | %-11s | %-15s | %-15s | %-15s | %-12s%n",
                     c.getId(),
                     c.getInvoice(),
                     c.getPO(),
                     c.getNotaFiscal(),
                     c.getOrigem(),
+                    c.getLocalidade(),
                     c.getDestino(),
                     c.getStatus());
         }

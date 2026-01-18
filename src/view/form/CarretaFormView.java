@@ -47,7 +47,7 @@ public class CarretaFormView {
                         statusValido = true;
                         break;
                     case 3:
-                        status = "Em Uso";
+                        status = "Em viagem";
                         statusValido = true;
                         break;
                     default:

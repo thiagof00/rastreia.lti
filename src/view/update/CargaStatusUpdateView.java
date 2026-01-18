@@ -23,18 +23,19 @@ public class CargaStatusUpdateView {
             return null;
         }
 
-        System.out.printf("%-4s | %-8s | %-13s | %-11s | %-15s | %-15s | %-12s%n", "ID", "INVOICE", "PO",
+        System.out.printf("\n%-4s | %-8s | %-13s | %-11s | %-15s | %-15s | %-15s | %-12s\n", "ID", "INVOICE", "PO",
                 "NOTA FISCAL",
-                "ORIGEM", "DESTINO", "STATUS");
+                "ORIGEM", "LOCALIDADE", "DESTINO", "STATUS");
         System.out.println("-".repeat(96));
         for (Carga c : cargas) {
             System.out.printf(
-                    "%-4d | %-8d | %-13s | %-11s | %-15s | %-15s | %-12s%n",
+                    "%-4d | %-8d | %-13s | %-11s | %-15s | %-15s | %-15s | %-12s\n",
                     c.getId(),
                     c.getInvoice(),
                     c.getPO(),
                     c.getNotaFiscal(),
                     c.getOrigem(),
+                    c.getLocalidade(),
                     c.getDestino(),
                     c.getStatus());
         }
@@ -48,7 +49,7 @@ public class CargaStatusUpdateView {
                 "%-4s | %-8s | %-10s | %-7s | %-14s | %-14s | %-14s | %-14s | %-9s | %-10s | %-10s | %-10s | %-12s\n",
                 "ID", "Invoice", "PO", "NF", "Origem", "Localidade", "Prox Parada", "Destino", "Caminhão", "Carreta 1",
                 "Carreta 2", "Motorista", "Status");
-        System.out.println("-".repeat(150));
+        System.out.println("-".repeat(160));
 
         for (EtapasTransporte e : etapas) {
             Carga c = e.getCarga();
@@ -83,6 +84,7 @@ public class CargaStatusUpdateView {
         System.out.println("1 - Sim");
         System.out.println("0 - Não (Cancelar)");
         int escolhaAlterar = Integer.parseInt(input.nextLine());
+
         if (escolhaAlterar != 1) {
             return null;
         } else {

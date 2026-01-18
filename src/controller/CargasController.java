@@ -5,6 +5,7 @@ import model.Carga;
 import model.EtapasTransporte;
 import repository.CargaRepository;
 import repository.EtapasTransporteRepository;
+import util.Limpar;
 import util.aguardarVoltar;
 import view.form.CargaFormView;
 import view.list.CargaListView;
@@ -59,6 +60,7 @@ public class CargasController {
         List<Carga> cargas = CargaRepository.listar();
         int escolhaEtapa = listView.listarCargas(cargas);
         if (escolhaEtapa == 0) {
+            Limpar.terminal();
             return;
         } else {
             etapasController.listar(escolhaEtapa);
@@ -68,6 +70,9 @@ public class CargasController {
     public void alterar() {
         List<Carga> cargas = CargaRepository.listar();
         Carga cargaAlterada = cargaUpdateView.updateCarga(cargas);
+        if (cargaAlterada == null) {
+            return;
+        }
         int j = 0;
         for (int i = 0; i < cargas.size(); i++) {
             if (cargas.get(i).getId() == cargaAlterada.getId()) {
@@ -87,13 +92,17 @@ public class CargasController {
                 cargaAlterada.getCarreta1(), cargaAlterada.getCarreta2(), cargaAlterada.getMotorista(),
                 cargaAlterada.getLocalidade(), cargaAlterada.getproximaParada(), cargaAlterada.getStatus());
         EtapasTransporteRepository.salvar(etapa);
-        System.out.println("Carga alterado com sucesso!");
+        System.out.println("Carga alterada com sucesso!");
+        aguardarVoltar.Voltar();
 
     }
 
     public void alterarStatus() {
         List<Carga> cargas = CargaRepository.listar();
         Carga cargaAlterada = CargaStatusUpdateView.updateStatusCarga(cargas);
+        if (cargaAlterada == null) {
+            return;
+        }
         int j = 0;
         for (int i = 0; i < cargas.size(); i++) {
             if (cargas.get(i).getId() == cargaAlterada.getId()) {
@@ -106,6 +115,8 @@ public class CargasController {
                 cargaAlterada.getCarreta1(), cargaAlterada.getCarreta2(), cargaAlterada.getMotorista(),
                 cargaAlterada.getLocalidade(), cargaAlterada.getproximaParada(), cargaAlterada.getStatus());
         EtapasTransporteRepository.salvar(etapa);
+        System.out.println("Status da carga alterado com sucesso!");
+        aguardarVoltar.Voltar();
 
     }
 }

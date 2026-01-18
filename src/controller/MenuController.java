@@ -50,11 +50,6 @@ public class MenuController {
                     Limpar.terminal();
                     submenu.submenuCaminhao();
                     break;
-                case 5:
-                    Limpar.terminal();
-                    mostrar.emConstrucao();
-                    break;
-
                 case 0:
                     mostrar.sair();
                     return;
