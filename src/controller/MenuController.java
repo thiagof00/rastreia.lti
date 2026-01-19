@@ -6,9 +6,11 @@ import view.menu.MenuPrincipalView;
 public class MenuController {
 
     private subMenuController submenu;
+    private CargasController listview;
 
     public MenuController() {
         this.submenu = new subMenuController();
+        this.listview = new CargasController();
     }
 
     public void exibirMenu(int tipoUsuario) {
@@ -46,17 +48,8 @@ public class MenuController {
                     break;
                 case 4:
                     Limpar.terminal();
-                    submenu.submenuTipoCarreta();
-                    break;
-                case 5:
-                    Limpar.terminal();
                     submenu.submenuCaminhao();
                     break;
-                case 6:
-                    Limpar.terminal();
-                    mostrar.emConstrucao();
-                    break;
-
                 case 0:
                     mostrar.sair();
                     return;
@@ -80,7 +73,7 @@ public class MenuController {
 
             switch (opcao) {
                 case 1:
-                    ;
+                    listview.listarComEtapa();
                     break;
 
                 case 0:

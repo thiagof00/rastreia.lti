@@ -6,29 +6,24 @@ import view.menu.*;
 
 public class subMenuController {
 
-    private final CargaMenuView cargaMenuView;
-    private final MotoristaMenuView motoristaMenuView;
-    private final CarretaMenuView carretaMenuView;
-    private final CaminhaoMenuView caminhaoMenuView;
-    private final TipoCarretaMenuView tipoCarretaMenuView;
+    private CargaMenuView cargaMenuView;
+    private MotoristaMenuView motoristaMenuView;
+    private CarretaMenuView carretaMenuView;
+    private CaminhaoMenuView caminhaoMenuView;
 
-    private final CargasController cargasController;
-    private final MotoristasController motoristasController;
-    private final CarretaController carretasController;
-    private final TipoCarretasController tipoCarretasController;
-    private final CaminhoesController caminhoesController;
+    private CargasController cargasController;
+    private MotoristasController motoristasController;
+    private CarretaController carretasController;
+    private CaminhoesController caminhoesController;
 
     public subMenuController() {
         this.cargaMenuView = new CargaMenuView();
         this.motoristaMenuView = new MotoristaMenuView();
         this.carretaMenuView = new CarretaMenuView();
         this.caminhaoMenuView = new CaminhaoMenuView();
-        this.tipoCarretaMenuView = new TipoCarretaMenuView();
-
         this.cargasController = new CargasController();
         this.motoristasController = new MotoristasController();
         this.carretasController = new CarretaController();
-        this.tipoCarretasController = new TipoCarretasController();
         this.caminhoesController = new CaminhoesController();
     }
 
@@ -42,16 +37,22 @@ public class subMenuController {
             switch (opcao) {
                 case 1:
                     Limpar.terminal();
-                    cargasController.listar();
+                    cargasController.listarComEtapa();
                     break;
 
                 case 2:
                     Limpar.terminal();
                     cargasController.cadastrar();
                     break;
+
                 case 3:
+                    Limpar.terminal();
+                    cargasController.alterar();
+                    break;
+
                 case 4:
-                    mostrar.emConstrucao();
+                    Limpar.terminal();
+                    cargasController.alterarStatus();
                     break;
 
                 case 0:
@@ -60,6 +61,7 @@ public class subMenuController {
 
                 default:
                     mostrar.invalido();
+                    break;
             }
         }
     }
@@ -82,45 +84,9 @@ public class subMenuController {
                     motoristasController.cadastrar();
                     break;
                 case 3:
-                    mostrar.emConstrucao();
-                    break;
-                case 4:
+                    Limpar.terminal();
                     motoristasController.excluir();
                     break;
-                case 0:
-                    Limpar.terminal();
-                    break;
-
-                default:
-                    mostrar.invalido();
-            }
-        }
-    }
-
-    public void submenuTipoCarreta() {
-
-        int opcao = -1;
-
-        while (opcao != 0) {
-            opcao = tipoCarretaMenuView.menuTipoCarretas();
-
-            switch (opcao) {
-                case 1:
-                    Limpar.terminal();
-                    tipoCarretasController.listar();
-                    break;
-
-                case 2:
-                    Limpar.terminal();
-                    tipoCarretasController.cadastrar();
-                    break;
-                case 3:
-                    mostrar.emConstrucao();
-                    break;
-                case 4:
-                    tipoCarretasController.excluir();
-                    break;
-
                 case 0:
                     Limpar.terminal();
                     break;
@@ -148,10 +114,9 @@ public class subMenuController {
                     carretasController.cadastrar();
                     break;
                 case 3:
-                case 4:
-                    mostrar.emConstrucao();
+                    Limpar.terminal();
+                    carretasController.excluir();
                     break;
-
                 case 0:
                     Limpar.terminal();
                     break;
@@ -177,11 +142,10 @@ public class subMenuController {
                     Limpar.terminal();
                     caminhoesController.cadastrar();
                     break;
-                case 3:
                 case 4:
-                    mostrar.emConstrucao();
+                    Limpar.terminal();
+                    caminhoesController.excluir();
                     break;
-
                 case 0:
                     Limpar.terminal();
                     break;

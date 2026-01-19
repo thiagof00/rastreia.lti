@@ -6,7 +6,8 @@ public class aguardarVoltar {
 
     private static final Scanner input = new Scanner(System.in);
 
-    private aguardarVoltar(){}
+    private aguardarVoltar() {
+    }
 
     public static void Voltar() {
         System.out.println("\n0 - Voltar");

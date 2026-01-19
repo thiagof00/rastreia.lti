@@ -1,7 +1,6 @@
 package view.list;
 
 import java.util.List;
-
 import model.Carreta;
 import util.*;
 
@@ -15,15 +14,17 @@ public class CarretaListView {
             return;
         }
 
-        System.out.printf("%-4s | %-12s | %-12s | %-14s | %-15s%n", "ID", "PLACA 1", "PLACA 2", "TIPO", "STATUS");
-        System.out.println("-".repeat(69));
+        System.out.printf("%-4s | %-12s | %-12s | %-8s | %-8s | %-15s%n", "ID", "PLACA", "TIPO", "PESO MAX", "METRAGEM",
+                "STATUS");
+        System.out.println("-".repeat(74));
         for (Carreta c : carretas) {
             System.out.printf(
-                    "%-4d | %-12s | %-12s | %-14s | %-15s%n",
+                    "%-4d | %-12s | %-12s | %-8d | %-8d | %-15s%n",
                     c.getId(),
-                    c.getPlaca1(),
-                    c.getPlaca2(),
-                    c.getTipoCarreta().getTipo(),
+                    c.getPlaca(),
+                    c.getTipo(),
+                    c.getPeso_max(),
+                    c.getMetragem(),
                     c.getStatus());
         }
         aguardarVoltar.Voltar();
