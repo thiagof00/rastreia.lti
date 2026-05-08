@@ -42,7 +42,7 @@ public class CargaFormView {
             if (opcaoCaminhao < 1 || opcaoCaminhao > caminhoes.size()
                     || !caminhoes.get(opcaoCaminhao - 1).getStatus().equals("Ocioso")) {
                 System.out.println("Caminhão inválido.");
-                aguardarVoltar.Voltar();
+                AguardarVoltar.Voltar();
                 return null;
             }
 
@@ -66,7 +66,7 @@ public class CargaFormView {
             if (opcaoCarreta < 1 || opcaoCarreta > carretas.size()
                     || !carretas.get(opcaoCarreta - 1).getStatus().equals("Ocioso")) {
                 System.out.println("Carreta inválida.");
-                aguardarVoltar.Voltar();
+                AguardarVoltar.Voltar();
                 return null;
             }
 
@@ -93,7 +93,7 @@ public class CargaFormView {
                         || !carretas.get(opcaoCarreta2 - 1).getStatus().equals("Ocioso")
                         || opcaoCarreta2 == opcaoCarreta) {
                     System.out.println("Carreta inválida.");
-                    aguardarVoltar.Voltar();
+                    AguardarVoltar.Voltar();
                     return null;
                 }
             }
@@ -116,7 +116,7 @@ public class CargaFormView {
             if (opcaoMotorista < 1 || opcaoMotorista > motoristas.size()
                     || !motoristas.get(opcaoMotorista - 1).getStatus().equals("Ocioso")) {
                 System.out.println("Motorista inválido.");
-                aguardarVoltar.Voltar();
+                AguardarVoltar.Voltar();
                 return null;
             }
 
@@ -156,7 +156,7 @@ public class CargaFormView {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Erro no preenchimento dos dados.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return null;
         }
     }

@@ -1,13 +1,10 @@
 package view.menu;
 
-import util.lerOpcao;
+import util.LerOpcao;
 
 public class MenuPrincipalView {
 
-    private MenuPrincipalView() {
-    }
-
-    public static int menuPrincipalAdmin() {
+    public int menuPrincipalAdmin() {
         System.out.println("\n========== MENU PRINCIPAL (ADMIN) ==========");
         System.out.println("1 - Gerenciar cargas");
         System.out.println("2 - Gerenciar motoristas");
@@ -16,15 +13,15 @@ public class MenuPrincipalView {
         System.out.println("0 - Sair");
         System.out.print("Escolha: ");
 
-        return lerOpcao.lerInt();
+        return LerOpcao.lerInt();
     }
 
-    public static int menuPrincipalCliente() {
+    public int menuPrincipalCliente() {
         System.out.println("\n========== MENU PRINCIPAL (CLIENTE) ==========");
         System.out.println("1 - Listar cargas");
         System.out.println("0 - Sair");
         System.out.print("Escolha: ");
 
-        return lerOpcao.lerInt();
+        return LerOpcao.lerInt();
     }
 }

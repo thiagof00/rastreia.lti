@@ -2,7 +2,7 @@ package view.form;
 
 import java.util.Scanner;
 import model.Carreta;
-import util.aguardarVoltar;
+import util.AguardarVoltar;
 
 public class CarretaFormView {
 
@@ -64,7 +64,7 @@ public class CarretaFormView {
 
         } catch (Exception e) {
             System.out.println("Erro no preenchimento dos dados.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return null;
         }
     }

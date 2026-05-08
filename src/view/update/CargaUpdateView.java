@@ -12,7 +12,7 @@ import repository.CarretaRepository;
 import repository.EtapasTransporteRepository;
 import repository.MotoristaRepository;
 import util.Limpar;
-import util.aguardarVoltar;
+import util.AguardarVoltar;
 
 public class CargaUpdateView {
 
@@ -32,7 +32,7 @@ public class CargaUpdateView {
             System.out.println("\n========== LISTA DE CARGAS ==========");
             if (cargas.isEmpty()) {
                 System.out.println("Nenhuma carga cadastrada.");
-                aguardarVoltar.Voltar();
+                AguardarVoltar.Voltar();
                 return null;
             }
 
@@ -119,7 +119,7 @@ public class CargaUpdateView {
             } else if (opcaoCaminhao < 1 || opcaoCaminhao > caminhoes.size()
                     || !caminhoes.get(opcaoCaminhao - 1).getStatus().equals("Ocioso")) {
                 System.out.println("Caminhão inválido.");
-                aguardarVoltar.Voltar();
+                AguardarVoltar.Voltar();
                 return null;
             } else {
                 caminhaoSelecionado = caminhoes.get(opcaoCaminhao - 1);
@@ -145,7 +145,7 @@ public class CargaUpdateView {
             } else if (opcaoCarreta < 1 || opcaoCarreta > carretas.size()
                     || !carretas.get(opcaoCarreta - 1).getStatus().equals("Ocioso")) {
                 System.out.println("Carreta inválida.");
-                aguardarVoltar.Voltar();
+                AguardarVoltar.Voltar();
                 return null;
             } else {
                 carretaSelecionada = carretas.get(opcaoCarreta - 1);
@@ -172,7 +172,7 @@ public class CargaUpdateView {
                         || !carretas.get(opcaoCarreta2 - 1).getStatus().equals("Ocioso")
                         || opcaoCarreta2 == opcaoCarreta) {
                     System.out.println("Carreta inválida.");
-                    aguardarVoltar.Voltar();
+                    AguardarVoltar.Voltar();
                     return null;
                 }
             }
@@ -197,7 +197,7 @@ public class CargaUpdateView {
             } else if (opcaoMotorista < 1 || opcaoMotorista > motoristas.size()
                     || !motoristas.get(opcaoMotorista - 1).getStatus().equals("Ocioso")) {
                 System.out.println("Motorista inválido.");
-                aguardarVoltar.Voltar();
+                AguardarVoltar.Voltar();
                 return null;
             } else {
                 motoristaSelecionado = motoristas.get(opcaoMotorista - 1);
@@ -266,7 +266,7 @@ public class CargaUpdateView {
             }
         } catch (Exception e) {
             System.out.println("Erro no preenchimento dos dados.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return null;
         }
     }

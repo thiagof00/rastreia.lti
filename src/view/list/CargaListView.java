@@ -14,7 +14,7 @@ public class CargaListView {
         System.out.println("\n========== LISTA DE CARGAS ==========");
         if (cargas.isEmpty()) {
             System.out.println("Nenhuma carga cadastrada.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return 0;
         }
 

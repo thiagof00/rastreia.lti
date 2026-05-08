@@ -5,11 +5,13 @@ import view.menu.MenuPrincipalView;
 
 public class MenuController {
 
-    private subMenuController submenu;
+    private SubMenuController submenu;
     private CargasController listview;
+    private MenuPrincipalView menuView;
 
     public MenuController() {
-        this.submenu = new subMenuController();
+        this.menuView = new MenuPrincipalView();
+        this.submenu = new SubMenuController();
         this.listview = new CargasController();
     }
 
@@ -30,7 +32,7 @@ public class MenuController {
         int opcao = -1;
 
         while (opcao != 0) {
-            opcao = MenuPrincipalView.menuPrincipalAdmin();
+            opcao = menuView.menuPrincipalAdmin();
 
             switch (opcao) {
                 case 1:
@@ -51,11 +53,11 @@ public class MenuController {
                     submenu.submenuCaminhao();
                     break;
                 case 0:
-                    mostrar.sair();
+                    Mostrar.sair();
                     return;
 
                 default:
-                    mostrar.invalido();
+                    Mostrar.invalido();
             }
         }
     }
@@ -69,7 +71,7 @@ public class MenuController {
         int opcao = -1;
 
         while (opcao != 0) {
-            opcao = MenuPrincipalView.menuPrincipalCliente();
+            opcao = menuView.menuPrincipalCliente();
 
             switch (opcao) {
                 case 1:
@@ -77,11 +79,11 @@ public class MenuController {
                     break;
 
                 case 0:
-                    mostrar.sair();
+                    Mostrar.sair();
                     return;
 
                 default:
-                    mostrar.invalido();
+                    Mostrar.invalido();
             }
         }
     }

@@ -11,7 +11,7 @@ public class MotoristaListView {
         System.out.println("\n========== LISTA DE MOTORISTAS ==========");
         if (motoristas.isEmpty()) {
             System.out.println("Nenhum motorista cadastrado.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return;
         }
         System.out.printf("%-4s | %-15s | %-15s | %-15s%n", "ID", "NOME", "CPF", "STATUS");
@@ -24,6 +24,6 @@ public class MotoristaListView {
                     m.getCpf(),
                     m.getStatus());
         }
-        aguardarVoltar.Voltar();
+        AguardarVoltar.Voltar();
     }
 }

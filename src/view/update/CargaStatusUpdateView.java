@@ -6,7 +6,7 @@ import model.Carga;
 import model.EtapasTransporte;
 import repository.EtapasTransporteRepository;
 import util.Limpar;
-import util.aguardarVoltar;
+import util.AguardarVoltar;
 
 public class CargaStatusUpdateView {
 
@@ -19,7 +19,7 @@ public class CargaStatusUpdateView {
         System.out.println("\n========== LISTA DE CARGAS ==========");
         if (cargas.isEmpty()) {
             System.out.println("Nenhuma carga cadastrada.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return null;
         }
 

@@ -5,13 +5,15 @@ import model.EtapasTransporte;
 import model.Motorista;
 import repository.EtapasTransporteRepository;
 import repository.MotoristaRepository;
-import util.aguardarVoltar;
+import util.AguardarVoltar;
 import view.delete.MotoristaDeleteView;
 import view.form.MotoristaFormView;
 import view.list.MotoristaListView;
+import view.menu.MotoristaMenuView;
 
 public class MotoristasController {
 
+    private MotoristaMenuView menuView;
     private MotoristaFormView formView;
     private MotoristaDeleteView viewDelete;
     private MotoristaListView listView;
@@ -20,6 +22,7 @@ public class MotoristasController {
         this.formView = new MotoristaFormView();
         this.viewDelete = new MotoristaDeleteView();
         this.listView = new MotoristaListView();
+        this.menuView = new MotoristaMenuView();
     }
 
     public void listar() {
@@ -39,7 +42,7 @@ public class MotoristasController {
         MotoristaRepository.salvar(motorista);
 
         System.out.println("Motorista cadastrado com sucesso!");
-        aguardarVoltar.Voltar();
+        AguardarVoltar.Voltar();
     }
 
     public void excluir() {
@@ -50,7 +53,7 @@ public class MotoristasController {
             if (etapa.getMotorista().getCpf().equals(cpf)) {
                 System.out.println(
                         "Motorista relacionado a um registro de etapa de uma carga, não foi possivel excluir.");
-                aguardarVoltar.Voltar();
+                AguardarVoltar.Voltar();
                 return;
             }
         }
@@ -66,7 +69,12 @@ public class MotoristasController {
         } else {
             System.out.println("motorista não encontrado");
         }
-        aguardarVoltar.Voltar();
+        AguardarVoltar.Voltar();
 
+    }
+
+    public int exibirMenu() {
+
+        return menuView.menuMotoristas();
     }
 }

@@ -48,7 +48,7 @@ public class CaminhaoFormView {
 
         } catch (Exception e) {
             System.out.println("Erro no preenchimento dos dados.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return null;
         }
     }

@@ -2,11 +2,11 @@ package util;
 
 import java.util.Scanner;
 
-public class aguardarVoltar {
+public class AguardarVoltar {
 
     private static final Scanner input = new Scanner(System.in);
 
-    private aguardarVoltar() {
+    private AguardarVoltar() {
     }
 
     public static void Voltar() {

@@ -2,12 +2,11 @@ package util;
 
 import java.util.Scanner;
 
-public class lerOpcao {
+public class LerOpcao {
 
     private static final Scanner scanner = new Scanner(System.in);
 
-    private lerOpcao() {
-        // impede instanciação
+    private LerOpcao() {
     }
 
     public static int lerInt() {

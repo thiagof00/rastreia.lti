@@ -5,17 +5,20 @@ import model.Carreta;
 import model.EtapasTransporte;
 import repository.CarretaRepository;
 import repository.EtapasTransporteRepository;
-import util.aguardarVoltar;
+import util.AguardarVoltar;
 import view.delete.CarretaDeleteView;
 import view.form.CarretaFormView;
 import view.list.CarretaListView;
+import view.menu.CarretaMenuView;
 
 public class CarretaController {
+    private CarretaMenuView menuView;
     private CarretaFormView formView;
     private CarretaListView listView;
     private CarretaDeleteView deleteView;
 
     public CarretaController() {
+        this.menuView = new CarretaMenuView();
         this.formView = new CarretaFormView();
         this.listView = new CarretaListView();
         this.deleteView = new CarretaDeleteView();
@@ -30,7 +33,7 @@ public class CarretaController {
         CarretaRepository.salvar(carreta);
 
         System.out.println("Carreta cadastrada com sucesso!");
-        aguardarVoltar.Voltar();
+        AguardarVoltar.Voltar();
     }
 
     public void listar() {
@@ -45,14 +48,14 @@ public class CarretaController {
         for (EtapasTransporte etapa : etapasTransportes) {
             if (etapa.getCarreta().getId() == id || etapa.getCarreta2().getId() == id) {
                 System.out.println("Carreta relacionada a um registro de carga, não foi possivel excluir.");
-                aguardarVoltar.Voltar();
+                AguardarVoltar.Voltar();
                 return;
             }
         }
 
         if (id == 0) {
             System.out.println("ID não pode ser vazio.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return;
         }
 
@@ -63,7 +66,11 @@ public class CarretaController {
         } else {
             System.out.println("Carreta não encontrada");
         }
-        aguardarVoltar.Voltar();
+        AguardarVoltar.Voltar();
 
+    }
+
+    public int exibirMenu() {
+        return menuView.menuCarretas();
     }
 }

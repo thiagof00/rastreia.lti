@@ -1,6 +1,6 @@
 package view.menu;
 
-import util.lerOpcao;
+import util.LerOpcao;
 
 public class CargaMenuView {
 
@@ -13,6 +13,6 @@ public class CargaMenuView {
         System.out.println("0 - Voltar");
         System.out.print("Escolha: ");
 
-        return lerOpcao.lerInt();
+        return LerOpcao.lerInt();
     }
 }
