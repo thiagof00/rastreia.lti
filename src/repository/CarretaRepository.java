@@ -2,21 +2,30 @@ package repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import model.Carreta;
+import model.enums.StatusVeiculo;
 
 public class CarretaRepository {
     private static List<Carreta> carretas = new ArrayList<>(List.of(
-            new Carreta(1, "XYZ1K23", "Bau", "Ocioso", 18000, 14),
-            new Carreta(2, "MTG8221", "Bau", "Ocioso", 19000, 16),
-            new Carreta(3, "MNX7887", "Bau", "Ocioso", 14000, 20),
-            new Carreta(4, "ASR4936", "Sider", "Ocioso", 20000, 20),
-            new Carreta(5, "ICX1221", "LS", "Em manutenção", 15000, 16)
+            new Carreta("XYZ1K23", "Bau", StatusVeiculo.OCIOSO, 18000, 14),
+            new Carreta("MTG8221", "Bau", StatusVeiculo.OCIOSO, 19000, 16),
+            new Carreta("MNX7887", "Bau", StatusVeiculo.OCIOSO, 14000, 20),
+            new Carreta("ASR4936", "Sider", StatusVeiculo.OCIOSO, 20000, 20),
+            new Carreta("ICX1221", "LS", StatusVeiculo.OCIOSO, 15000, 16)
 
     ));
-    private static int id = 6;
+    private static int proximoId;
+
+    static {
+        proximoId = 1;
+        for (Carreta c : carretas) {
+            c.setId(proximoId++);
+        }
+    }
 
     public static void salvar(Carreta carreta) {
-        carreta.setId(id++);
+        carreta.setId(proximoId++);
         carretas.add(carreta);
     }
 

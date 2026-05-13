@@ -2,12 +2,12 @@ package model;
 
 public class Carga {
 
+    private int id;
     private int invoice;
     private Caminhao caminhao;
     private Carreta carreta1;
     private Carreta carreta2;
     private String notaFiscal;
-    private int id;
     private Motorista motorista;
     private String status;
     private String destino;

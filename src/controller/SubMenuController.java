@@ -133,7 +133,8 @@ public class SubMenuController {
                     Limpar.terminal();
                     caminhoesController.cadastrar();
                     break;
-                case 4:
+
+                case 3:
                     Limpar.terminal();
                     caminhoesController.excluir();
                     break;

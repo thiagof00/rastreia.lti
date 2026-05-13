@@ -1,19 +1,14 @@
 package model;
 
+import model.enums.StatusMotorista;
+
 public class Motorista {
     private String nome;
     private String cpf;
-    private String status;
+    private StatusMotorista status;
     private int id;
 
-    public Motorista(int id, String nome, String cpf, String status) {
-        this.id = id;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.status = status;
-    }
-
-    public Motorista(String nome, String cpf, String status) {
+    public Motorista(String nome, String cpf, StatusMotorista status) {
         this.nome = nome;
         this.cpf = cpf;
         this.status = status;
@@ -35,11 +30,11 @@ public class Motorista {
         return cpf;
     }
 
-    public String getStatus() {
+    public StatusMotorista getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusMotorista status) {
         this.status = status;
     }
 }

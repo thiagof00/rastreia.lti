@@ -7,6 +7,8 @@ import model.Carga;
 import model.Carreta;
 import model.EtapasTransporte;
 import model.Motorista;
+import model.enums.StatusMotorista;
+import model.enums.StatusVeiculo;
 import repository.CaminhaoRepository;
 import repository.CarretaRepository;
 import repository.EtapasTransporteRepository;
@@ -104,7 +106,7 @@ public class CargaUpdateView {
 
             for (int i = 0; i < caminhoes.size(); i++) {
                 Caminhao c = caminhoes.get(i);
-                if (c.getStatus().equals("Ocioso")) {
+                if (c.getStatus().equals(StatusVeiculo.OCIOSO)) {
                     System.out.println(
                             (i + 1) + " | Placa: " + c.getPlaca() +
                                     " | Tipo: " + c.getTipo());
@@ -117,7 +119,7 @@ public class CargaUpdateView {
             if (verificaValores(opcaoCaminhao)) {
                 caminhaoSelecionado = etapaSelecionada.getCaminhao();
             } else if (opcaoCaminhao < 1 || opcaoCaminhao > caminhoes.size()
-                    || !caminhoes.get(opcaoCaminhao - 1).getStatus().equals("Ocioso")) {
+                    || !caminhoes.get(opcaoCaminhao - 1).getStatus().equals(StatusVeiculo.OCIOSO)) {
                 System.out.println("Caminhão inválido.");
                 AguardarVoltar.Voltar();
                 return null;
@@ -130,7 +132,7 @@ public class CargaUpdateView {
 
             for (int i = 0; i < carretas.size(); i++) {
                 Carreta c = carretas.get(i);
-                if (c.getStatus().equals("Ocioso")) {
+                if (c.getStatus().equals(StatusVeiculo.OCIOSO)) {
                     System.out.println(
                             (i + 1) + " - " + c.getPlaca() +
                                     " | Tipo: " + c.getTipo());
@@ -143,7 +145,7 @@ public class CargaUpdateView {
             if (verificaValores(opcaoCarreta)) {
                 carretaSelecionada = etapaSelecionada.getCarreta();
             } else if (opcaoCarreta < 1 || opcaoCarreta > carretas.size()
-                    || !carretas.get(opcaoCarreta - 1).getStatus().equals("Ocioso")) {
+                    || !carretas.get(opcaoCarreta - 1).getStatus().equals(StatusVeiculo.OCIOSO)) {
                 System.out.println("Carreta inválida.");
                 AguardarVoltar.Voltar();
                 return null;
@@ -156,7 +158,7 @@ public class CargaUpdateView {
 
             for (int i = 0; i < carretas.size(); i++) {
                 Carreta c = carretas.get(i);
-                if (c.getStatus().equals("Ocioso") && !c.getPlaca().equals(carretaSelecionada.getPlaca())) {
+                if (c.getStatus().equals(StatusVeiculo.OCIOSO) && !c.getPlaca().equals(carretaSelecionada.getPlaca())) {
                     System.out.println(
                             (i + 1) + " - " + c.getPlaca() +
                                     " | Tipo: " + c.getTipo());
@@ -169,7 +171,7 @@ public class CargaUpdateView {
             if (opcaoCarreta2 != 0) {
 
                 if (opcaoCarreta2 < 0 || opcaoCarreta2 > carretas.size()
-                        || !carretas.get(opcaoCarreta2 - 1).getStatus().equals("Ocioso")
+                        || !carretas.get(opcaoCarreta2 - 1).getStatus().equals(StatusVeiculo.OCIOSO)
                         || opcaoCarreta2 == opcaoCarreta) {
                     System.out.println("Carreta inválida.");
                     AguardarVoltar.Voltar();
@@ -182,7 +184,7 @@ public class CargaUpdateView {
 
             for (int i = 0; i < motoristas.size(); i++) {
                 Motorista m = motoristas.get(i);
-                if (m.getStatus().equals("Ocioso")) {
+                if (m.getStatus().equals(StatusMotorista.OCIOSO)) {
                     System.out.println(
                             (i + 1) + " - " + m.getNome() +
                                     " - " + m.getCpf());
@@ -195,13 +197,13 @@ public class CargaUpdateView {
             if (verificaValores(opcaoMotorista)) {
                 motoristaSelecionado = etapaSelecionada.getMotorista();
             } else if (opcaoMotorista < 1 || opcaoMotorista > motoristas.size()
-                    || !motoristas.get(opcaoMotorista - 1).getStatus().equals("Ocioso")) {
+                    || !motoristas.get(opcaoMotorista - 1).getStatus().equals(StatusMotorista.OCIOSO)) {
                 System.out.println("Motorista inválido.");
                 AguardarVoltar.Voltar();
                 return null;
             } else {
                 motoristaSelecionado = motoristas.get(opcaoMotorista - 1);
-                etapaSelecionada.getMotorista().setStatus("Ocioso");
+                etapaSelecionada.getMotorista().setStatus(StatusMotorista.OCIOSO);
             }
 
             System.out.print("\nNota fiscal: ");
@@ -257,8 +259,8 @@ public class CargaUpdateView {
             } else {
                 carretaSelecionada2 = carretas.get(opcaoCarreta2 - 1);
                 if (etapaSelecionada.getCarreta2() != null)
-                    etapaSelecionada.getCarreta2().setStatus("Ocioso");
-                carretaSelecionada2.setStatus("Em uso");
+                    etapaSelecionada.getCarreta2().setStatus(StatusVeiculo.OCIOSO);
+                carretaSelecionada2.setStatus(StatusVeiculo.EM_VIAGEM);
 
                 return new Carga(cargaSelecionada.getId(), respInvoice, motoristaSelecionado, caminhaoSelecionado,
                         carretaSelecionada, carretaSelecionada2, respPO, respNotaFiscal, respOrigem, respLocalidade,
@@ -291,21 +293,21 @@ public class CargaUpdateView {
 
     private void setStatusEtapa(int motorista, int caminhao, int carreta1, int carreta2) {
         if (!verificaValores(motorista)) {
-            etapaSelecionada.getMotorista().setStatus("Ocioso");
-            motoristaSelecionado.setStatus("Em viagem");
+            etapaSelecionada.getMotorista().setStatus(StatusMotorista.OCIOSO);
+            motoristaSelecionado.setStatus(StatusMotorista.EM_VIAGEM);
             ;
         }
         if (!verificaValores(caminhao)) {
-            etapaSelecionada.getCaminhao().setStatus("Ocioso");
-            caminhaoSelecionado.setStatus("Em viagem");
+            etapaSelecionada.getCaminhao().setStatus(StatusVeiculo.OCIOSO);
+            caminhaoSelecionado.setStatus(StatusVeiculo.OCIOSO);
         }
         if (!verificaValores(carreta1)) {
-            etapaSelecionada.getCarreta().setStatus("Ocioso");
-            carretaSelecionada.setStatus("Em viagem");
+            etapaSelecionada.getCarreta().setStatus(StatusVeiculo.OCIOSO);
+            carretaSelecionada.setStatus(StatusVeiculo.EM_VIAGEM);
         }
         if (!verificaValores(carreta2)) {
-            etapaSelecionada.getCarreta().setStatus("Ocioso");
-            carretaSelecionada.setStatus("Em viagem");
+            etapaSelecionada.getCarreta().setStatus(StatusVeiculo.OCIOSO);
+            carretaSelecionada.setStatus(StatusVeiculo.EM_VIAGEM);
         }
     }
 

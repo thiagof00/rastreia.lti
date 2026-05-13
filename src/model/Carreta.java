@@ -1,44 +1,16 @@
 package model;
 
-public class Carreta {
-    private String placa;
-    private String tipo;
+import model.enums.StatusVeiculo;
+
+public class Carreta extends Veiculo {
     private int peso_max;
     private int metragem;
-    private String statusCarreta;
-    private int id;
 
-    public Carreta(int id, String placa, String tipo, String statusCarreta, int peso_max, int metragem) {
-        this.id = id;
-        this.placa = placa;
-        this.tipo = tipo;
+    public Carreta(String placa, String tipo, StatusVeiculo status, int peso_max, int metragem) {
+        super(placa, tipo, status);
         this.peso_max = peso_max;
         this.metragem = metragem;
-        this.statusCarreta = statusCarreta;
-    }
 
-    public Carreta(String placa, String tipo, String statusCarreta, int peso_max, int metragem) {
-        this.placa = placa;
-        this.tipo = tipo;
-        this.peso_max = peso_max;
-        this.metragem = metragem;
-        this.statusCarreta = statusCarreta;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getPlaca() {
-        return placa;
-    }
-
-    public String getTipo() {
-        return tipo;
     }
 
     public int getPeso_max() {
@@ -49,11 +21,11 @@ public class Carreta {
         return metragem;
     }
 
-    public String getStatus() {
-        return statusCarreta;
+    public void setPeso_max(int peso_max) {
+        this.peso_max = peso_max;
     }
 
-    public void setStatus(String statusCarreta) {
-        this.statusCarreta = statusCarreta;
+    public void setMetragem(int metragem) {
+        this.metragem = metragem;
     }
 }

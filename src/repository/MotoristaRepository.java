@@ -3,18 +3,27 @@ package repository;
 import java.util.ArrayList;
 import java.util.List;
 import model.Motorista;
+import model.enums.StatusMotorista;
 
 public class MotoristaRepository {
     private static List<Motorista> motoristas = new ArrayList<>(List.of(
-            new Motorista(1, "Carlos Silva", "93128446016", "Ocioso"),
-            new Motorista(2, "Ana Souza", "82736455020", "Ocioso"),
-            new Motorista(3, "Marcos Lima", "74583922030", "Ocioso"),
-            new Motorista(4, "Gerson Anderson", "18118185010", "Ocioso"),
-            new Motorista(5, "Benildo Matheus", "18212543099", "Indisponivel")));
-    private static int id = 6;
+            new Motorista("Carlos Silva", "93128446016", StatusMotorista.OCIOSO),
+            new Motorista("Ana Souza", "82736455020", StatusMotorista.OCIOSO),
+            new Motorista("Marcos Lima", "74583922030", StatusMotorista.OCIOSO),
+            new Motorista("Gerson Anderson", "18118185010", StatusMotorista.OCIOSO),
+            new Motorista("Benildo Matheus", "18212543099", StatusMotorista.OCIOSO)));
+    private static int proximoId;
+
+    static {
+        proximoId = 1;
+
+        for (Motorista motorista : motoristas) {
+            motorista.setId(proximoId++);
+        }
+    }
 
     public static void salvar(Motorista motorista) {
-        motorista.setId(id++);
+        motorista.setId(proximoId++);
         motoristas.add(motorista);
     }
 
