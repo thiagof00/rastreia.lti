@@ -6,6 +6,8 @@ import model.Caminhao;
 import model.Carga;
 import model.Carreta;
 import model.Motorista;
+import model.enums.StatusMotorista;
+import model.enums.StatusVeiculo;
 import repository.CaminhaoRepository;
 import repository.CarretaRepository;
 import repository.MotoristaRepository;
@@ -29,7 +31,7 @@ public class CargaFormView {
 
             for (int i = 0; i < caminhoes.size(); i++) {
                 Caminhao c = caminhoes.get(i);
-                if (c.getStatus().equals("Ocioso")) {
+                if (c.getStatus().equals(StatusVeiculo.OCIOSO)) {
                     System.out.println(
                             (i + 1) + " | Placa: " + c.getPlaca() +
                                     " | Tipo: " + c.getTipo());
@@ -40,9 +42,9 @@ public class CargaFormView {
             int opcaoCaminhao = Integer.parseInt(input.nextLine());
 
             if (opcaoCaminhao < 1 || opcaoCaminhao > caminhoes.size()
-                    || !caminhoes.get(opcaoCaminhao - 1).getStatus().equals("Ocioso")) {
+                    || !caminhoes.get(opcaoCaminhao - 1).getStatus().equals(StatusVeiculo.OCIOSO)) {
                 System.out.println("Caminhão inválido.");
-                aguardarVoltar.Voltar();
+                AguardarVoltar.Voltar();
                 return null;
             }
 
@@ -53,7 +55,7 @@ public class CargaFormView {
 
             for (int i = 0; i < carretas.size(); i++) {
                 Carreta c = carretas.get(i);
-                if (c.getStatus().equals("Ocioso")) {
+                if (c.getStatus().equals(StatusVeiculo.OCIOSO)) {
                     System.out.println(
                             (i + 1) + " - " + c.getPlaca() +
                                     " | Tipo: " + c.getTipo());
@@ -64,9 +66,9 @@ public class CargaFormView {
             int opcaoCarreta = Integer.parseInt(input.nextLine());
 
             if (opcaoCarreta < 1 || opcaoCarreta > carretas.size()
-                    || !carretas.get(opcaoCarreta - 1).getStatus().equals("Ocioso")) {
+                    || !carretas.get(opcaoCarreta - 1).getStatus().equals(StatusVeiculo.OCIOSO)) {
                 System.out.println("Carreta inválida.");
-                aguardarVoltar.Voltar();
+                AguardarVoltar.Voltar();
                 return null;
             }
 
@@ -77,7 +79,7 @@ public class CargaFormView {
 
             for (int i = 0; i < carretas.size(); i++) {
                 Carreta c = carretas.get(i);
-                if (c.getStatus().equals("Ocioso") && !c.getPlaca().equals(carretaSelecionada.getPlaca())) {
+                if (c.getStatus().equals(StatusVeiculo.OCIOSO) && !c.getPlaca().equals(carretaSelecionada.getPlaca())) {
                     System.out.println(
                             (i + 1) + " - " + c.getPlaca() +
                                     " | Tipo: " + c.getTipo());
@@ -90,10 +92,10 @@ public class CargaFormView {
             if (opcaoCarreta2 != 0) {
 
                 if (opcaoCarreta2 < 0 || opcaoCarreta2 > carretas.size()
-                        || !carretas.get(opcaoCarreta2 - 1).getStatus().equals("Ocioso")
+                        || !carretas.get(opcaoCarreta2 - 1).getStatus().equals(StatusVeiculo.OCIOSO)
                         || opcaoCarreta2 == opcaoCarreta) {
                     System.out.println("Carreta inválida.");
-                    aguardarVoltar.Voltar();
+                    AguardarVoltar.Voltar();
                     return null;
                 }
             }
@@ -103,7 +105,7 @@ public class CargaFormView {
 
             for (int i = 0; i < motoristas.size(); i++) {
                 Motorista m = motoristas.get(i);
-                if (m.getStatus().equals("Ocioso")) {
+                if (m.getStatus().equals(StatusMotorista.OCIOSO)) {
                     System.out.println(
                             (i + 1) + " - " + m.getNome() +
                                     " - " + m.getCpf());
@@ -114,9 +116,9 @@ public class CargaFormView {
             int opcaoMotorista = Integer.parseInt(input.nextLine());
 
             if (opcaoMotorista < 1 || opcaoMotorista > motoristas.size()
-                    || !motoristas.get(opcaoMotorista - 1).getStatus().equals("Ocioso")) {
+                    || !motoristas.get(opcaoMotorista - 1).getStatus().equals(StatusMotorista.OCIOSO)) {
                 System.out.println("Motorista inválido.");
-                aguardarVoltar.Voltar();
+                AguardarVoltar.Voltar();
                 return null;
             }
 
@@ -137,9 +139,9 @@ public class CargaFormView {
             String destino = input.nextLine();
             System.out.println();
 
-            caminhaoSelecionado.setStatus("Em uso");
-            carretaSelecionada.setStatus("Em uso");
-            motoristaSelecionado.setStatus("Em Viagem");
+            caminhaoSelecionado.setStatus(StatusVeiculo.EM_VIAGEM);
+            carretaSelecionada.setStatus(StatusVeiculo.EM_VIAGEM);
+            motoristaSelecionado.setStatus(StatusMotorista.EM_VIAGEM);
             String localidade = origem;
 
             if (opcaoCarreta2 == 0) {
@@ -147,7 +149,7 @@ public class CargaFormView {
                         origem, localidade, proximaParada, destino, "Em viagem");
             } else {
                 carretaSelecionada2 = carretas.get(opcaoCarreta2 - 1);
-                carretaSelecionada2.setStatus("Em uso");
+                carretaSelecionada2.setStatus(StatusVeiculo.EM_VIAGEM);
 
                 return new Carga(invoice, motoristaSelecionado, caminhaoSelecionado, carretaSelecionada,
                         carretaSelecionada2, PO, notaFiscal, origem, localidade, proximaParada, destino, "Em viagem");
@@ -156,7 +158,7 @@ public class CargaFormView {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Erro no preenchimento dos dados.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return null;
         }
     }

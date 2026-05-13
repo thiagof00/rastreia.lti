@@ -3,7 +3,7 @@ package view.list;
 import java.util.List;
 import model.Carga;
 import model.EtapasTransporte;
-import util.aguardarVoltar;
+import util.AguardarVoltar;
 
 public class EtapasTransporteListView {
 
@@ -12,7 +12,7 @@ public class EtapasTransporteListView {
 
         if (etapas.isEmpty()) {
             System.out.println("Nenhuma etapa cadastrada.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return;
         }
         System.out.printf(
@@ -51,6 +51,6 @@ public class EtapasTransporteListView {
             }
         }
 
-        aguardarVoltar.Voltar();
+        AguardarVoltar.Voltar();
     }
 }

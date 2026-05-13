@@ -13,6 +13,6 @@ public class CaminhaoMenuView {
         System.out.println("0 - Voltar");
         System.out.print("Escolha: ");
 
-        return lerOpcao.lerInt();
+        return LerOpcao.lerInt();
     }
 }

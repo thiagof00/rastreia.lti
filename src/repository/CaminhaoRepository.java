@@ -3,19 +3,28 @@ package repository;
 import java.util.ArrayList;
 import java.util.List;
 import model.Caminhao;
+import model.enums.StatusVeiculo;
 
 public class CaminhaoRepository {
 
-    private static List<Caminhao> caminhoes = new ArrayList<>(List.of(
-            new Caminhao(1, "MNO2P34", "Volvo", "Ocioso"),
-            new Caminhao(2, "QRS5T67", "Scania", "Ocioso"),
-            new Caminhao(3, "TUV8901", "Mercedes-Benz", "Ocioso"),
-            new Caminhao(4, "IAE5715", "Scania", "Ocioso"),
-            new Caminhao(5, "JUQ4774", "Daf", "Em Manutenção")));
-    private static int id = 6;
+    private static final List<Caminhao> caminhoes = new ArrayList<>(List.of(
+            new Caminhao("MNO2P34", "Volvo", StatusVeiculo.OCIOSO),
+            new Caminhao("QRS5T67", "Scania", StatusVeiculo.OCIOSO),
+            new Caminhao("TUV8901", "Mercedes-Benz", StatusVeiculo.OCIOSO),
+            new Caminhao("IAE5715", "Scania", StatusVeiculo.OCIOSO),
+            new Caminhao("JUQ4774", "Daf", StatusVeiculo.OCIOSO)));
+
+    private static int proximoId;
+
+    static {
+        proximoId = 1;
+        for (Caminhao c : caminhoes) {
+            c.setId(proximoId++);
+        }
+    }
 
     public static void salvar(Caminhao caminhao) {
-        caminhao.setId(id++);
+        caminhao.setId(proximoId++);
         caminhoes.add(caminhao);
     }
 

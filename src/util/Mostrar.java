@@ -1,8 +1,8 @@
 package util;
 
-public class mostrar {
+public class Mostrar {
 
-    private mostrar() {
+    private Mostrar() {
     }
 
     public static void sair() {
@@ -16,6 +16,6 @@ public class mostrar {
 
     public static void emConstrucao() {
         System.out.println("Funcionalidade em construção.");
-        aguardarVoltar.Voltar();
+        AguardarVoltar.Voltar();
     }
 }

@@ -10,7 +10,7 @@ public class CarretaListView {
         System.out.println("========== LISTA DE CARRETAS ==========");
         if (carretas.isEmpty()) {
             System.out.println("Nenhuma carreta cadastrada.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return;
         }
 
@@ -27,6 +27,6 @@ public class CarretaListView {
                     c.getMetragem(),
                     c.getStatus());
         }
-        aguardarVoltar.Voltar();
+        AguardarVoltar.Voltar();
     }
 }

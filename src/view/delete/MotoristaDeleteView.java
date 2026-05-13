@@ -31,7 +31,7 @@ public class MotoristaDeleteView {
 
         if (cpf.isBlank()) {
             System.out.println("CPF não pode ser vazio.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return null;
         }
 

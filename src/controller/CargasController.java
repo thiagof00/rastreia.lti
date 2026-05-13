@@ -6,14 +6,16 @@ import model.EtapasTransporte;
 import repository.CargaRepository;
 import repository.EtapasTransporteRepository;
 import util.Limpar;
-import util.aguardarVoltar;
+import util.AguardarVoltar;
 import view.form.CargaFormView;
 import view.list.CargaListView;
+import view.menu.CargaMenuView;
 import view.update.CargaStatusUpdateView;
 import view.update.CargaUpdateView;
 
 public class CargasController {
 
+    private CargaMenuView menuView;
     private CargaFormView formView;
     private CargaListView listView;
     private EtapasController etapasController;
@@ -21,6 +23,7 @@ public class CargasController {
     private CargaStatusUpdateView CargaStatusUpdateView;
 
     public CargasController() {
+        this.menuView = new CargaMenuView();
         this.formView = new CargaFormView();
         this.listView = new CargaListView();
         this.etapasController = new EtapasController();
@@ -53,7 +56,7 @@ public class CargasController {
         EtapasTransporteRepository.salvar(etapa);
 
         System.out.println("Carga cadastrada com sucesso!");
-        aguardarVoltar.Voltar();
+        AguardarVoltar.Voltar();
     }
 
     public void listarComEtapa() {
@@ -93,7 +96,7 @@ public class CargasController {
                 cargaAlterada.getLocalidade(), cargaAlterada.getproximaParada(), cargaAlterada.getStatus());
         EtapasTransporteRepository.salvar(etapa);
         System.out.println("Carga alterada com sucesso!");
-        aguardarVoltar.Voltar();
+        AguardarVoltar.Voltar();
 
     }
 
@@ -116,7 +119,11 @@ public class CargasController {
                 cargaAlterada.getLocalidade(), cargaAlterada.getproximaParada(), cargaAlterada.getStatus());
         EtapasTransporteRepository.salvar(etapa);
         System.out.println("Status da carga alterado com sucesso!");
-        aguardarVoltar.Voltar();
+        AguardarVoltar.Voltar();
 
+    }
+
+    public int exibirMenu() {
+        return menuView.menuCargas();
     }
 }

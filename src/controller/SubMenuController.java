@@ -1,26 +1,17 @@
 package controller;
 
 import util.Limpar;
-import util.mostrar;
-import view.menu.*;
+import util.Mostrar;
 
-public class subMenuController {
-
-    private CargaMenuView cargaMenuView;
-    private MotoristaMenuView motoristaMenuView;
-    private CarretaMenuView carretaMenuView;
-    private CaminhaoMenuView caminhaoMenuView;
+public class SubMenuController {
 
     private CargasController cargasController;
     private MotoristasController motoristasController;
     private CarretaController carretasController;
     private CaminhoesController caminhoesController;
 
-    public subMenuController() {
-        this.cargaMenuView = new CargaMenuView();
-        this.motoristaMenuView = new MotoristaMenuView();
-        this.carretaMenuView = new CarretaMenuView();
-        this.caminhaoMenuView = new CaminhaoMenuView();
+    public SubMenuController() {
+
         this.cargasController = new CargasController();
         this.motoristasController = new MotoristasController();
         this.carretasController = new CarretaController();
@@ -32,7 +23,7 @@ public class subMenuController {
         int opcao = -1;
 
         while (opcao != 0) {
-            opcao = cargaMenuView.menuCargas();
+            opcao = cargasController.exibirMenu();
 
             switch (opcao) {
                 case 1:
@@ -60,7 +51,7 @@ public class subMenuController {
                     break;
 
                 default:
-                    mostrar.invalido();
+                    Mostrar.invalido();
                     break;
             }
         }
@@ -71,7 +62,7 @@ public class subMenuController {
         int opcao = -1;
 
         while (opcao != 0) {
-            opcao = motoristaMenuView.menuMotoristas();
+            opcao = motoristasController.exibirMenu();
 
             switch (opcao) {
                 case 1:
@@ -92,7 +83,7 @@ public class subMenuController {
                     break;
 
                 default:
-                    mostrar.invalido();
+                    Mostrar.invalido();
             }
         }
     }
@@ -102,7 +93,7 @@ public class subMenuController {
         int opcao = -1;
 
         while (opcao != 0) {
-            opcao = carretaMenuView.menuCarretas();
+            opcao = carretasController.exibirMenu();
 
             switch (opcao) {
                 case 1:
@@ -122,7 +113,7 @@ public class subMenuController {
                     break;
 
                 default:
-                    mostrar.invalido();
+                    Mostrar.invalido();
             }
         }
     }
@@ -131,7 +122,7 @@ public class subMenuController {
         int opcao = -1;
 
         while (opcao != 0) {
-            opcao = caminhaoMenuView.menuCaminhao();
+            opcao = caminhoesController.exibirMenu();
 
             switch (opcao) {
                 case 1:
@@ -142,7 +133,8 @@ public class subMenuController {
                     Limpar.terminal();
                     caminhoesController.cadastrar();
                     break;
-                case 4:
+
+                case 3:
                     Limpar.terminal();
                     caminhoesController.excluir();
                     break;
@@ -151,7 +143,7 @@ public class subMenuController {
                     break;
 
                 default:
-                    mostrar.invalido();
+                    Mostrar.invalido();
             }
         }
     }

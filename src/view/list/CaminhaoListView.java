@@ -10,7 +10,7 @@ public class CaminhaoListView {
         System.out.println("\n========== LISTA DE CAMINHÕES ==========");
         if (caminhoes.isEmpty()) {
             System.out.println("Nenhum caminhão cadastrado.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return;
         }
         System.out.printf("%-4s | %-12s | %-14s | %-15s%n", "ID", "PLACA", "TIPO", "STATUS");
@@ -23,6 +23,6 @@ public class CaminhaoListView {
                     c.getTipo(),
                     c.getStatus());
         }
-        aguardarVoltar.Voltar();
+        AguardarVoltar.Voltar();
     }
 }

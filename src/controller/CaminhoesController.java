@@ -5,20 +5,23 @@ import model.Caminhao;
 import model.EtapasTransporte;
 import repository.CaminhaoRepository;
 import repository.EtapasTransporteRepository;
-import util.aguardarVoltar;
+import util.AguardarVoltar;
 import view.delete.CaminhaoDeleteView;
 import view.form.CaminhaoFormView;
 import view.list.CaminhaoListView;
+import view.menu.CaminhaoMenuView;
 
 public class CaminhoesController {
     private CaminhaoFormView formView;
     private CaminhaoListView listView;
     private CaminhaoDeleteView deleteView;
+    private CaminhaoMenuView menuView;
 
     public CaminhoesController() {
         this.formView = new CaminhaoFormView();
         this.listView = new CaminhaoListView();
         this.deleteView = new CaminhaoDeleteView();
+        this.menuView = new CaminhaoMenuView();
     }
 
     public void cadastrar() {
@@ -30,7 +33,7 @@ public class CaminhoesController {
         repository.CaminhaoRepository.salvar(caminhao);
 
         System.out.println("Caminhão cadastrado com sucesso!");
-        aguardarVoltar.Voltar();
+        AguardarVoltar.Voltar();
         ;
     }
 
@@ -47,14 +50,14 @@ public class CaminhoesController {
             if (etapa.getCaminhao().getId() == id) {
                 System.out
                         .println("Caminhão relacionado a um registro de etapa de uma carga, não foi possivel excluir.");
-                aguardarVoltar.Voltar();
+                AguardarVoltar.Voltar();
                 return;
             }
         }
 
         if (id == 0) {
             System.out.println("ID não pode ser vazio.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return;
         }
 
@@ -65,7 +68,11 @@ public class CaminhoesController {
         } else {
             System.out.println("Caminhão não encontrado");
         }
-        aguardarVoltar.Voltar();
+        AguardarVoltar.Voltar();
 
+    }
+
+    public int exibirMenu() {
+        return menuView.menuCaminhao();
     }
 }

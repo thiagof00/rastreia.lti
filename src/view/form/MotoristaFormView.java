@@ -2,6 +2,8 @@ package view.form;
 
 import java.util.Scanner;
 import model.Motorista;
+import model.enums.StatusMotorista;
+import model.enums.StatusVeiculo;
 import util.*;
 
 public class MotoristaFormView {
@@ -17,7 +19,7 @@ public class MotoristaFormView {
             System.out.print("CPF: ");
             String cpf = input.nextLine();
 
-            String status = "";
+            StatusMotorista status = StatusMotorista.INDISPONIVEL;
             boolean statusValido = false;
 
             while (!statusValido) {
@@ -31,15 +33,15 @@ public class MotoristaFormView {
 
                 switch (opcao) {
                     case 1:
-                        status = "Ocioso";
+                        status = StatusMotorista.OCIOSO;
                         statusValido = true;
                         break;
                     case 2:
-                        status = "indisponivel";
+                        status = StatusMotorista.INDISPONIVEL;
                         statusValido = true;
                         break;
                     case 3:
-                        status = "Em viagem";
+                        status = StatusMotorista.EM_VIAGEM;
                         statusValido = true;
                         break;
                     default:
@@ -51,7 +53,7 @@ public class MotoristaFormView {
 
         } catch (Exception e) {
             System.out.println("Erro no preenchimento dos dados.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return null;
         }
     }

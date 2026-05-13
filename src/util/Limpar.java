@@ -1,6 +1,11 @@
 package util;
 
 public class Limpar {
+
+    private Limpar() {
+
+    }
+
     public static void terminal() {
         try {
             // Detecta o sistema operacional

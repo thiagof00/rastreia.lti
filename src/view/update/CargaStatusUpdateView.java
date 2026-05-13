@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Scanner;
 import model.Carga;
 import model.EtapasTransporte;
+import model.enums.StatusMotorista;
+import model.enums.StatusVeiculo;
 import repository.EtapasTransporteRepository;
 import util.Limpar;
-import util.aguardarVoltar;
+import util.AguardarVoltar;
 
 public class CargaStatusUpdateView {
 
@@ -19,7 +21,7 @@ public class CargaStatusUpdateView {
         System.out.println("\n========== LISTA DE CARGAS ==========");
         if (cargas.isEmpty()) {
             System.out.println("Nenhuma carga cadastrada.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return null;
         }
 
@@ -113,11 +115,11 @@ public class CargaStatusUpdateView {
 
     private void setStatus() {
 
-        etapaSelecionada.getMotorista().setStatus("Ocioso");
-        etapaSelecionada.getCaminhao().setStatus("Ocioso");
-        etapaSelecionada.getCarreta().setStatus("Ocioso");
+        etapaSelecionada.getMotorista().setStatus(StatusMotorista.OCIOSO);
+        etapaSelecionada.getCaminhao().setStatus(StatusVeiculo.OCIOSO);
+        etapaSelecionada.getCarreta().setStatus(StatusVeiculo.OCIOSO);
         if (etapaSelecionada.getCarreta2() != null) {
-            etapaSelecionada.getCarreta2().setStatus("Ocioso");
+            etapaSelecionada.getCarreta2().setStatus(StatusVeiculo.OCIOSO);
         }
     }
 }

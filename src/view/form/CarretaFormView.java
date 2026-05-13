@@ -2,7 +2,8 @@ package view.form;
 
 import java.util.Scanner;
 import model.Carreta;
-import util.aguardarVoltar;
+import model.enums.StatusVeiculo;
+import util.AguardarVoltar;
 
 public class CarretaFormView {
 
@@ -25,7 +26,7 @@ public class CarretaFormView {
             System.out.print("Metragem (em metros): ");
             int metragem = Integer.parseInt(input.nextLine());
 
-            String status = "";
+            StatusVeiculo status = StatusVeiculo.INDISPONIVEL;
             boolean statusValido = false;
 
             while (!statusValido) {
@@ -39,15 +40,15 @@ public class CarretaFormView {
 
                 switch (opcao) {
                     case 1:
-                        status = "Ocioso";
+                        status = StatusVeiculo.OCIOSO;
                         statusValido = true;
                         break;
                     case 2:
-                        status = "Em Manutenção";
+                        status = StatusVeiculo.EM_MANUTENCAO;
                         statusValido = true;
                         break;
                     case 3:
-                        status = "Em viagem";
+                        status = StatusVeiculo.EM_VIAGEM;
                         statusValido = true;
                         break;
                     default:
@@ -64,7 +65,7 @@ public class CarretaFormView {
 
         } catch (Exception e) {
             System.out.println("Erro no preenchimento dos dados.");
-            aguardarVoltar.Voltar();
+            AguardarVoltar.Voltar();
             return null;
         }
     }
