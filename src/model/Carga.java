@@ -1,105 +1,24 @@
 package model;
 
+import model.enums.StatusViagem;
+
 public class Carga {
 
     private int id;
-    private int invoice;
-    private Caminhao caminhao;
-    private Carreta carreta1;
-    private Carreta carreta2;
-    private String notaFiscal;
-    private Motorista motorista;
-    private String status;
-    private String destino;
-    private String localidade;
-    private String proximaParada;
-    private String origem;
-    private String PO;
+    protected int invoice;
+    protected String notaFiscal;
+    protected StatusViagem status;
+    protected String destino;
+    protected String localidade;
+    protected String origem;
+    protected String PO;
 
-    public Carga(int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, Carreta carreta2, String PO,
-            String notaFiscal, String origem, String localidade, String proximaParada, String destino, String status) {
-        this.invoice = invoice;
-        this.motorista = motorista;
-        this.caminhao = caminhao;
-        this.carreta1 = carreta1;
-        this.carreta2 = carreta2;
-        this.PO = PO;
-        this.notaFiscal = notaFiscal;
-        this.origem = origem;
-        this.localidade = localidade;
-        this.proximaParada = proximaParada;
-        this.destino = destino;
-        this.status = status;
-    }
-
-    public Carga(int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, String PO, String notaFiscal,
-            String origem, String localidade, String proximaParada, String destino, String status) {
-        this.invoice = invoice;
-        this.motorista = motorista;
-        this.caminhao = caminhao;
-        this.carreta1 = carreta1;
-        this.PO = PO;
-        this.notaFiscal = notaFiscal;
-        this.origem = origem;
-        this.localidade = localidade;
-        this.proximaParada = proximaParada;
-        this.destino = destino;
-        this.status = status;
-    }
-
-    public Carga(int id, int invoice, String PO, String notaFiscal, String origem, String localidade, String destino,
-            String status) {
-        this.id = id;
+    public Carga(int invoice,  String PO, String notaFiscal, String origem, String localidade, String destino, StatusViagem status) {
         this.invoice = invoice;
         this.PO = PO;
         this.notaFiscal = notaFiscal;
         this.origem = origem;
         this.localidade = localidade;
-        this.destino = destino;
-        this.status = status;
-    }
-
-    public Carga(int invoice, String PO, String notaFiscal, String origem, String localidade, String destino,
-            String status) {
-        this.invoice = invoice;
-        this.PO = PO;
-        this.notaFiscal = notaFiscal;
-        this.origem = origem;
-        this.localidade = localidade;
-        this.destino = destino;
-        this.status = status;
-    }
-
-    public Carga(int id, int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, Carreta carreta2,
-            String PO, String notaFiscal, String origem, String localidade, String proximaParada, String destino,
-            String status) {
-        this.id = id;
-        this.invoice = invoice;
-        this.motorista = motorista;
-        this.caminhao = caminhao;
-        this.carreta1 = carreta1;
-        this.carreta2 = carreta2;
-        this.PO = PO;
-        this.notaFiscal = notaFiscal;
-        this.origem = origem;
-        this.localidade = localidade;
-        this.proximaParada = proximaParada;
-        this.destino = destino;
-        this.status = status;
-    }
-
-    public Carga(int id, int invoice, Motorista motorista, Caminhao caminhao, Carreta carreta1, String PO,
-            String notaFiscal, String origem, String localidade, String proximaParada, String destino, String status) {
-        this.id = id;
-        this.invoice = invoice;
-        this.motorista = motorista;
-        this.caminhao = caminhao;
-        this.carreta1 = carreta1;
-        this.PO = PO;
-        this.notaFiscal = notaFiscal;
-        this.origem = origem;
-        this.localidade = localidade;
-        this.proximaParada = proximaParada;
         this.destino = destino;
         this.status = status;
     }
@@ -140,12 +59,8 @@ public class Carga {
         return localidade;
     }
 
-    public void setLocalidade(String novaLocalidade) {
-        this.localidade = novaLocalidade;
-    }
-
-    public String getproximaParada() {
-        return proximaParada;
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
     }
 
     public String getDestino() {
@@ -156,22 +71,6 @@ public class Carga {
         this.destino = novoDestino;
     }
 
-    public Motorista getMotorista() {
-        return motorista;
-    }
-
-    public Caminhao getCaminhao() {
-        return caminhao;
-    }
-
-    public Carreta getCarreta1() {
-        return carreta1;
-    }
-
-    public Carreta getCarreta2() {
-        return carreta2;
-    }
-
     public String getNotaFiscal() {
         return notaFiscal;
     }
@@ -180,12 +79,12 @@ public class Carga {
         this.notaFiscal = novaNotaFiscal;
     }
 
-    public String getStatus() {
+    public StatusViagem getStatus() {
         return status;
     }
 
-    public void setStatus(String novoStatus) {
-        this.status = novoStatus;
+    public void setStatus(StatusViagem status) {
+        this.status = status;
     }
 
 }

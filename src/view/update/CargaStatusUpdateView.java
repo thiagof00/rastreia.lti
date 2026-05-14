@@ -6,18 +6,16 @@ import model.Carga;
 import model.EtapasTransporte;
 import model.enums.StatusMotorista;
 import model.enums.StatusVeiculo;
-import repository.EtapasTransporteRepository;
 import util.Limpar;
 import util.AguardarVoltar;
 
 public class CargaStatusUpdateView {
 
     Scanner input = new Scanner(System.in);
-    List<EtapasTransporte> etapas = EtapasTransporteRepository.listar();
     int id;
     EtapasTransporte etapaSelecionada;
 
-    public Carga updateStatusCarga(List<Carga> cargas) {
+    public Carga updateStatusCarga(List<Carga> cargas, List<EtapasTransporte> etapas) {
         System.out.println("\n========== LISTA DE CARGAS ==========");
         if (cargas.isEmpty()) {
             System.out.println("Nenhuma carga cadastrada.");

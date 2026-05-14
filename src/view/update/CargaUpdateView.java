@@ -9,10 +9,7 @@ import model.EtapasTransporte;
 import model.Motorista;
 import model.enums.StatusMotorista;
 import model.enums.StatusVeiculo;
-import repository.CaminhaoRepository;
-import repository.CarretaRepository;
 import repository.EtapasTransporteRepository;
-import repository.MotoristaRepository;
 import util.Limpar;
 import util.AguardarVoltar;
 
@@ -27,7 +24,7 @@ public class CargaUpdateView {
     Motorista motoristaSelecionado;
     Caminhao caminhaoSelecionado;
 
-    public Carga updateCarga(List<Carga> cargas) {
+    public Carga updateCarga(List<Carga> cargas, List<Carreta> carretas, List<Motorista> motoristas, List<Caminhao> caminhoes) {
 
         try {
 
@@ -102,7 +99,6 @@ public class CargaUpdateView {
             int invoice = Integer.parseInt(input.nextLine());
 
             System.out.println("\nCaminhões disponiveis:");
-            List<Caminhao> caminhoes = CaminhaoRepository.listar();
 
             for (int i = 0; i < caminhoes.size(); i++) {
                 Caminhao c = caminhoes.get(i);
@@ -128,7 +124,6 @@ public class CargaUpdateView {
             }
 
             System.out.println("\nCarretas disponiveis:");
-            List<Carreta> carretas = CarretaRepository.listar();
 
             for (int i = 0; i < carretas.size(); i++) {
                 Carreta c = carretas.get(i);
@@ -180,7 +175,6 @@ public class CargaUpdateView {
             }
 
             System.out.println("\nMotoristas disponiveis:");
-            List<Motorista> motoristas = MotoristaRepository.listar();
 
             for (int i = 0; i < motoristas.size(); i++) {
                 Motorista m = motoristas.get(i);
