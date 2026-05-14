@@ -1,73 +1,23 @@
 package model;
 
-public class EtapasTransporte {
+import model.enums.StatusViagem;
+
+public class EtapasTransporte{
 
     private int id;
-    private Carga carga;
     private Caminhao caminhao;
-    private Carreta carreta;
+    private Carreta carreta1;
     private Carreta carreta2;
     private Motorista motorista;
-    private String status;
-    private String localidade;
-    private String proximaParada;
-    private String notaFiscal;
-    private int invoice;
-    private String PO;
+    private String proxParada;
+    private int idCarga;
 
-    // public EtapasTransporte(int id, Carga carga, Caminhao caminhao, Carreta
-    // carreta, Carreta carreta2, Motorista motorista, String localidade, String
-    // proximaParada, String status) {
-    // this.id = id;
-    // this.carga = carga;
-    // this.caminhao = caminhao;
-    // this.carreta = carreta;
-    // this.carreta2 = carreta2;
-    // this.motorista = motorista;
-    // this.localidade = localidade;
-    // this.proximaParada = proximaParada;
-    // this.status = status;
-    // }
-
-    public EtapasTransporte(Carga carga, String PO, String notaFiscal, int invoice, Caminhao caminhao, Carreta carreta,
-            Carreta carreta2, Motorista motorista, String localidade, String proximaParada, String status) {
-        this.carga = carga;
-        this.notaFiscal = notaFiscal;
-        this.invoice = invoice;
-        this.PO = PO;
-        this.caminhao = caminhao;
-        this.carreta = carreta;
-        this.carreta2 = carreta2;
+    public EtapasTransporte(int idCarga, Motorista motorista, Caminhao caminhao, Carreta carreta1, String proxParada) {
+        this.idCarga = idCarga;
         this.motorista = motorista;
-        this.localidade = localidade;
-        this.proximaParada = proximaParada;
-        this.status = status;
-    }
-
-    // public EtapasTransporte(int id, Carga carga, Caminhao caminhao, Carreta
-    // carreta, Motorista motorista, String localidade, String proximaParada, String
-    // status) {
-    // this.id = id;
-    // this.carga = carga;
-    // this.caminhao = caminhao;
-    // this.carreta = carreta;
-    // this.motorista = motorista;
-    // this.localidade = localidade;
-    // this.proximaParada = proximaParada;
-    // this.status = status;
-    // }
-    public EtapasTransporte(Carga carga, String PO, String notaFiscal, int invoice, Caminhao caminhao, Carreta carreta,
-            Motorista motorista, String localidade, String proximaParada, String status) {
-        this.carga = carga;
-        this.notaFiscal = notaFiscal;
-        this.invoice = invoice;
-        this.PO = PO;
         this.caminhao = caminhao;
-        this.carreta = carreta;
-        this.motorista = motorista;
-        this.localidade = localidade;
-        this.proximaParada = proximaParada;
-        this.status = status;
+        this.carreta1 = carreta1;
+        this.proxParada = proxParada;
     }
 
     public int getId() {
@@ -78,52 +28,52 @@ public class EtapasTransporte {
         this.id = id;
     }
 
-    public Carga getCarga() {
-        return carga;
+    public int getIdCarga() {
+        return idCarga;
     }
 
-    public String getNotaFiscal() {
-        return notaFiscal;
-    }
-
-    public int getInvoice() {
-        return invoice;
-    }
-
-    public String getPO() {
-        return PO;
+    public void setIdCarga(int idCarga) {
+        this.idCarga = idCarga;
     }
 
     public Motorista getMotorista() {
         return motorista;
     }
 
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
+    }
+
     public Caminhao getCaminhao() {
         return caminhao;
     }
 
-    public Carreta getCarreta() {
-        return carreta;
+    public void setCaminhao(Caminhao caminhao) {
+        this.caminhao = caminhao;
+    }
+
+    public Carreta getCarreta1() {
+        return carreta1;
+    }
+
+    public void setCarreta1(Carreta carreta1) {
+        this.carreta1 = carreta1;
     }
 
     public Carreta getCarreta2() {
         return carreta2;
     }
 
-    public String getLocalidade() {
-        return localidade;
+    public void setCarreta2(Carreta carreta2) {
+        this.carreta2 = carreta2;
     }
 
-    public String getProximaParada() {
-        return proximaParada;
+    public String getproxParada() {
+        return proxParada;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setLocalidade(String novaLocalidade) {
-        this.localidade = novaLocalidade;
+    public void setProxParada(String proxParada) {
+        this.proxParada = proxParada;
     }
 
 }
