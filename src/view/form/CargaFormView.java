@@ -33,11 +33,9 @@ public class CargaFormView {
             String destino = input.nextLine();
             System.out.println();
 
-
             String localidade = origem;
-                Carga novacarga = new Carga(invoice,  PO, notaFiscal, origem, localidade, destino, StatusViagem.EM_VIAGEM);
-                return novacarga;
-            
+            Carga novacarga = new Carga(invoice, PO, notaFiscal, origem, localidade, destino, StatusViagem.EM_VIAGEM);
+            return novacarga;
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,10 +43,5 @@ public class CargaFormView {
             AguardarVoltar.Voltar();
             return null;
         }
-    }
-
-    public EtapasTransporte formularioCadastroEtapa() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'formularioCadastroEtapa'");
     }
 }

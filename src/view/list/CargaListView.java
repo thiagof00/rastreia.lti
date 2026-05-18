@@ -9,7 +9,10 @@ public class CargaListView {
 
     Scanner input = new Scanner(System.in);
 
-    public int listarCargas(List<Carga> cargas) {
+    public int listarCargas(List<Carga> cargas, boolean alterar) {
+
+        String textoParaPrintar = alterar ? "\nSelecione a carga para alterar: "
+                : "\nDeseja verificar as etapas de uma carga? (Digite 0 para voltar): ";
 
         System.out.println("\n========== LISTA DE CARGAS ==========");
         if (cargas.isEmpty()) {
@@ -34,8 +37,7 @@ public class CargaListView {
                     c.getDestino(),
                     c.getStatus());
         }
-
-        System.out.println("\nDeseja verificar as etapas de uma carga? (Digite 0 para voltar): ");
+        System.out.println(textoParaPrintar);
         int escolhaEtapa = Integer.parseInt(input.nextLine());
 
         return escolhaEtapa;

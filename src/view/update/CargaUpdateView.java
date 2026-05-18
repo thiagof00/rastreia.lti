@@ -1,15 +1,10 @@
 package view.update;
 
-import java.util.List;
 import java.util.Scanner;
-import model.Caminhao;
 import model.Carga;
 import model.Carreta;
 import model.EtapasTransporte;
-import model.Motorista;
-import model.enums.StatusMotorista;
-import model.enums.StatusVeiculo;
-import repository.EtapasTransporteRepository;
+import model.enums.StatusViagem;
 import util.Limpar;
 import util.AguardarVoltar;
 
@@ -20,185 +15,45 @@ public class CargaUpdateView {
     Carreta carretaSelecionada, carretaSelecionada2;
     EtapasTransporte etapaSelecionada;
     int respInvoice;
-    String respPO, respNotaFiscal, respOrigem, respLocalidade, respProximaParada, respDestino;
-    Motorista motoristaSelecionado;
-    Caminhao caminhaoSelecionado;
+    String respPO, respNotaFiscal, respOrigem, respLocalidade, respDestino;
 
-    public Carga updateCarga(List<Carga> cargas, List<Carreta> carretas, List<Motorista> motoristas, List<Caminhao> caminhoes) {
+    public Carga updateCarga(EtapasTransporte ultimaEtapa, Carga cargaSelecionada) {
 
         try {
-
-            System.out.println("\n========== LISTA DE CARGAS ==========");
-            if (cargas.isEmpty()) {
-                System.out.println("Nenhuma carga cadastrada.");
-                AguardarVoltar.Voltar();
-                return null;
-            }
-
-            System.out.printf("%-4s | %-8s | %-13s | %-11s | %-15s | %-15s | %-15s | %-12s\n", "ID", "INVOICE", "PO",
-                    "NOTA FISCAL", "ORIGEM", "LOCALIDADE", "DESTINO", "STATUS");
-            System.out.println("-".repeat(109));
-            for (Carga c : cargas) {
-                System.out.printf(
-                        "%-4d | %-8d | %-13s | %-11s | %-15s | %-15s | %-15s | %-12s\n",
-                        c.getId(),
-                        c.getInvoice(),
-                        c.getPO(),
-                        c.getNotaFiscal(),
-                        c.getOrigem(),
-                        c.getLocalidade(),
-                        c.getDestino(),
-                        c.getStatus());
-            }
-
-            System.out.println("\nDigite a carga para alterar");
-            int escolhaCarga = Integer.parseInt(input.nextLine());
-
-            List<EtapasTransporte> etapas = EtapasTransporteRepository.listar();
             Limpar.terminal();
-            for (int i = etapas.size() - 1; i >= 0; i--) {
-                EtapasTransporte e = etapas.get(i);
-                etapaSelecionada = e;
-                Carga c = e.getCarga();
 
-                if (c.getId() == escolhaCarga) {
-                    cargaSelecionada = c;
-                    System.out.printf(
-                            "%-4s | %-8s | %-10s | %-7s | %-14s | %-14s | %-14s | %-14s | %-9s | %-10s | %-10s | %-12s\n",
-                            "ID", "Invoice", "PO", "NF", "Origem", "Localidade", "Prox Parada", "Destino", "Caminhão",
-                            "Carreta 1", "Carreta 2", "Status");
-                    System.out.println("-".repeat(160));
+            System.out.printf(
+                    "%-4s | %-8s | %-10s | %-7s | %-14s | %-14s | %-14s | %-14s | %-9s | %-10s | %-10s | %-12s\n",
+                    "ID", "Invoice", "PO", "NF", "Origem", "Localidade", "Prox Parada", "Destino", "Caminhão",
+                    "Carreta 1", "Carreta 2", "Status");
+            System.out.println("-".repeat(160));
 
-                    String placaCarreta2;
-                    if (c.getCarreta2() != null) {
-                        placaCarreta2 = c.getCarreta2().getPlaca();
-                    } else {
-                        placaCarreta2 = "—";
-                    }
-
-                    System.out.printf(
-                            "%-4d | %-8d | %-10s | %-7s | %-14s | %-14s | %-14s | %-14s | %-9s | %-10s | %-10s | %-12s\n",
-                            e.getId(),
-                            e.getInvoice(),
-                            e.getPO(),
-                            e.getNotaFiscal(),
-                            c.getOrigem(),
-                            e.getLocalidade(),
-                            e.getProximaParada(),
-                            c.getDestino(),
-                            e.getCaminhao().getPlaca(),
-                            e.getCarreta().getPlaca(),
-                            placaCarreta2,
-                            e.getStatus());
-                    break;
-                }
+            String placaCarreta2;
+            if (etapaSelecionada.getCarreta2() != null) {
+                placaCarreta2 = etapaSelecionada.getCarreta2().getPlaca();
+            } else {
+                placaCarreta2 = "—";
             }
+
+            System.out.printf(
+                    "%-4d | %-8d | %-10s | %-7s | %-14s | %-14s | %-14s | %-14s | %-9s | %-10s | %-10s | %-12s\n",
+                    cargaSelecionada.getId(),
+                    cargaSelecionada.getInvoice(),
+                    cargaSelecionada.getPO(),
+                    cargaSelecionada.getNotaFiscal(),
+                    cargaSelecionada.getOrigem(),
+                    cargaSelecionada.getLocalidade(),
+                    etapaSelecionada.getproxParada(),
+                    cargaSelecionada.getDestino(),
+                    etapaSelecionada.getCaminhao().getPlaca(),
+                    etapaSelecionada.getCarreta1().getPlaca(),
+                    placaCarreta2,
+                    cargaSelecionada.getStatus());
+
             System.out.println("--Tecle 0 para manter o valor atual--");
 
             System.out.print("Invoice (número): ");
             int invoice = Integer.parseInt(input.nextLine());
-
-            System.out.println("\nCaminhões disponiveis:");
-
-            for (int i = 0; i < caminhoes.size(); i++) {
-                Caminhao c = caminhoes.get(i);
-                if (c.getStatus().equals(StatusVeiculo.OCIOSO)) {
-                    System.out.println(
-                            (i + 1) + " | Placa: " + c.getPlaca() +
-                                    " | Tipo: " + c.getTipo());
-                }
-            }
-
-            System.out.print("\nEscolha o Caminhão (número): ");
-            int opcaoCaminhao = Integer.parseInt(input.nextLine());
-
-            if (verificaValores(opcaoCaminhao)) {
-                caminhaoSelecionado = etapaSelecionada.getCaminhao();
-            } else if (opcaoCaminhao < 1 || opcaoCaminhao > caminhoes.size()
-                    || !caminhoes.get(opcaoCaminhao - 1).getStatus().equals(StatusVeiculo.OCIOSO)) {
-                System.out.println("Caminhão inválido.");
-                AguardarVoltar.Voltar();
-                return null;
-            } else {
-                caminhaoSelecionado = caminhoes.get(opcaoCaminhao - 1);
-            }
-
-            System.out.println("\nCarretas disponiveis:");
-
-            for (int i = 0; i < carretas.size(); i++) {
-                Carreta c = carretas.get(i);
-                if (c.getStatus().equals(StatusVeiculo.OCIOSO)) {
-                    System.out.println(
-                            (i + 1) + " - " + c.getPlaca() +
-                                    " | Tipo: " + c.getTipo());
-                }
-            }
-
-            System.out.print("\nEscolha a carreta (número): ");
-            int opcaoCarreta = Integer.parseInt(input.nextLine());
-
-            if (verificaValores(opcaoCarreta)) {
-                carretaSelecionada = etapaSelecionada.getCarreta();
-            } else if (opcaoCarreta < 1 || opcaoCarreta > carretas.size()
-                    || !carretas.get(opcaoCarreta - 1).getStatus().equals(StatusVeiculo.OCIOSO)) {
-                System.out.println("Carreta inválida.");
-                AguardarVoltar.Voltar();
-                return null;
-            } else {
-                carretaSelecionada = carretas.get(opcaoCarreta - 1);
-            }
-
-            System.out.println("\nSelecione a segunda carreta, digite 0 caso não utilize: ");
-            System.out.println("\nCarretas disponiveis:");
-
-            for (int i = 0; i < carretas.size(); i++) {
-                Carreta c = carretas.get(i);
-                if (c.getStatus().equals(StatusVeiculo.OCIOSO) && !c.getPlaca().equals(carretaSelecionada.getPlaca())) {
-                    System.out.println(
-                            (i + 1) + " - " + c.getPlaca() +
-                                    " | Tipo: " + c.getTipo());
-                }
-            }
-
-            System.out.print("\nEscolha a carreta (número): ");
-            int opcaoCarreta2 = Integer.parseInt(input.nextLine());
-
-            if (opcaoCarreta2 != 0) {
-
-                if (opcaoCarreta2 < 0 || opcaoCarreta2 > carretas.size()
-                        || !carretas.get(opcaoCarreta2 - 1).getStatus().equals(StatusVeiculo.OCIOSO)
-                        || opcaoCarreta2 == opcaoCarreta) {
-                    System.out.println("Carreta inválida.");
-                    AguardarVoltar.Voltar();
-                    return null;
-                }
-            }
-
-            System.out.println("\nMotoristas disponiveis:");
-
-            for (int i = 0; i < motoristas.size(); i++) {
-                Motorista m = motoristas.get(i);
-                if (m.getStatus().equals(StatusMotorista.OCIOSO)) {
-                    System.out.println(
-                            (i + 1) + " - " + m.getNome() +
-                                    " - " + m.getCpf());
-                }
-            }
-
-            System.out.print("\nEscolha o motorista (número): ");
-            int opcaoMotorista = Integer.parseInt(input.nextLine());
-
-            if (verificaValores(opcaoMotorista)) {
-                motoristaSelecionado = etapaSelecionada.getMotorista();
-            } else if (opcaoMotorista < 1 || opcaoMotorista > motoristas.size()
-                    || !motoristas.get(opcaoMotorista - 1).getStatus().equals(StatusMotorista.OCIOSO)) {
-                System.out.println("Motorista inválido.");
-                AguardarVoltar.Voltar();
-                return null;
-            } else {
-                motoristaSelecionado = motoristas.get(opcaoMotorista - 1);
-                etapaSelecionada.getMotorista().setStatus(StatusMotorista.OCIOSO);
-            }
 
             System.out.print("\nNota fiscal: ");
             String notaFiscal = input.nextLine();
@@ -209,10 +64,8 @@ public class CargaUpdateView {
             System.out.print("\nOrigem: ");
             String origem = input.nextLine();
 
-            respLocalidade = etapaSelecionada.getLocalidade();
+            respLocalidade = cargaSelecionada.getLocalidade();
 
-            System.out.print("\nPróxima parada: ");
-            String proximaParada = input.nextLine();
             System.out.print("\nDestino: ");
             String destino = input.nextLine();
 
@@ -232,34 +85,15 @@ public class CargaUpdateView {
                 respOrigem = cargaSelecionada.getOrigem();
             else
                 respOrigem = origem;
-            if (verificaValoresString(proximaParada))
-                respProximaParada = etapaSelecionada.getProximaParada();
-            else {
-                respProximaParada = proximaParada;
-                respLocalidade = etapaSelecionada.getProximaParada();
-            }
+
             if (verificaValoresString(destino))
                 respDestino = cargaSelecionada.getDestino();
             else
                 respDestino = destino;
 
-            setStatusEtapa(opcaoMotorista, opcaoCaminhao, opcaoCarreta, opcaoCarreta2);
+            return new Carga(respInvoice, respPO, respNotaFiscal, respOrigem, respLocalidade, respDestino,
+                    StatusViagem.EM_VIAGEM);
 
-            if (opcaoCarreta2 == 0) {
-
-                return new Carga(cargaSelecionada.getId(), respInvoice, motoristaSelecionado, caminhaoSelecionado,
-                        carretaSelecionada, respPO, respNotaFiscal, respOrigem, respLocalidade, respProximaParada,
-                        respDestino, "Em viagem");
-            } else {
-                carretaSelecionada2 = carretas.get(opcaoCarreta2 - 1);
-                if (etapaSelecionada.getCarreta2() != null)
-                    etapaSelecionada.getCarreta2().setStatus(StatusVeiculo.OCIOSO);
-                carretaSelecionada2.setStatus(StatusVeiculo.EM_VIAGEM);
-
-                return new Carga(cargaSelecionada.getId(), respInvoice, motoristaSelecionado, caminhaoSelecionado,
-                        carretaSelecionada, carretaSelecionada2, respPO, respNotaFiscal, respOrigem, respLocalidade,
-                        respProximaParada, respDestino, "Em viagem");
-            }
         } catch (Exception e) {
             System.out.println("Erro no preenchimento dos dados.");
             AguardarVoltar.Voltar();
@@ -282,26 +116,6 @@ public class CargaUpdateView {
             return true;
         } else {
             return false;
-        }
-    }
-
-    private void setStatusEtapa(int motorista, int caminhao, int carreta1, int carreta2) {
-        if (!verificaValores(motorista)) {
-            etapaSelecionada.getMotorista().setStatus(StatusMotorista.OCIOSO);
-            motoristaSelecionado.setStatus(StatusMotorista.EM_VIAGEM);
-            ;
-        }
-        if (!verificaValores(caminhao)) {
-            etapaSelecionada.getCaminhao().setStatus(StatusVeiculo.OCIOSO);
-            caminhaoSelecionado.setStatus(StatusVeiculo.OCIOSO);
-        }
-        if (!verificaValores(carreta1)) {
-            etapaSelecionada.getCarreta().setStatus(StatusVeiculo.OCIOSO);
-            carretaSelecionada.setStatus(StatusVeiculo.EM_VIAGEM);
-        }
-        if (!verificaValores(carreta2)) {
-            etapaSelecionada.getCarreta().setStatus(StatusVeiculo.OCIOSO);
-            carretaSelecionada.setStatus(StatusVeiculo.EM_VIAGEM);
         }
     }
 

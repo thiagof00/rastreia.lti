@@ -7,7 +7,7 @@ import util.AguardarVoltar;
 
 public class EtapasTransporteListView {
 
-    public void listarEtapas(List<EtapasTransporte> etapas, int id) {
+    public void listarEtapas(List<EtapasTransporte> etapas, Carga carga) {
         System.out.println("\n========== LISTA DE ETAPAS ==========");
 
         if (etapas.isEmpty()) {
@@ -21,34 +21,31 @@ public class EtapasTransporteListView {
                 "Carreta 2", "Motorista", "Status");
         System.out.println("-".repeat(150));
 
-        for (EtapasTransporte e : etapas) {
-            Carga c = e.getCarga();
+        for (EtapasTransporte etapa : etapas) {
 
-            if (id == c.getId()) {
-
-                String placaCarreta2;
-                if (e.getCarreta2() != null) {
-                    placaCarreta2 = e.getCarreta2().getPlaca();
-                } else {
-                    placaCarreta2 = "—";
-                }
-                System.out.printf(
-
-                        "\n%-4d | %-8d | %-10s | %-7s | %-14s | %-14s | %-14s | %-14s | %-9s | %-10s | %-10s | %-10s | %-12s\n",
-                        e.getId(),
-                        e.getInvoice(),
-                        e.getPO(),
-                        e.getNotaFiscal(),
-                        e.getCarga().getOrigem(),
-                        e.getLocalidade(),
-                        e.getProximaParada(),
-                        e.getCarga().getDestino(),
-                        e.getCaminhao().getPlaca(),
-                        e.getCarreta().getPlaca(),
-                        placaCarreta2,
-                        e.getMotorista().getNome(),
-                        e.getStatus());
+            String placaCarreta2;
+            if (etapa.getCarreta2() != null) {
+                placaCarreta2 = etapa.getCarreta2().getPlaca();
+            } else {
+                placaCarreta2 = "—";
             }
+            System.out.printf(
+
+                    "\n%-4d | %-8d | %-10s | %-7s | %-14s | %-14s | %-14s | %-14s | %-9s | %-10s | %-10s | %-10s | %-12s\n",
+                    etapa.getId(),
+                    carga.getInvoice(),
+                    carga.getPO(),
+                    carga.getNotaFiscal(),
+                    carga.getOrigem(),
+                    carga.getLocalidade(),
+                    etapa.getproxParada(),
+                    carga.getDestino(),
+                    etapa.getCaminhao().getPlaca(),
+                    etapa.getCarreta1().getPlaca(),
+                    placaCarreta2,
+                    etapa.getMotorista().getNome(),
+                    carga.getStatus());
+
         }
 
         AguardarVoltar.Voltar();

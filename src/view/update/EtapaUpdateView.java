@@ -1,0 +1,204 @@
+package view.update;
+
+import java.util.List;
+import java.util.Scanner;
+
+import model.Caminhao;
+import model.Carga;
+import model.Carreta;
+import model.EtapasTransporte;
+import model.Motorista;
+import model.enums.StatusMotorista;
+import model.enums.StatusVeiculo;
+import util.AguardarVoltar;
+
+public class EtapaUpdateView {
+
+    Scanner input = new Scanner(System.in);
+    Carga cargaSelecionada;
+    Carreta carretaSelecionada, carretaSelecionada2;
+    EtapasTransporte etapaSelecionada;
+    int respInvoice;
+    String respPO, respNotaFiscal, respOrigem, respLocalidade, respProximaParada, respDestino;
+    Motorista motoristaSelecionado;
+    Caminhao caminhaoSelecionado;
+
+    public EtapasTransporte updateEtapa(List<Carreta> carretas, List<Motorista> motoristas, List<Caminhao> caminhoes,
+            EtapasTransporte etapaSelecionada) {
+
+        try {
+            System.out.println("\nCaminhões disponiveis:");
+
+            for (int i = 0; i < caminhoes.size(); i++) {
+                Caminhao c = caminhoes.get(i);
+                if (c.getStatus().equals(StatusVeiculo.OCIOSO)) {
+                    System.out.println(
+                            (i + 1) + " | Placa: " + c.getPlaca() +
+                                    " | Tipo: " + c.getTipo());
+                }
+            }
+
+            System.out.print("\nEscolha o Caminhão (número): ");
+            int opcaoCaminhao = Integer.parseInt(input.nextLine());
+
+            if (verificaValores(opcaoCaminhao)) {
+                caminhaoSelecionado = etapaSelecionada.getCaminhao();
+            } else if (opcaoCaminhao < 1 || opcaoCaminhao > caminhoes.size()
+                    || !caminhoes.get(opcaoCaminhao - 1).getStatus().equals(StatusVeiculo.OCIOSO)) {
+                System.out.println("Caminhão inválido.");
+                AguardarVoltar.Voltar();
+                return null;
+            } else {
+                caminhaoSelecionado = caminhoes.get(opcaoCaminhao - 1);
+            }
+
+            System.out.println("\nCarretas disponiveis:");
+
+            for (int i = 0; i < carretas.size(); i++) {
+                Carreta c = carretas.get(i);
+                if (c.getStatus().equals(StatusVeiculo.OCIOSO)) {
+                    System.out.println(
+                            (i + 1) + " - " + c.getPlaca() +
+                                    " | Tipo: " + c.getTipo());
+                }
+            }
+
+            System.out.print("\nEscolha a carreta (número): ");
+            int opcaoCarreta = Integer.parseInt(input.nextLine());
+
+            if (verificaValores(opcaoCarreta)) {
+                carretaSelecionada = etapaSelecionada.getCarreta1();
+            } else if (opcaoCarreta < 1 || opcaoCarreta > carretas.size()
+                    || !carretas.get(opcaoCarreta - 1).getStatus().equals(StatusVeiculo.OCIOSO)) {
+                System.out.println("Carreta inválida.");
+                AguardarVoltar.Voltar();
+                return null;
+            } else {
+                carretaSelecionada = carretas.get(opcaoCarreta - 1);
+            }
+
+            System.out.println("\nSelecione a segunda carreta, digite 0 caso não utilize: ");
+            System.out.println("\nCarretas disponiveis:");
+
+            for (int i = 0; i < carretas.size(); i++) {
+                Carreta c = carretas.get(i);
+                if (c.getStatus().equals(StatusVeiculo.OCIOSO) && !c.getPlaca().equals(carretaSelecionada.getPlaca())) {
+                    System.out.println(
+                            (i + 1) + " - " + c.getPlaca() +
+                                    " | Tipo: " + c.getTipo());
+                }
+            }
+
+            System.out.print("\nEscolha a carreta (número): ");
+            int opcaoCarreta2 = Integer.parseInt(input.nextLine());
+
+            if (opcaoCarreta2 != 0) {
+
+                if (opcaoCarreta2 < 0 || opcaoCarreta2 > carretas.size()
+                        || !carretas.get(opcaoCarreta2 - 1).getStatus().equals(StatusVeiculo.OCIOSO)
+                        || opcaoCarreta2 == opcaoCarreta) {
+                    System.out.println("Carreta inválida.");
+                    AguardarVoltar.Voltar();
+                    return null;
+                }
+            }
+
+            System.out.println("\nMotoristas disponiveis:");
+
+            for (int i = 0; i < motoristas.size(); i++) {
+                Motorista m = motoristas.get(i);
+                if (m.getStatus().equals(StatusMotorista.OCIOSO)) {
+                    System.out.println(
+                            (i + 1) + " - " + m.getNome() +
+                                    " - " + m.getCpf());
+                }
+            }
+
+            System.out.print("\nEscolha o motorista (número): ");
+            int opcaoMotorista = Integer.parseInt(input.nextLine());
+
+            if (verificaValores(opcaoMotorista)) {
+                motoristaSelecionado = etapaSelecionada.getMotorista();
+            } else if (opcaoMotorista < 1 || opcaoMotorista > motoristas.size()
+                    || !motoristas.get(opcaoMotorista - 1).getStatus().equals(StatusMotorista.OCIOSO)) {
+                System.out.println("Motorista inválido.");
+                AguardarVoltar.Voltar();
+                return null;
+            } else {
+                motoristaSelecionado = motoristas.get(opcaoMotorista - 1);
+                etapaSelecionada.getMotorista().setStatus(StatusMotorista.OCIOSO);
+            }
+
+            System.out.print("\nPróxima parada: ");
+            String proximaParada = input.nextLine();
+
+            if (verificaValoresString(proximaParada))
+                respProximaParada = etapaSelecionada.getproxParada();
+            else {
+                respProximaParada = proximaParada;
+                respLocalidade = etapaSelecionada.getproxParada();
+            }
+            setStatusEtapa(opcaoMotorista, opcaoCaminhao, opcaoCarreta, opcaoCarreta2);
+
+            EtapasTransporte etapaAlterada = new EtapasTransporte(etapaSelecionada.getIdCarga(), motoristaSelecionado,
+                    caminhaoSelecionado,
+                    carretaSelecionada, respProximaParada);
+            if (opcaoCarreta2 != 0) {
+                etapaAlterada.setCarreta2(carretas.get(opcaoCarreta2 - 1));
+            }
+            if (etapaSelecionada.getCarreta2() != null)
+                etapaSelecionada.getCarreta2().setStatus(StatusVeiculo.OCIOSO);
+            carretaSelecionada2.setStatus(StatusVeiculo.EM_VIAGEM);
+
+            EtapasTransporte novaEtapa = new EtapasTransporte(etapaSelecionada.getIdCarga(), motoristaSelecionado,
+                    caminhaoSelecionado, carretaSelecionada, respProximaParada);
+
+            return novaEtapa;
+
+        } catch (Exception e) {
+            System.out.println("Erro no preenchimento dos dados.");
+            AguardarVoltar.Voltar();
+
+            return null;
+        }
+    }
+
+    private boolean verificaValores(int valor) {
+
+        if (valor == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean verificaValoresString(String valor) {
+
+        if (valor.equals("0")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private void setStatusEtapa(int motorista, int caminhao, int carreta1, int carreta2) {
+        if (!verificaValores(motorista)) {
+            etapaSelecionada.getMotorista().setStatus(StatusMotorista.OCIOSO);
+            motoristaSelecionado.setStatus(StatusMotorista.EM_VIAGEM);
+            ;
+        }
+        if (!verificaValores(caminhao)) {
+            etapaSelecionada.getCaminhao().setStatus(StatusVeiculo.OCIOSO);
+            caminhaoSelecionado.setStatus(StatusVeiculo.OCIOSO);
+        }
+        if (!verificaValores(carreta1)) {
+            etapaSelecionada.getCarreta1().setStatus(StatusVeiculo.OCIOSO);
+            carretaSelecionada.setStatus(StatusVeiculo.EM_VIAGEM);
+        }
+        if (!verificaValores(carreta2)) {
+            etapaSelecionada.getCarreta2().setStatus(StatusVeiculo.OCIOSO);
+            carretaSelecionada.setStatus(StatusVeiculo.EM_VIAGEM);
+        }
+    }
+
+}

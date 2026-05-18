@@ -19,4 +19,13 @@ public class CargaRepository {
         return cargas;
     }
 
+    public static Carga getCargaPorId(int id) {
+        for (Carga carga : cargas) {
+            if (carga.getId() == id) {
+                return carga;
+            }
+        }
+        return null;
+    }
+
 }

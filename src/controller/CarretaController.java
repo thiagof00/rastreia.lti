@@ -45,8 +45,9 @@ public class CarretaController {
         int id = deleteView.formularioExcluirCarreta();
 
         List<EtapasTransporte> etapasTransportes = EtapasTransporteRepository.listar();
+
         for (EtapasTransporte etapa : etapasTransportes) {
-            if (etapa.getCarreta().getId() == id || etapa.getCarreta2().getId() == id) {
+            if (etapa.getCarreta1().getId() == id || etapa.getCarreta2().getId() == id) {
                 System.out.println("Carreta relacionada a um registro de carga, não foi possivel excluir.");
                 AguardarVoltar.Voltar();
                 return;
