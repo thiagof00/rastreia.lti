@@ -112,17 +112,19 @@ public class CargasController {
         int cargaEscolhida = listView.listarCargas(cargas, true);
 
         List<EtapasTransporte> etapasDaCarga = EtapasTransporteRepository.getEtapasTransportePorIdCarga(cargaEscolhida);
-        EtapasTransporte ultimaEtapaAtualizada = etapasDaCarga.getLast();
+        EtapasTransporte ultimaEtapa = etapasDaCarga.getLast();
         Carga cargaSelecionada = CargaRepository.getCargaPorId(cargaEscolhida);
 
-        Carga cargaAlterada = cargaUpdateView.updateCarga(ultimaEtapaAtualizada, cargaSelecionada);
+        Carga cargaAlterada = cargaUpdateView.updateCarga(ultimaEtapa, cargaSelecionada);
 
         if (cargaAlterada == null) {
             return;
         }
 
         EtapasTransporte etapaAlterada = etapaUpdateView.updateEtapa(carretas, motoristas, caminhoes,
-                ultimaEtapaAtualizada);
+                ultimaEtapa);
+
+        verificaAlteracaoDeEtapa(ultimaEtapa, etapaAlterada);
 
         etapaAlterada.setUltimaLocalidade(cargaAlterada.getLocalidade());
 
@@ -179,5 +181,30 @@ public class CargasController {
 
     public int exibirMenu() {
         return menuView.menuCargas();
+    }
+
+    private void verificaAlteracaoDeEtapa(EtapasTransporte ultimaEtapa, EtapasTransporte etapaNova) {
+
+        if (ultimaEtapa.getCaminhao() != etapaNova.getCaminhao()) {
+            ultimaEtapa.getCaminhao().setStatus(StatusVeiculo.OCIOSO);
+            etapaNova.getCaminhao().setStatus(StatusVeiculo.EM_VIAGEM);
+        }
+        if (ultimaEtapa.getMotorista() != etapaNova.getMotorista()) {
+            ultimaEtapa.getMotorista().setStatus(StatusMotorista.OCIOSO);
+            etapaNova.getMotorista().setStatus(StatusMotorista.EM_VIAGEM);
+        }
+        if (ultimaEtapa.getCarreta1() != etapaNova.getCarreta1()) {
+            ultimaEtapa.getCarreta1().setStatus(StatusVeiculo.OCIOSO);
+            etapaNova.getCarreta1().setStatus(StatusVeiculo.EM_VIAGEM);
+        }
+        if (ultimaEtapa.getCarreta2() != etapaNova.getCarreta2()) {
+
+            if (ultimaEtapa.getCarreta2() == null) {
+                etapaNova.getCarreta2().setStatus(StatusVeiculo.EM_VIAGEM);
+            } else {
+                ultimaEtapa.getCarreta2().setStatus(StatusVeiculo.OCIOSO);
+                etapaNova.getCarreta2().setStatus(StatusVeiculo.EM_VIAGEM);
+            }
+        }
     }
 }

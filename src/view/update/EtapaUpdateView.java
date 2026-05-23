@@ -138,7 +138,6 @@ public class EtapaUpdateView {
                 respProximaParada = proximaParada;
                 respLocalidade = etapaSelecionada.getproxParada();
             }
-            setStatusEtapa(opcaoMotorista, opcaoCaminhao, opcaoCarreta, opcaoCarreta2);
 
             EtapasTransporte etapaAlterada = new EtapasTransporte(etapaSelecionada.getIdCarga(), motoristaSelecionado,
                     caminhaoSelecionado,
@@ -175,26 +174,6 @@ public class EtapaUpdateView {
             return true;
         } else {
             return false;
-        }
-    }
-
-    private void setStatusEtapa(int motorista, int caminhao, int carreta1, int carreta2) {
-        if (!verificaValores(motorista)) {
-            etapaSelecionada.getMotorista().setStatus(StatusMotorista.OCIOSO);
-            motoristaSelecionado.setStatus(StatusMotorista.EM_VIAGEM);
-            ;
-        }
-        if (!verificaValores(caminhao)) {
-            etapaSelecionada.getCaminhao().setStatus(StatusVeiculo.OCIOSO);
-            caminhaoSelecionado.setStatus(StatusVeiculo.OCIOSO);
-        }
-        if (!verificaValores(carreta1)) {
-            etapaSelecionada.getCarreta1().setStatus(StatusVeiculo.OCIOSO);
-            carretaSelecionada.setStatus(StatusVeiculo.EM_VIAGEM);
-        }
-        if (!verificaValores(carreta2)) {
-            etapaSelecionada.getCarreta2().setStatus(StatusVeiculo.OCIOSO);
-            carretaSelecionada.setStatus(StatusVeiculo.EM_VIAGEM);
         }
     }
 
