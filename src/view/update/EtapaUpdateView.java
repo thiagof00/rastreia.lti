@@ -144,11 +144,16 @@ public class EtapaUpdateView {
                     caminhaoSelecionado,
                     carretaSelecionada, respProximaParada);
             if (opcaoCarreta2 != 0) {
+                System.out.println("entrou 1");
+                System.out.println("opção carreta 2: " + opcaoCarreta2);
                 etapaAlterada.setCarreta2(carretas.get(opcaoCarreta2 - 1));
             }
-            if (etapaSelecionada.getCarreta2() != null)
-                etapaSelecionada.getCarreta2().setStatus(StatusVeiculo.OCIOSO);
-            carretaSelecionada2.setStatus(StatusVeiculo.EM_VIAGEM);
+            // if (carretaSelecionada2 != null) {
+            // System.out.println("entrou 2");
+
+            // etapaSelecionada.getCarreta2().setStatus(StatusVeiculo.OCIOSO);
+            // carretaSelecionada2.setStatus(StatusVeiculo.EM_VIAGEM);
+            // }
 
             EtapasTransporte novaEtapa = new EtapasTransporte(etapaSelecionada.getIdCarga(), motoristaSelecionado,
                     caminhaoSelecionado, carretaSelecionada, respProximaParada);
@@ -156,7 +161,7 @@ public class EtapaUpdateView {
             return novaEtapa;
 
         } catch (Exception e) {
-            System.out.println("Erro no preenchimento dos dados.");
+            System.out.println("Erro no preenchimento dos dados." + e);
             AguardarVoltar.Voltar();
 
             return null;

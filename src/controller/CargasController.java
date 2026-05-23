@@ -8,6 +8,9 @@ import model.Carga;
 import model.Carreta;
 import model.EtapasTransporte;
 import model.Motorista;
+import model.enums.StatusMotorista;
+import model.enums.StatusVeiculo;
+import model.enums.StatusViagem;
 import repository.CaminhaoRepository;
 import repository.CargaRepository;
 import repository.CarretaRepository;
@@ -70,12 +73,11 @@ public class CargasController {
         List<Caminhao> caminhoes = CaminhaoRepository.listar();
 
         EtapasTransporte novaEtapa = etapaFormView.formularioCadastroEtapa(idCarga, carretas, motoristas, caminhoes);
-        EtapasTransporte etapa = new EtapasTransporte(idCarga, novaEtapa.getMotorista(), novaEtapa.getCaminhao(),
-                novaEtapa.getCarreta1(), novaEtapa.getproxParada());
+        novaEtapa.setUltimaLocalidade(carga.getLocalidade());
 
-        // PENDENCIA: Ver carreta2
+        // PENDENCIA: Colocar set carreta2
 
-        EtapasTransporteRepository.salvar(etapa);
+        EtapasTransporteRepository.salvar(novaEtapa);
 
         System.out.println("Carga cadastrada com sucesso!");
         AguardarVoltar.Voltar();
@@ -93,7 +95,7 @@ public class CargasController {
             List<EtapasTransporte> etapasSelecionadas = new ArrayList<>();
             Carga cargaSelecionada = CargaRepository.getCargaPorId(escolhaEtapa);
             for (EtapasTransporte etapa : etapas) {
-                if (etapa.getId() == escolhaEtapa) {
+                if (etapa.getIdCarga() == escolhaEtapa) {
                     etapasSelecionadas.add(etapa);
                 }
             }
@@ -123,12 +125,14 @@ public class CargasController {
         EtapasTransporte etapaAlterada = etapaUpdateView.updateEtapa(carretas, motoristas, caminhoes,
                 ultimaEtapaAtualizada);
 
-        cargaAlterada.setInvoice(cargaAlterada.getInvoice());
-        cargaAlterada.setPO(cargaAlterada.getPO());
-        cargaAlterada.setNotaFiscal(cargaAlterada.getNotaFiscal());
-        cargaAlterada.setLocalidade(cargaAlterada.getLocalidade());
-        cargaAlterada.setDestino(cargaAlterada.getDestino());
-        cargaAlterada.setOrigem(cargaAlterada.getOrigem());
+        etapaAlterada.setUltimaLocalidade(cargaAlterada.getLocalidade());
+
+        cargaSelecionada.setInvoice(cargaAlterada.getInvoice());
+        cargaSelecionada.setPO(cargaAlterada.getPO());
+        cargaSelecionada.setNotaFiscal(cargaAlterada.getNotaFiscal());
+        cargaSelecionada.setLocalidade(cargaAlterada.getLocalidade());
+        cargaSelecionada.setDestino(cargaAlterada.getDestino());
+        cargaSelecionada.setOrigem(cargaAlterada.getOrigem());
 
         EtapasTransporteRepository.salvar(etapaAlterada);
         System.out.println("Carga alterada com sucesso!");
@@ -137,24 +141,34 @@ public class CargasController {
     }
 
     public void alterarStatus() {
-        List<EtapasTransporte> etapas = EtapasTransporteRepository.listar();
         List<Carga> cargas = CargaRepository.listar();
-        Carga cargaAlterada = CargaStatusUpdateView.updateStatusCarga(cargas, etapas);
-        if (cargaAlterada == null) {
+        int idCargaSelecionada = listView.listarCargas(cargas, true);
+        Carga cargaSelecionada = CargaRepository.getCargaPorId(idCargaSelecionada);
+        boolean alterar = CargaStatusUpdateView.updateStatusCarga();
+        if (alterar == false) {
             return;
         }
-        int j = 0;
-        for (int i = 0; i < cargas.size(); i++) {
-            if (cargas.get(i).getId() == cargaAlterada.getId()) {
-                j = i;
-            }
+        cargaSelecionada.setStatus(StatusViagem.CONCLUIDO);
+
+        List<EtapasTransporte> etapasDaCarga = EtapasTransporteRepository
+                .getEtapasTransportePorIdCarga(idCargaSelecionada);
+        EtapasTransporte ultimaEtapaRegistrada = etapasDaCarga.getLast();
+
+        EtapasTransporte etapaDeConclusao = new EtapasTransporte(idCargaSelecionada,
+                ultimaEtapaRegistrada.getMotorista(), ultimaEtapaRegistrada.getCaminhao(),
+                ultimaEtapaRegistrada.getCarreta1(),
+                ultimaEtapaRegistrada.getproxParada());
+
+        if (ultimaEtapaRegistrada.getCarreta2() != null) {
+            etapaDeConclusao.setCarreta2(ultimaEtapaRegistrada.getCarreta2());
+            etapaDeConclusao.getCarreta2().setStatus(StatusVeiculo.OCIOSO);
         }
-        cargas.get(j).setStatus("Concluída");
-        EtapasTransporte etapa = new EtapasTransporte(cargas.get(j), cargaAlterada.getPO(),
-                cargaAlterada.getNotaFiscal(), cargaAlterada.getInvoice(), cargaAlterada.getCaminhao(),
-                cargaAlterada.getCarreta1(), cargaAlterada.getCarreta2(), cargaAlterada.getMotorista(),
-                cargaAlterada.getLocalidade(), cargaAlterada.getProximaParada(), cargaAlterada.getStatus());
-        EtapasTransporteRepository.salvar(etapa);
+
+        EtapasTransporteRepository.salvar(etapaDeConclusao);
+        etapaDeConclusao.getCaminhao().setStatus(StatusVeiculo.OCIOSO);
+        etapaDeConclusao.getCarreta1().setStatus(StatusVeiculo.OCIOSO);
+        etapaDeConclusao.getMotorista().setStatus(StatusMotorista.OCIOSO);
+
         System.out.println("Status da carga alterado com sucesso!");
         AguardarVoltar.Voltar();
 

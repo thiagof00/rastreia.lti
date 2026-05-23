@@ -11,9 +11,7 @@ import util.AguardarVoltar;
 public class CargaUpdateView {
 
     Scanner input = new Scanner(System.in);
-    Carga cargaSelecionada;
     Carreta carretaSelecionada, carretaSelecionada2;
-    EtapasTransporte etapaSelecionada;
     int respInvoice;
     String respPO, respNotaFiscal, respOrigem, respLocalidade, respDestino;
 
@@ -29,8 +27,8 @@ public class CargaUpdateView {
             System.out.println("-".repeat(160));
 
             String placaCarreta2;
-            if (etapaSelecionada.getCarreta2() != null) {
-                placaCarreta2 = etapaSelecionada.getCarreta2().getPlaca();
+            if (ultimaEtapa.getCarreta2() != null) {
+                placaCarreta2 = ultimaEtapa.getCarreta2().getPlaca();
             } else {
                 placaCarreta2 = "—";
             }
@@ -43,10 +41,10 @@ public class CargaUpdateView {
                     cargaSelecionada.getNotaFiscal(),
                     cargaSelecionada.getOrigem(),
                     cargaSelecionada.getLocalidade(),
-                    etapaSelecionada.getproxParada(),
+                    ultimaEtapa.getproxParada(),
                     cargaSelecionada.getDestino(),
-                    etapaSelecionada.getCaminhao().getPlaca(),
-                    etapaSelecionada.getCarreta1().getPlaca(),
+                    ultimaEtapa.getCaminhao().getPlaca(),
+                    ultimaEtapa.getCarreta1().getPlaca(),
                     placaCarreta2,
                     cargaSelecionada.getStatus());
 
@@ -64,7 +62,7 @@ public class CargaUpdateView {
             System.out.print("\nOrigem: ");
             String origem = input.nextLine();
 
-            respLocalidade = cargaSelecionada.getLocalidade();
+            respLocalidade = ultimaEtapa.getproxParada();
 
             System.out.print("\nDestino: ");
             String destino = input.nextLine();
@@ -95,7 +93,7 @@ public class CargaUpdateView {
                     StatusViagem.EM_VIAGEM);
 
         } catch (Exception e) {
-            System.out.println("Erro no preenchimento dos dados.");
+            System.out.println("Erro no preenchimento dos dados. ");
             AguardarVoltar.Voltar();
             return null;
         }

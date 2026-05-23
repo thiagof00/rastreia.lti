@@ -37,7 +37,7 @@ public class EtapasTransporteListView {
                     carga.getPO(),
                     carga.getNotaFiscal(),
                     carga.getOrigem(),
-                    carga.getLocalidade(),
+                    etapa.getUltimaLocalidade(),
                     etapa.getproxParada(),
                     carga.getDestino(),
                     etapa.getCaminhao().getPlaca(),

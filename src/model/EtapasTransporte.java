@@ -1,8 +1,6 @@
 package model;
 
-import model.enums.StatusViagem;
-
-public class EtapasTransporte{
+public class EtapasTransporte {
 
     private int id;
     private Caminhao caminhao;
@@ -10,6 +8,7 @@ public class EtapasTransporte{
     private Carreta carreta2;
     private Motorista motorista;
     private String proxParada;
+    private String ultimaLocalidade;
     private int idCarga;
 
     public EtapasTransporte(int idCarga, Motorista motorista, Caminhao caminhao, Carreta carreta1, String proxParada) {
@@ -48,6 +47,14 @@ public class EtapasTransporte{
         return caminhao;
     }
 
+    public String getUltimaLocalidade() {
+        return ultimaLocalidade;
+    }
+
+    public String getProxParada() {
+        return proxParada;
+    }
+
     public void setCaminhao(Caminhao caminhao) {
         this.caminhao = caminhao;
     }
@@ -76,4 +83,7 @@ public class EtapasTransporte{
         this.proxParada = proxParada;
     }
 
+    public void setUltimaLocalidade(String ultimaLocalidade) {
+        this.ultimaLocalidade = ultimaLocalidade;
+    }
 }
