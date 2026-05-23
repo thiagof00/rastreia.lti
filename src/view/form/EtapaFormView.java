@@ -114,16 +114,11 @@ public class EtapaFormView {
 
         Motorista motoristaSelecionado = motoristas.get(opcaoMotorista - 1);
 
-        caminhaoSelecionado.setStatus(StatusVeiculo.EM_VIAGEM); // PENDENCIA: Colocar setStatus no Controller
-        carretaSelecionada.setStatus(StatusVeiculo.EM_VIAGEM); // PENDENCIA: Colocar setStatus no Controller
-        motoristaSelecionado.setStatus(StatusMotorista.EM_VIAGEM); // PENDENCIA: Colocar setStatus no Controller
-
         EtapasTransporte novaEtapa = new EtapasTransporte(idCarga, motoristaSelecionado, caminhaoSelecionado,
                 carretaSelecionada, proximaParada);
 
         if (opcaoCarreta2 != 0) {
             Carreta carretaSelecionada2 = carretas.get(opcaoCarreta2 - 1);
-            carretaSelecionada2.setStatus(StatusVeiculo.EM_VIAGEM); // PENDENCIA: Colocar setStatus no Controller
             novaEtapa.setCarreta2(carretaSelecionada2);
         }
         return novaEtapa;
