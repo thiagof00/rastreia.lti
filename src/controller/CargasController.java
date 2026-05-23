@@ -8,14 +8,8 @@ import model.Carga;
 import model.Carreta;
 import model.EtapasTransporte;
 import model.Motorista;
-import model.enums.StatusMotorista;
-import model.enums.StatusVeiculo;
-import model.enums.StatusViagem;
-import repository.CaminhaoRepository;
-import repository.CargaRepository;
-import repository.CarretaRepository;
-import repository.EtapasTransporteRepository;
-import repository.MotoristaRepository;
+import model.enums.*;
+import repository.*;
 import util.Limpar;
 import util.AguardarVoltar;
 import view.form.CargaFormView;
@@ -75,7 +69,12 @@ public class CargasController {
         EtapasTransporte novaEtapa = etapaFormView.formularioCadastroEtapa(idCarga, carretas, motoristas, caminhoes);
         novaEtapa.setUltimaLocalidade(carga.getLocalidade());
 
-        // PENDENCIA: Colocar set carreta2
+        novaEtapa.getCaminhao().setStatus(StatusVeiculo.EM_VIAGEM);
+        novaEtapa.getCarreta1().setStatus(StatusVeiculo.EM_VIAGEM);
+        novaEtapa.getMotorista().setStatus(StatusMotorista.EM_VIAGEM);
+
+        if (novaEtapa.getCarreta2() != null)
+            novaEtapa.getCarreta2().setStatus(StatusVeiculo.EM_VIAGEM);
 
         EtapasTransporteRepository.salvar(novaEtapa);
 
@@ -144,7 +143,9 @@ public class CargasController {
         List<Carga> cargas = CargaRepository.listar();
         int idCargaSelecionada = listView.listarCargas(cargas, true);
         Carga cargaSelecionada = CargaRepository.getCargaPorId(idCargaSelecionada);
+
         boolean alterar = CargaStatusUpdateView.updateStatusCarga();
+
         if (alterar == false) {
             return;
         }
@@ -157,7 +158,9 @@ public class CargasController {
         EtapasTransporte etapaDeConclusao = new EtapasTransporte(idCargaSelecionada,
                 ultimaEtapaRegistrada.getMotorista(), ultimaEtapaRegistrada.getCaminhao(),
                 ultimaEtapaRegistrada.getCarreta1(),
-                ultimaEtapaRegistrada.getproxParada());
+                "-");
+        etapaDeConclusao.setUltimaLocalidade(cargaSelecionada.getDestino());
+        cargaSelecionada.setLocalidade(cargaSelecionada.getDestino());
 
         if (ultimaEtapaRegistrada.getCarreta2() != null) {
             etapaDeConclusao.setCarreta2(ultimaEtapaRegistrada.getCarreta2());
