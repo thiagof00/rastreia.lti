@@ -143,22 +143,14 @@ public class EtapaUpdateView {
             EtapasTransporte etapaAlterada = new EtapasTransporte(etapaSelecionada.getIdCarga(), motoristaSelecionado,
                     caminhaoSelecionado,
                     carretaSelecionada, respProximaParada);
+            etapaAlterada.setCarreta2(etapaSelecionada.getCarreta2());
             if (opcaoCarreta2 != 0) {
                 System.out.println("entrou 1");
                 System.out.println("opção carreta 2: " + opcaoCarreta2);
                 etapaAlterada.setCarreta2(carretas.get(opcaoCarreta2 - 1));
             }
-            // if (carretaSelecionada2 != null) {
-            // System.out.println("entrou 2");
 
-            // etapaSelecionada.getCarreta2().setStatus(StatusVeiculo.OCIOSO);
-            // carretaSelecionada2.setStatus(StatusVeiculo.EM_VIAGEM);
-            // }
-
-            EtapasTransporte novaEtapa = new EtapasTransporte(etapaSelecionada.getIdCarga(), motoristaSelecionado,
-                    caminhaoSelecionado, carretaSelecionada, respProximaParada);
-
-            return novaEtapa;
+            return etapaAlterada;
 
         } catch (Exception e) {
             System.out.println("Erro no preenchimento dos dados." + e);
