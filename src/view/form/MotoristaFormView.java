@@ -3,7 +3,6 @@ package view.form;
 import java.util.Scanner;
 import model.Motorista;
 import model.enums.StatusMotorista;
-import model.enums.StatusVeiculo;
 import util.*;
 
 public class MotoristaFormView {

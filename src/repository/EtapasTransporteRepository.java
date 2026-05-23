@@ -17,4 +17,15 @@ public class EtapasTransporteRepository {
     public static List<EtapasTransporte> listar() {
         return etapasTransportes;
     }
+
+    public static List<EtapasTransporte> getEtapasTransportePorIdCarga(int id) {
+        List<EtapasTransporte> etapasSelecionadas = new ArrayList<>();
+
+        for (EtapasTransporte etapaTransporte : etapasTransportes) {
+            if (etapaTransporte.getIdCarga() == id) {
+                etapasSelecionadas.add(etapaTransporte);
+            }
+        }
+        return etapasSelecionadas;
+    }
 }

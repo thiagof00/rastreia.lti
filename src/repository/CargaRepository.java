@@ -7,23 +7,25 @@ import model.Carga;
 public class CargaRepository {
 
     private static List<Carga> cargas = new ArrayList<>(List.of());
-    // new Carga(1, 101, "PO-12342334", "666666" , "Buenos Aires", "Buenos Aires",
-    // "São Paulo" , "Em viagem"),
 
-    // new Carga(2, 102, "PO-34544564", "23434" , "Buenos Aires", "Buenos Aires",
-    // "São Paulo" , "Em viagem"),
-
-    // new Carga(3, 103, "PO-12342334", "6457556" , "Buenos Aires", "Buenos Aires",
-    // "São Paulo" , "Em viagem")));
-    private static int id = 1;
+    private static int proximoId = 1;
 
     public static void salvar(Carga carga) {
-        carga.setId(id++);
+        carga.setId(proximoId++);
         cargas.add(carga);
     }
 
     public static List<Carga> listar() {
         return cargas;
+    }
+
+    public static Carga getCargaPorId(int id) {
+        for (Carga carga : cargas) {
+            if (carga.getId() == id) {
+                return carga;
+            }
+        }
+        return null;
     }
 
 }

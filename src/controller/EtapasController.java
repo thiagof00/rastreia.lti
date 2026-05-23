@@ -17,7 +17,5 @@ public class EtapasController {
     public void listar(int id) {
         List<EtapasTransporte> etapas = EtapasTransporteRepository.listar();
 
-        listView.listarEtapas(etapas, id);
-
     }
 }

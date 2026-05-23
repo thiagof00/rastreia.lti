@@ -1,22 +1,16 @@
 package view.form;
 
-import java.util.List;
 import java.util.Scanner;
-import model.Caminhao;
+
 import model.Carga;
 import model.Carreta;
-import model.Motorista;
-import model.enums.StatusMotorista;
-import model.enums.StatusVeiculo;
-import repository.CaminhaoRepository;
-import repository.CarretaRepository;
-import repository.MotoristaRepository;
+import model.EtapasTransporte;
+import model.enums.StatusViagem;
 import util.*;
 
 public class CargaFormView {
 
     Scanner input = new Scanner(System.in);
-    Carreta carretaSelecionada2;
 
     public Carga formularioCadastroCarga() {
 
@@ -25,104 +19,6 @@ public class CargaFormView {
 
             System.out.print("Invoice (número): ");
             int invoice = Integer.parseInt(input.nextLine());
-
-            System.out.println("\nCaminhões disponiveis:");
-            List<Caminhao> caminhoes = CaminhaoRepository.listar();
-
-            for (int i = 0; i < caminhoes.size(); i++) {
-                Caminhao c = caminhoes.get(i);
-                if (c.getStatus().equals(StatusVeiculo.OCIOSO)) {
-                    System.out.println(
-                            (i + 1) + " | Placa: " + c.getPlaca() +
-                                    " | Tipo: " + c.getTipo());
-                }
-            }
-
-            System.out.print("\nEscolha o Caminhão (número): ");
-            int opcaoCaminhao = Integer.parseInt(input.nextLine());
-
-            if (opcaoCaminhao < 1 || opcaoCaminhao > caminhoes.size()
-                    || !caminhoes.get(opcaoCaminhao - 1).getStatus().equals(StatusVeiculo.OCIOSO)) {
-                System.out.println("Caminhão inválido.");
-                AguardarVoltar.Voltar();
-                return null;
-            }
-
-            Caminhao caminhaoSelecionado = caminhoes.get(opcaoCaminhao - 1);
-
-            System.out.println("\nCarretas disponiveis:");
-            List<Carreta> carretas = CarretaRepository.listar();
-
-            for (int i = 0; i < carretas.size(); i++) {
-                Carreta c = carretas.get(i);
-                if (c.getStatus().equals(StatusVeiculo.OCIOSO)) {
-                    System.out.println(
-                            (i + 1) + " - " + c.getPlaca() +
-                                    " | Tipo: " + c.getTipo());
-                }
-            }
-
-            System.out.print("\nEscolha a carreta (número): ");
-            int opcaoCarreta = Integer.parseInt(input.nextLine());
-
-            if (opcaoCarreta < 1 || opcaoCarreta > carretas.size()
-                    || !carretas.get(opcaoCarreta - 1).getStatus().equals(StatusVeiculo.OCIOSO)) {
-                System.out.println("Carreta inválida.");
-                AguardarVoltar.Voltar();
-                return null;
-            }
-
-            Carreta carretaSelecionada = carretas.get(opcaoCarreta - 1);
-
-            System.out.println("\nSelecione a segunda carreta, digite 0 caso não utilize: ");
-            System.out.println("\nCarretas disponiveis:");
-
-            for (int i = 0; i < carretas.size(); i++) {
-                Carreta c = carretas.get(i);
-                if (c.getStatus().equals(StatusVeiculo.OCIOSO) && !c.getPlaca().equals(carretaSelecionada.getPlaca())) {
-                    System.out.println(
-                            (i + 1) + " - " + c.getPlaca() +
-                                    " | Tipo: " + c.getTipo());
-                }
-            }
-
-            System.out.print("\nEscolha a carreta (número): ");
-            int opcaoCarreta2 = Integer.parseInt(input.nextLine());
-
-            if (opcaoCarreta2 != 0) {
-
-                if (opcaoCarreta2 < 0 || opcaoCarreta2 > carretas.size()
-                        || !carretas.get(opcaoCarreta2 - 1).getStatus().equals(StatusVeiculo.OCIOSO)
-                        || opcaoCarreta2 == opcaoCarreta) {
-                    System.out.println("Carreta inválida.");
-                    AguardarVoltar.Voltar();
-                    return null;
-                }
-            }
-
-            System.out.println("\nMotoristas disponiveis:");
-            List<Motorista> motoristas = MotoristaRepository.listar();
-
-            for (int i = 0; i < motoristas.size(); i++) {
-                Motorista m = motoristas.get(i);
-                if (m.getStatus().equals(StatusMotorista.OCIOSO)) {
-                    System.out.println(
-                            (i + 1) + " - " + m.getNome() +
-                                    " - " + m.getCpf());
-                }
-            }
-
-            System.out.print("\nEscolha o motorista (número): ");
-            int opcaoMotorista = Integer.parseInt(input.nextLine());
-
-            if (opcaoMotorista < 1 || opcaoMotorista > motoristas.size()
-                    || !motoristas.get(opcaoMotorista - 1).getStatus().equals(StatusMotorista.OCIOSO)) {
-                System.out.println("Motorista inválido.");
-                AguardarVoltar.Voltar();
-                return null;
-            }
-
-            Motorista motoristaSelecionado = motoristas.get(opcaoMotorista - 1);
 
             System.out.print("\nNota fiscal: ");
             String notaFiscal = input.nextLine();
@@ -133,27 +29,13 @@ public class CargaFormView {
             System.out.print("\nOrigem: ");
             String origem = input.nextLine();
 
-            System.out.print("\nPróxima parada após a origem: ");
-            String proximaParada = input.nextLine();
             System.out.print("\nDestino: ");
             String destino = input.nextLine();
             System.out.println();
 
-            caminhaoSelecionado.setStatus(StatusVeiculo.EM_VIAGEM);
-            carretaSelecionada.setStatus(StatusVeiculo.EM_VIAGEM);
-            motoristaSelecionado.setStatus(StatusMotorista.EM_VIAGEM);
             String localidade = origem;
-
-            if (opcaoCarreta2 == 0) {
-                return new Carga(invoice, motoristaSelecionado, caminhaoSelecionado, carretaSelecionada, PO, notaFiscal,
-                        origem, localidade, proximaParada, destino, "Em viagem");
-            } else {
-                carretaSelecionada2 = carretas.get(opcaoCarreta2 - 1);
-                carretaSelecionada2.setStatus(StatusVeiculo.EM_VIAGEM);
-
-                return new Carga(invoice, motoristaSelecionado, caminhaoSelecionado, carretaSelecionada,
-                        carretaSelecionada2, PO, notaFiscal, origem, localidade, proximaParada, destino, "Em viagem");
-            }
+            Carga novacarga = new Carga(invoice, PO, notaFiscal, origem, localidade, destino, StatusViagem.EM_VIAGEM);
+            return novacarga;
 
         } catch (Exception e) {
             e.printStackTrace();
