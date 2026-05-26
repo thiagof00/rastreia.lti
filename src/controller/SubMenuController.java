@@ -45,12 +45,12 @@ public class SubMenuController {
                     Limpar.terminal();
                     cargasController.alterarStatus();
                     break;
-                
+
                 case 5:
                     Limpar.terminal();
                     cargasController.excluirCarga();
                     break;
-                    
+
                 case 0:
                     Limpar.terminal();
                     break;
@@ -143,6 +143,9 @@ public class SubMenuController {
                     Limpar.terminal();
                     caminhoesController.excluir();
                     break;
+                case 4:
+                    Limpar.terminal();
+                    caminhoesController.atualizarCaminhao();
                 case 0:
                     Limpar.terminal();
                     break;

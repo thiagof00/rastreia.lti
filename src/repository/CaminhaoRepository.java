@@ -3,6 +3,7 @@ package repository;
 import java.util.ArrayList;
 import java.util.List;
 import model.Caminhao;
+import model.Carga;
 import model.enums.StatusVeiculo;
 
 public class CaminhaoRepository {
@@ -34,5 +35,14 @@ public class CaminhaoRepository {
 
     public static boolean excluir(int id) {
         return caminhoes.removeIf(cam -> cam.getId() == id);
+    }
+
+    public static Caminhao getCaminhaoPorId(int id) {
+        for (Caminhao c : caminhoes) {
+            if (c.getId() == id) {
+                return c;
+            }
+        }
+        return null;
     }
 }

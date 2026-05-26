@@ -197,11 +197,21 @@ public class CargasController {
 
             if (excluido) {
                 System.out.println("Carga removida com sucesso!");
+                Carreta carreta2 = etapasDaCarga.getLast().getCarreta2();
+                etapasDaCarga.getLast().getCarreta1().setStatus(StatusVeiculo.OCIOSO);
+                etapasDaCarga.getLast().getCaminhao().setStatus(StatusVeiculo.OCIOSO);
+                etapasDaCarga.getLast().getMotorista().setStatus(StatusMotorista.OCIOSO);
+
+                if (carreta2 == null) {
+                    return;
+                } else {
+                    carreta2.setStatus(StatusVeiculo.OCIOSO);
+                    return;
+                }
+
             } else {
                 System.out.println("Carga não encontrada");
             }
-            AguardarVoltar.Voltar();
-            return;
         }
     }
 
