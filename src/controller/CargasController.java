@@ -12,6 +12,7 @@ import model.enums.*;
 import repository.*;
 import util.Limpar;
 import util.AguardarVoltar;
+import view.delete.CargaDeleteView;
 import view.form.CargaFormView;
 import view.form.EtapaFormView;
 import view.list.CargaListView;
@@ -30,7 +31,8 @@ public class CargasController {
     private EtapasTransporteListView listViewEtapa;
     private EtapaUpdateView etapaUpdateView;
     private CargaUpdateView cargaUpdateView;
-    private CargaStatusUpdateView CargaStatusUpdateView;
+    private CargaStatusUpdateView cargaStatusUpdateView;
+    private CargaDeleteView cargaDeleteView;
 
     public CargasController() {
         this.menuView = new CargaMenuView();
@@ -39,8 +41,9 @@ public class CargasController {
         this.listView = new CargaListView();
         this.listViewEtapa = new EtapasTransporteListView();
         this.cargaUpdateView = new CargaUpdateView();
-        this.CargaStatusUpdateView = new CargaStatusUpdateView();
+        this.cargaStatusUpdateView = new CargaStatusUpdateView();
         this.etapaUpdateView = new EtapaUpdateView();
+        this.cargaDeleteView = new CargaDeleteView();
     }
 
     /*
@@ -146,7 +149,7 @@ public class CargasController {
         int idCargaSelecionada = listView.listarCargas(cargas, true);
         Carga cargaSelecionada = CargaRepository.getCargaPorId(idCargaSelecionada);
 
-        boolean alterar = CargaStatusUpdateView.updateStatusCarga();
+        boolean alterar = cargaStatusUpdateView.updateStatusCarga();
 
         if (alterar == false) {
             return;
@@ -177,6 +180,29 @@ public class CargasController {
         System.out.println("Status da carga alterado com sucesso!");
         AguardarVoltar.Voltar();
 
+    }
+
+    public void excluirCarga() {
+        List<Carga> cargas = CargaRepository.listar();
+        int idCargaSelecionada = cargaDeleteView.formularioExcluirCarga(cargas);
+
+        List<EtapasTransporte> etapasDaCarga = EtapasTransporteRepository
+                .getEtapasTransportePorIdCarga(idCargaSelecionada);
+        if (etapasDaCarga.getFirst() != etapasDaCarga.getLast()) {
+            System.out.println("Não é possível excluir a carga\nA mesma possui mais de uma etapa registrada!");
+            AguardarVoltar.Voltar();
+            return;
+        } else {
+            boolean excluido = CargaRepository.excluir(idCargaSelecionada);
+
+            if (excluido) {
+                System.out.println("Carga removida com sucesso!");
+            } else {
+                System.out.println("Carga não encontrada");
+            }
+            AguardarVoltar.Voltar();
+            return;
+        }
     }
 
     public int exibirMenu() {

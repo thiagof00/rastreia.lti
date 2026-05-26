@@ -28,4 +28,8 @@ public class CargaRepository {
         return null;
     }
 
+    public static boolean excluir(int id) {
+        return cargas.removeIf(car -> car.getId() == id);
+    }
+
 }
