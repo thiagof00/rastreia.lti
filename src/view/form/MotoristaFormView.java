@@ -7,16 +7,16 @@ import util.*;
 
 public class MotoristaFormView {
 
-    Scanner input = new Scanner(System.in);
+    Scanner Input = new Scanner(System.in);
 
     public Motorista formularioCadastroMotorista() {
         System.out.println("========== CADASTRO DE MOTORISTA ==========");
         try {
             System.out.print("Nome: ");
-            String nome = input.nextLine();
+            String nome = Input.nextLine();
 
             System.out.print("CPF: ");
-            String cpf = input.nextLine();
+            String cpf = Input.nextLine();
 
             StatusMotorista status = StatusMotorista.INDISPONIVEL;
             boolean statusValido = false;
@@ -28,7 +28,7 @@ public class MotoristaFormView {
                 System.out.println("3 - Em Viagem");
                 System.out.print("Escolha uma opção: ");
 
-                int opcao = Integer.parseInt(input.nextLine());
+                int opcao = Integer.parseInt(Input.nextLine());
 
                 switch (opcao) {
                     case 1:

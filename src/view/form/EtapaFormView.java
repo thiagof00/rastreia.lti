@@ -11,13 +11,13 @@ import model.enums.StatusVeiculo;
 import util.AguardarVoltar;
 
 public class EtapaFormView {
-    Scanner input = new Scanner(System.in);
+    Scanner Input = new Scanner(System.in);
 
     public EtapasTransporte formularioCadastroEtapa(int idCarga, List<Carreta> carretas, List<Motorista> motoristas,
             List<Caminhao> caminhoes) {
 
         System.out.print("\nPróxima parada após a origem: ");
-        String proximaParada = input.nextLine();
+        String proximaParada = Input.nextLine();
 
         System.out.println("\nCaminhões disponiveis:");
 
@@ -31,7 +31,7 @@ public class EtapaFormView {
         }
 
         System.out.print("\nEscolha o Caminhão (número): ");
-        int opcaoCaminhao = Integer.parseInt(input.nextLine());
+        int opcaoCaminhao = Integer.parseInt(Input.nextLine());
 
         if (opcaoCaminhao < 1 || opcaoCaminhao > caminhoes.size()
                 || !caminhoes.get(opcaoCaminhao - 1).getStatus().equals(StatusVeiculo.OCIOSO)) {
@@ -54,7 +54,7 @@ public class EtapaFormView {
         }
 
         System.out.print("\nEscolha a carreta (número): ");
-        int opcaoCarreta = Integer.parseInt(input.nextLine());
+        int opcaoCarreta = Integer.parseInt(Input.nextLine());
 
         if (opcaoCarreta < 1 || opcaoCarreta > carretas.size()
                 || !carretas.get(opcaoCarreta - 1).getStatus().equals(StatusVeiculo.OCIOSO)) {
@@ -78,7 +78,7 @@ public class EtapaFormView {
         }
 
         System.out.print("\nEscolha a carreta (número): ");
-        int opcaoCarreta2 = Integer.parseInt(input.nextLine());
+        int opcaoCarreta2 = Integer.parseInt(Input.nextLine());
 
         if (opcaoCarreta2 != 0) {
 
@@ -103,7 +103,7 @@ public class EtapaFormView {
         }
 
         System.out.print("\nEscolha o motorista (número): ");
-        int opcaoMotorista = Integer.parseInt(input.nextLine());
+        int opcaoMotorista = Integer.parseInt(Input.nextLine());
 
         if (opcaoMotorista < 1 || opcaoMotorista > motoristas.size()
                 || !motoristas.get(opcaoMotorista - 1).getStatus().equals(StatusMotorista.OCIOSO)) {

@@ -203,8 +203,14 @@ public class CargasController {
                 etapasDaCarga.getLast().getMotorista().setStatus(StatusMotorista.OCIOSO);
 
                 if (carreta2 == null) {
+                    
+                    //Adicionar excluir etapa----------------------------------------
+
                     return;
                 } else {
+
+                    //Adicionar excluir etapa----------------------------------------
+
                     carreta2.setStatus(StatusVeiculo.OCIOSO);
                     return;
                 }

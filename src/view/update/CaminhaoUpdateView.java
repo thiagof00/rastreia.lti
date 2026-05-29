@@ -5,15 +5,22 @@ import java.util.Scanner;
 
 import model.Caminhao;
 import model.enums.StatusVeiculo;
+import util.AguardarVoltar;
 
 public class CaminhaoUpdateView {
 
     public Caminhao updateCaminhao(List<Caminhao> caminhoes) {
         String placaAlterada, tipoAlterado;
-        StatusVeiculo statusAlterado;
+        StatusVeiculo status = StatusVeiculo.INDISPONIVEL;
         Scanner Input = new Scanner(System.in);
 
-        System.out.println("\n========== LISTA DE CAMINHÕES ==========");
+        System.out.println("========== LISTA DE CAMINHÔES ==========");
+        if (caminhoes.isEmpty()) {
+            System.out.println("Nenhum caminhão cadastrado.");
+            AguardarVoltar.Voltar();
+            return null;
+        }
+
         System.out.printf("%-4s | %-12s | %-14s | %-15s%n", "ID", "PLACA", "TIPO", "STATUS");
         System.out.println("-".repeat(54));
         for (Caminhao c : caminhoes) {
@@ -43,7 +50,6 @@ public class CaminhaoUpdateView {
         String tipo = Input.nextLine();
 
         int opcao = 0;
-        StatusVeiculo status = StatusVeiculo.INDISPONIVEL;
         boolean statusValido = false;
         while (!statusValido) {
             System.out.println("\nStatus do Caminhão:");
@@ -83,12 +89,8 @@ public class CaminhaoUpdateView {
             tipoAlterado = caminhaoSelecionado.getTipo();
         } else
             tipoAlterado = tipo;
-        if (opcao == 0) {
-            statusAlterado = caminhaoSelecionado.getStatus();
-        } else
-            statusAlterado = status;
-
-        Caminhao caminhaoAlterado = new Caminhao(placaAlterada, tipoAlterado, statusAlterado);
+       
+        Caminhao caminhaoAlterado = new Caminhao(placaAlterada, tipoAlterado, status);
         caminhaoAlterado.setId(id);
         return caminhaoAlterado;
 

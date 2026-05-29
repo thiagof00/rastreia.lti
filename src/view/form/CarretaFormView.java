@@ -7,7 +7,7 @@ import util.AguardarVoltar;
 
 public class CarretaFormView {
 
-    Scanner input = new Scanner(System.in);
+    Scanner Input = new Scanner(System.in);
 
     public Carreta formularioCadastroCarreta() {
 
@@ -15,16 +15,16 @@ public class CarretaFormView {
 
         try {
             System.out.print("Placa da carreta: ");
-            String placa = input.nextLine();
+            String placa = Input.nextLine();
 
             System.out.print("Tipo da carreta: ");
-            String tipo = input.nextLine();
+            String tipo = Input.nextLine();
 
             System.out.print("Peso máximo (kg): ");
-            int pesoMax = Integer.parseInt(input.nextLine());
+            int pesoMax = Integer.parseInt(Input.nextLine());
 
             System.out.print("Metragem (em metros): ");
-            int metragem = Integer.parseInt(input.nextLine());
+            int metragem = Integer.parseInt(Input.nextLine());
 
             StatusVeiculo status = StatusVeiculo.INDISPONIVEL;
             boolean statusValido = false;
@@ -36,7 +36,7 @@ public class CarretaFormView {
                 System.out.println("3 - Em Viagem");
                 System.out.print("Escolha uma opção: ");
 
-                int opcao = Integer.parseInt(input.nextLine());
+                int opcao = Integer.parseInt(Input.nextLine());
 
                 switch (opcao) {
                     case 1:

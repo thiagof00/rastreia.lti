@@ -7,7 +7,7 @@ import util.*;
 
 public class CargaListView {
 
-    Scanner input = new Scanner(System.in);
+    Scanner Input = new Scanner(System.in);
 
     public int listarCargas(List<Carga> cargas, boolean alterar) {
 
@@ -38,7 +38,7 @@ public class CargaListView {
                     c.getStatus());
         }
         System.out.println(textoParaPrintar);
-        int escolhaEtapa = Integer.parseInt(input.nextLine());
+        int escolhaEtapa = Integer.parseInt(Input.nextLine());
 
         return escolhaEtapa;
 

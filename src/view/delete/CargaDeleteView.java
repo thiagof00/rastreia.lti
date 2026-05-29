@@ -6,7 +6,7 @@ import java.util.Scanner;
 import model.Carga;
 
 public class CargaDeleteView {
-    Scanner input = new Scanner(System.in);
+    Scanner Input = new Scanner(System.in);
 
     public int formularioExcluirCarga(List<Carga> cargas) {
 
@@ -28,7 +28,7 @@ public class CargaDeleteView {
         }
 
         System.out.println("Digite o ID da carga a ser excluida: ");
-        int id = Integer.parseInt(input.nextLine());
+        int id = Integer.parseInt(Input.nextLine());
 
         return id;
 }

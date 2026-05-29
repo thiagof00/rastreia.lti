@@ -6,7 +6,7 @@ import model.Carreta;
 import repository.CarretaRepository;
 
 public class CarretaDeleteView {
-    Scanner input = new Scanner(System.in);
+    Scanner Input = new Scanner(System.in);
 
     public int formularioExcluirCarreta() {
 
@@ -27,7 +27,7 @@ public class CarretaDeleteView {
         }
 
         System.out.println("Digite o ID da carreta a ser excluida: ");
-        int id = Integer.parseInt(input.nextLine());
+        int id = Integer.parseInt(Input.nextLine());
 
         return id;
     }

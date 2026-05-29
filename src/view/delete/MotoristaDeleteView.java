@@ -8,7 +8,7 @@ import util.*;
 
 public class MotoristaDeleteView {
 
-    Scanner input = new Scanner(System.in);
+    Scanner Input = new Scanner(System.in);
 
     public String formularioExcluirMotorista() {
 
@@ -27,7 +27,7 @@ public class MotoristaDeleteView {
         }
 
         System.out.println("Digite o cpf do motorista a ser excluido: ");
-        String cpf = input.nextLine();
+        String cpf = Input.nextLine();
 
         if (cpf.isBlank()) {
             System.out.println("CPF não pode ser vazio.");
