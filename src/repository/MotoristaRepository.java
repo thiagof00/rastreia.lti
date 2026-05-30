@@ -2,6 +2,8 @@ package repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Caminhao;
 import model.Motorista;
 import model.enums.StatusMotorista;
 
@@ -34,6 +36,15 @@ public class MotoristaRepository {
 
     public static List<Motorista> listar() {
         return motoristas;
+    }
+
+     public static Motorista getMotoristaPorId(int id) {
+        for (Motorista m : motoristas) {
+            if (m.getId() == id) {
+                return m;
+            }
+        }
+        return null;
     }
 
 }

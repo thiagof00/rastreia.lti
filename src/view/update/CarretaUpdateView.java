@@ -3,7 +3,6 @@ package view.update;
 import java.util.List;
 import java.util.Scanner;
 
-import model.Caminhao;
 import model.Carreta;
 import model.enums.StatusVeiculo;
 import util.AguardarVoltar;
@@ -12,7 +11,7 @@ public class CarretaUpdateView {
     public Carreta updateCarreta(List<Carreta> carretas) {
         String placaAlterada, tipoAlterado;
         int pesoAlterado, metragemAlterada;
-        StatusVeiculo status = StatusVeiculo.INDISPONIVEL;
+        StatusVeiculo status = null;
         Scanner Input = new Scanner(System.in);
 
         System.out.println("========== LISTA DE CARRETAS ==========");
@@ -43,6 +42,11 @@ public class CarretaUpdateView {
             if (carreta.getId() == id) {
                 carretaSelecionada = carreta;
             }
+        }
+        if (carretaSelecionada.getPlaca().equals("")) {
+            System.out.println("Id da carreta invalido.");
+            AguardarVoltar.Voltar();
+            return null;
         }
 
         System.out.println("--Tecle 0 para manter o valor atual--");
@@ -86,6 +90,7 @@ public class CarretaUpdateView {
                 case 0:
                     status = carretaSelecionada.getStatus();
                     statusValido = true;
+                    break;
                 default:
                     System.out.println("Opção inválida.");
             }
@@ -97,11 +102,11 @@ public class CarretaUpdateView {
             placaAlterada = placa;
         if (verificaValoresString(tipo)) {
             tipoAlterado = carretaSelecionada.getTipo();
-        } else 
+        } else
             tipoAlterado = tipo;
         if (verificaValoresInt(peso)) {
             pesoAlterado = carretaSelecionada.getPeso_max();
-        } else 
+        } else
             pesoAlterado = peso;
         if (verificaValoresInt(metragem)) {
             metragemAlterada = carretaSelecionada.getMetragem();

@@ -83,6 +83,9 @@ public class SubMenuController {
                     Limpar.terminal();
                     motoristasController.excluir();
                     break;
+                case 4:
+                    Limpar.terminal();
+                    motoristasController.atualizarMotorista();
                 case 0:
                     Limpar.terminal();
                     break;
@@ -113,6 +116,9 @@ public class SubMenuController {
                     Limpar.terminal();
                     carretasController.excluir();
                     break;
+                case 4:
+                    Limpar.terminal();
+                    carretasController.atualizarCarreta();
                 case 0:
                     Limpar.terminal();
                     break;
@@ -138,7 +144,6 @@ public class SubMenuController {
                     Limpar.terminal();
                     caminhoesController.cadastrar();
                     break;
-
                 case 3:
                     Limpar.terminal();
                     caminhoesController.excluir();

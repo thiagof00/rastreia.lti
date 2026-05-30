@@ -11,7 +11,7 @@ public class CaminhaoUpdateView {
 
     public Caminhao updateCaminhao(List<Caminhao> caminhoes) {
         String placaAlterada, tipoAlterado;
-        StatusVeiculo status = StatusVeiculo.INDISPONIVEL;
+        StatusVeiculo status = null;
         Scanner Input = new Scanner(System.in);
 
         System.out.println("========== LISTA DE CAMINHÔES ==========");
@@ -39,6 +39,11 @@ public class CaminhaoUpdateView {
             if (caminhao.getId() == id) {
                 caminhaoSelecionado = caminhao;
             }
+        }
+        if (caminhaoSelecionado.getPlaca().equals("")) {
+            System.out.println("Id do caminhão invalido.");
+            AguardarVoltar.Voltar();
+            return null;
         }
 
         System.out.println("--Tecle 0 para manter o valor atual--");
@@ -76,6 +81,7 @@ public class CaminhaoUpdateView {
                 case 0:
                     status = caminhaoSelecionado.getStatus();
                     statusValido = true;
+                    break;
                 default:
                     System.out.println("Opção inválida.");
             }
@@ -89,7 +95,7 @@ public class CaminhaoUpdateView {
             tipoAlterado = caminhaoSelecionado.getTipo();
         } else
             tipoAlterado = tipo;
-       
+
         Caminhao caminhaoAlterado = new Caminhao(placaAlterada, tipoAlterado, status);
         caminhaoAlterado.setId(id);
         return caminhaoAlterado;

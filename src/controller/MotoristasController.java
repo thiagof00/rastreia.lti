@@ -1,8 +1,11 @@
 package controller;
 
 import java.util.List;
+
+import model.Carreta;
 import model.EtapasTransporte;
 import model.Motorista;
+import repository.CarretaRepository;
 import repository.EtapasTransporteRepository;
 import repository.MotoristaRepository;
 import util.AguardarVoltar;
@@ -10,6 +13,7 @@ import view.delete.MotoristaDeleteView;
 import view.form.MotoristaFormView;
 import view.list.MotoristaListView;
 import view.menu.MotoristaMenuView;
+import view.update.MotoristaUpdateView;
 
 public class MotoristasController {
 
@@ -17,12 +21,14 @@ public class MotoristasController {
     private MotoristaFormView formView;
     private MotoristaDeleteView viewDelete;
     private MotoristaListView listView;
+    private MotoristaUpdateView updateView;
 
     public MotoristasController() {
         this.formView = new MotoristaFormView();
         this.viewDelete = new MotoristaDeleteView();
         this.listView = new MotoristaListView();
         this.menuView = new MotoristaMenuView();
+        this.updateView = new MotoristaUpdateView();
     }
 
     public void listar() {
@@ -71,6 +77,29 @@ public class MotoristasController {
         }
         AguardarVoltar.Voltar();
 
+    }
+
+    public void atualizarMotorista() {
+
+        List<Motorista> motoristas = MotoristaRepository.listar();
+
+        Motorista alterada = updateView.updateMotorista(motoristas);
+
+        if (alterada == null) {
+            return;
+        }
+
+        Motorista motoristaSelecionadaParaAlterar = MotoristaRepository.getMotoristaPorId(alterada.getId());
+
+        motoristaSelecionadaParaAlterar
+                .setNome(alterada.getNome());
+        motoristaSelecionadaParaAlterar
+                .setCpf(alterada.getCpf());
+        motoristaSelecionadaParaAlterar
+                .setStatus(alterada.getStatus());
+
+        System.out.println("Motorista alterado com sucesso!");
+        AguardarVoltar.Voltar();
     }
 
     public int exibirMenu() {

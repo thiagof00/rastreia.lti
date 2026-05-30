@@ -80,6 +80,11 @@ public class CaminhoesController {
         List<Caminhao> caminhoes = CaminhaoRepository.listar();
 
         Caminhao alterado = updateView.updateCaminhao(caminhoes);
+
+        if (alterado == null) {
+            return;
+        }
+
         Caminhao caminhaoSelecionadoParaAlterar = CaminhaoRepository.getCaminhaoPorId(alterado.getId());
 
         caminhaoSelecionadoParaAlterar
@@ -90,6 +95,8 @@ public class CaminhoesController {
                 .setStatus(alterado.getStatus());
 
         System.out.println("Caminhão alterado com sucesso!");
+        AguardarVoltar.Voltar();
+
     }
 
     public int exibirMenu() {

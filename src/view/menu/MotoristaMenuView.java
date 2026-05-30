@@ -9,6 +9,7 @@ public class MotoristaMenuView {
         System.out.println("1 - listar motoristas");
         System.out.println("2 - Cadastrar motoristas");
         System.out.println("3 - Excluir motoristas");
+        System.out.println("4 - Atualizar motoristas");
         System.out.println("0 - Voltar");
         System.out.print("Escolha: ");
 
