@@ -3,6 +3,7 @@ package repository;
 import java.util.ArrayList;
 import java.util.List;
 import model.Carga;
+import model.enums.StatusViagem;
 
 public class CargaRepository {
 
@@ -17,6 +18,16 @@ public class CargaRepository {
 
     public static List<Carga> listar() {
         return cargas;
+    }
+
+    public static List<Carga> listarPendentes(){
+        List<Carga> cargasPendentes = new ArrayList<>();
+        for (Carga carga : cargas) {
+            if (carga.getStatus().equals(StatusViagem.PENDENTE)) {
+                cargasPendentes.add(carga);
+            }
+        }
+        return cargasPendentes;
     }
 
     public static Carga getCargaPorId(int id) {

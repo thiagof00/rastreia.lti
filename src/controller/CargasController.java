@@ -14,7 +14,6 @@ import util.Limpar;
 import util.AguardarVoltar;
 import view.delete.CargaDeleteView;
 import view.form.CargaFormView;
-import view.form.EtapaFormView;
 import view.list.CargaListView;
 import view.list.EtapasTransporteListView;
 import view.menu.CargaMenuView;
@@ -26,24 +25,24 @@ public class CargasController {
 
     private CargaMenuView menuView;
     private CargaFormView cargaFormView;
-    private EtapaFormView etapaFormView;
     private CargaListView listView;
     private EtapasTransporteListView listViewEtapa;
     private EtapaUpdateView etapaUpdateView;
     private CargaUpdateView cargaUpdateView;
     private CargaStatusUpdateView cargaStatusUpdateView;
     private CargaDeleteView cargaDeleteView;
+    private EtapasController etapasController;
 
     public CargasController() {
         this.menuView = new CargaMenuView();
         this.cargaFormView = new CargaFormView();
-        this.etapaFormView = new EtapaFormView();
         this.listView = new CargaListView();
         this.listViewEtapa = new EtapasTransporteListView();
         this.cargaUpdateView = new CargaUpdateView();
         this.cargaStatusUpdateView = new CargaStatusUpdateView();
         this.etapaUpdateView = new EtapaUpdateView();
         this.cargaDeleteView = new CargaDeleteView();
+        this.etapasController = new EtapasController();
     }
 
     /*
@@ -61,25 +60,20 @@ public class CargasController {
                 novaCarga.getOrigem(), novaCarga.getLocalidade(), novaCarga.getDestino(), novaCarga.getStatus());
 
         CargaRepository.salvar(carga);
-        List<Carga> cargas = CargaRepository.listar();
 
-        int idCarga = cargas.getLast().getId();
+        if (LoginController.isUsuarioAdmin()) {
+            List<Carga> cargas = CargaRepository.listar();
+            int idCarga = cargas.getLast().getId();
+            String cargaLocalidade = carga.getLocalidade();
 
-        List<Carreta> carretas = CarretaRepository.listar();
-        List<Motorista> motoristas = MotoristaRepository.listar();
-        List<Caminhao> caminhoes = CaminhaoRepository.listar();
+            boolean etapaCriada = etapasController.atualizarEtapa(idCarga, cargaLocalidade);
 
-        EtapasTransporte novaEtapa = etapaFormView.formularioCadastroEtapa(idCarga, carretas, motoristas, caminhoes);
-        novaEtapa.setUltimaLocalidade(carga.getLocalidade());
-
-        novaEtapa.getCaminhao().setStatus(StatusVeiculo.EM_VIAGEM);
-        novaEtapa.getCarreta1().setStatus(StatusVeiculo.EM_VIAGEM);
-        novaEtapa.getMotorista().setStatus(StatusMotorista.EM_VIAGEM);
-
-        if (novaEtapa.getCarreta2() != null)
-            novaEtapa.getCarreta2().setStatus(StatusVeiculo.EM_VIAGEM);
-
-        EtapasTransporteRepository.salvar(novaEtapa);
+            if (etapaCriada) {
+                cargas.getLast().setStatus(StatusViagem.EM_VIAGEM);
+            } else {
+                cargas.getLast().setStatus(StatusViagem.PENDENTE);
+            }
+        }
 
         System.out.println("Carga cadastrada com sucesso!");
         AguardarVoltar.Voltar();
@@ -88,16 +82,16 @@ public class CargasController {
     public void listarComEtapa() {
         List<Carga> cargas = CargaRepository.listar();
 
-        int escolhaEtapa = listView.listarCargas(cargas, false);
-        if (escolhaEtapa == 0) {
+        int escohaCarga = listView.listarCargas(cargas, false);
+        if (escohaCarga == 0) {
             Limpar.terminal();
             return;
         } else {
             List<EtapasTransporte> etapas = EtapasTransporteRepository.listar();
             List<EtapasTransporte> etapasSelecionadas = new ArrayList<>();
-            Carga cargaSelecionada = CargaRepository.getCargaPorId(escolhaEtapa);
+            Carga cargaSelecionada = CargaRepository.getCargaPorId(escohaCarga);
             for (EtapasTransporte etapa : etapas) {
-                if (etapa.getIdCarga() == escolhaEtapa) {
+                if (etapa.getIdCarga() == escohaCarga) {
                     etapasSelecionadas.add(etapa);
                 }
             }
@@ -106,6 +100,34 @@ public class CargasController {
         }
     }
 
+    public void listarCargasPendentes(){
+        List<Carga> cargas = CargaRepository.listarPendentes();
+        int escolhaCarga = listView.listarCargas(cargas, true);
+        Carga carga = CargaRepository.getCargaPorId(escolhaCarga);
+        if (escolhaCarga == 0) {
+            Limpar.terminal();
+            return;
+        }else if (!carga.getStatus().equals(StatusViagem.PENDENTE)) {
+            System.out.println("Opção inválida!");
+            AguardarVoltar.Voltar();
+            return;
+        }
+        else{
+            String cargaLocalidade = carga.getLocalidade();
+
+            boolean etapaCriada = etapasController.atualizarEtapa(escolhaCarga, cargaLocalidade);
+
+            if (etapaCriada) {
+                cargas.getLast().setStatus(StatusViagem.EM_VIAGEM);
+                System.out.println("Carga alterada com sucesso!");
+            } else {
+                cargas.getLast().setStatus(StatusViagem.PENDENTE);
+                System.out.println("A carga não foi alterada!");
+            }
+        }
+
+    }
+    
     public void alterar() {
         List<Carreta> carretas = CarretaRepository.listar();
         List<Motorista> motoristas = MotoristaRepository.listar();
@@ -203,13 +225,13 @@ public class CargasController {
                 etapasDaCarga.getLast().getMotorista().setStatus(StatusMotorista.OCIOSO);
 
                 if (carreta2 == null) {
-                    
-                    //Adicionar excluir etapa----------------------------------------
+
+                    // Adicionar excluir etapa----------------------------------------
 
                     return;
                 } else {
 
-                    //Adicionar excluir etapa----------------------------------------
+                    // Adicionar excluir etapa----------------------------------------
 
                     carreta2.setStatus(StatusVeiculo.OCIOSO);
                     return;

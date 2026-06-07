@@ -19,6 +19,7 @@ public class MenuPrincipalView {
     public int menuPrincipalCliente() {
         System.out.println("\n========== MENU PRINCIPAL (CLIENTE) ==========");
         System.out.println("1 - Listar cargas");
+        System.out.println("2 - Solicitar carga");
         System.out.println("0 - Sair");
         System.out.print("Escolha: ");
 

@@ -2,7 +2,7 @@ package model.enums;
 
 public enum StatusViagem {
 
-    
+    PENDENTE("Pendente"),
     EM_VIAGEM("Em viagem"),
     CONCLUIDO("Concluido");
 

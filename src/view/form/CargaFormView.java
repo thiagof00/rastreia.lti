@@ -32,7 +32,7 @@ public class CargaFormView {
             System.out.println();
 
             String localidade = origem;
-            Carga novacarga = new Carga(invoice, PO, notaFiscal, origem, localidade, destino, StatusViagem.EM_VIAGEM);
+            Carga novacarga = new Carga(invoice, PO, notaFiscal, origem, localidade, destino, StatusViagem.PENDENTE);
             return novacarga;
 
         } catch (Exception e) {

@@ -16,7 +16,7 @@ public class EtapaFormView {
     public EtapasTransporte formularioCadastroEtapa(int idCarga, List<Carreta> carretas, List<Motorista> motoristas,
             List<Caminhao> caminhoes) {
 
-        System.out.print("\nPróxima parada após a origem: ");
+        System.out.print("Próxima parada após a origem: ");
         String proximaParada = Input.nextLine();
 
         System.out.println("\nCaminhões disponiveis:");
