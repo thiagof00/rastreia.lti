@@ -2,10 +2,8 @@ package controller;
 
 import java.util.List;
 
-import model.Carreta;
 import model.EtapasTransporte;
 import model.Motorista;
-import repository.CarretaRepository;
 import repository.EtapasTransporteRepository;
 import repository.MotoristaRepository;
 import util.AguardarVoltar;

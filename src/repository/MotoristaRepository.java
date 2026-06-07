@@ -3,7 +3,6 @@ package repository;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Caminhao;
 import model.Motorista;
 import model.enums.StatusMotorista;
 
