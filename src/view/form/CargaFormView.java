@@ -29,7 +29,6 @@ public class CargaFormView {
 
             System.out.print("\nDestino: ");
             String destino = Input.nextLine();
-            System.out.println();
 
             String localidade = origem;
             Carga novacarga = new Carga(invoice, PO, notaFiscal, origem, localidade, destino, StatusViagem.PENDENTE);

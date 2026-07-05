@@ -89,7 +89,7 @@ public class EtapaUpdateView {
                 }
             }
 
-            System.out.print("\nEscolha a carreta (número): ");
+            System.out.print("\nEscolha a segunda carreta (número): ");
             int opcaoCarreta2 = Integer.parseInt(Input.nextLine());
 
             if (opcaoCarreta2 != 0) {

@@ -37,7 +37,7 @@ public class CargaListView {
                     c.getDestino(),
                     c.getStatus());
         }
-        System.out.println(textoParaPrintar);
+        System.out.print(textoParaPrintar);
         int escolhaEtapa = Integer.parseInt(Input.nextLine());
 
         return escolhaEtapa;

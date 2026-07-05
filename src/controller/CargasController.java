@@ -100,19 +100,18 @@ public class CargasController {
         }
     }
 
-    public void listarCargasPendentes(){
+    public void listarCargasPendentes() {
         List<Carga> cargas = CargaRepository.listarPendentes();
         int escolhaCarga = listView.listarCargas(cargas, true);
         Carga carga = CargaRepository.getCargaPorId(escolhaCarga);
         if (escolhaCarga == 0) {
             Limpar.terminal();
             return;
-        }else if (!carga.getStatus().equals(StatusViagem.PENDENTE)) {
+        } else if (!carga.getStatus().equals(StatusViagem.PENDENTE)) {
             System.out.println("Opção inválida!");
             AguardarVoltar.Voltar();
             return;
-        }
-        else{
+        } else {
             String cargaLocalidade = carga.getLocalidade();
 
             boolean etapaCriada = etapasController.atualizarEtapa(escolhaCarga, cargaLocalidade);
@@ -120,14 +119,16 @@ public class CargasController {
             if (etapaCriada) {
                 cargas.getLast().setStatus(StatusViagem.EM_VIAGEM);
                 System.out.println("Carga alterada com sucesso!");
+
             } else {
                 cargas.getLast().setStatus(StatusViagem.PENDENTE);
                 System.out.println("A carga não foi alterada!");
             }
+            AguardarVoltar.Voltar();
         }
 
     }
-    
+
     public void alterar() {
         List<Carreta> carretas = CarretaRepository.listar();
         List<Motorista> motoristas = MotoristaRepository.listar();
@@ -218,27 +219,22 @@ public class CargasController {
             boolean excluido = CargaRepository.excluir(idCargaSelecionada);
 
             if (excluido) {
-                System.out.println("Carga removida com sucesso!");
+
                 Carreta carreta2 = etapasDaCarga.getLast().getCarreta2();
                 etapasDaCarga.getLast().getCarreta1().setStatus(StatusVeiculo.OCIOSO);
                 etapasDaCarga.getLast().getCaminhao().setStatus(StatusVeiculo.OCIOSO);
                 etapasDaCarga.getLast().getMotorista().setStatus(StatusMotorista.OCIOSO);
 
-                if (carreta2 == null) {
-
-                    // Adicionar excluir etapa----------------------------------------
-
-                    return;
-                } else {
-
-                    // Adicionar excluir etapa----------------------------------------
-
+                if (carreta2 != null) {
                     carreta2.setStatus(StatusVeiculo.OCIOSO);
-                    return;
                 }
 
+                EtapasTransporteRepository.excluir(etapasDaCarga.getLast().getId());
+                System.out.println("Carga removida com sucesso!");
+                AguardarVoltar.Voltar();
             } else {
                 System.out.println("Carga não encontrada");
+                AguardarVoltar.Voltar();
             }
         }
     }
