@@ -3,14 +3,12 @@ package view.form;
 import java.util.Scanner;
 
 import model.Carga;
-import model.Carreta;
-import model.EtapasTransporte;
 import model.enums.StatusViagem;
 import util.*;
 
 public class CargaFormView {
 
-    Scanner input = new Scanner(System.in);
+    Scanner Input = new Scanner(System.in);
 
     public Carga formularioCadastroCarga() {
 
@@ -18,23 +16,22 @@ public class CargaFormView {
         try {
 
             System.out.print("Invoice (número): ");
-            int invoice = Integer.parseInt(input.nextLine());
+            int invoice = Integer.parseInt(Input.nextLine());
 
             System.out.print("\nNota fiscal: ");
-            String notaFiscal = input.nextLine();
+            String notaFiscal = Input.nextLine();
 
             System.out.print("\nPO: ");
-            String PO = input.nextLine();
+            String PO = Input.nextLine();
 
             System.out.print("\nOrigem: ");
-            String origem = input.nextLine();
+            String origem = Input.nextLine();
 
             System.out.print("\nDestino: ");
-            String destino = input.nextLine();
-            System.out.println();
+            String destino = Input.nextLine();
 
             String localidade = origem;
-            Carga novacarga = new Carga(invoice, PO, notaFiscal, origem, localidade, destino, StatusViagem.EM_VIAGEM);
+            Carga novacarga = new Carga(invoice, PO, notaFiscal, origem, localidade, destino, StatusViagem.PENDENTE);
             return novacarga;
 
         } catch (Exception e) {

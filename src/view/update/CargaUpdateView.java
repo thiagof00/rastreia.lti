@@ -10,7 +10,7 @@ import util.AguardarVoltar;
 
 public class CargaUpdateView {
 
-    Scanner input = new Scanner(System.in);
+    Scanner Input = new Scanner(System.in);
     Carreta carretaSelecionada, carretaSelecionada2;
     int respInvoice;
     String respPO, respNotaFiscal, respOrigem, respLocalidade, respDestino;
@@ -51,21 +51,21 @@ public class CargaUpdateView {
             System.out.println("--Tecle 0 para manter o valor atual--");
 
             System.out.print("Invoice (número): ");
-            int invoice = Integer.parseInt(input.nextLine());
+            int invoice = Integer.parseInt(Input.nextLine());
 
             System.out.print("\nNota fiscal: ");
-            String notaFiscal = input.nextLine();
+            String notaFiscal = Input.nextLine();
 
             System.out.print("\nPO: ");
-            String PO = input.nextLine();
+            String PO = Input.nextLine();
 
             System.out.print("\nOrigem: ");
-            String origem = input.nextLine();
+            String origem = Input.nextLine();
 
             respLocalidade = ultimaEtapa.getproxParada();
 
             System.out.print("\nDestino: ");
-            String destino = input.nextLine();
+            String destino = Input.nextLine();
 
             if (verificaValores(invoice))
                 respInvoice = cargaSelecionada.getInvoice();

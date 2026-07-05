@@ -7,16 +7,16 @@ import util.*;
 
 public class CaminhaoFormView {
 
-    Scanner input = new Scanner(System.in);
+    Scanner Input = new Scanner(System.in);
 
     public Caminhao formularioCadastroCaminhao() {
         System.out.println("========== CADASTRO DE CAMINHÃO ==========");
         try {
             System.out.print("Placa: ");
-            String placa = input.nextLine();
+            String placa = Input.nextLine();
 
             System.out.print("Tipo: ");
-            String tipo = input.nextLine();
+            String tipo = Input.nextLine();
             StatusVeiculo status = StatusVeiculo.INDISPONIVEL;
             boolean statusValido = false;
             while (!statusValido) {
@@ -26,7 +26,7 @@ public class CaminhaoFormView {
                 System.out.println("3 - Em Viagem");
                 System.out.print("Escolha uma opção: ");
 
-                int opcao = Integer.parseInt(input.nextLine());
+                int opcao = Integer.parseInt(Input.nextLine());
 
                 switch (opcao) {
                     case 1:

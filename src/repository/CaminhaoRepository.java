@@ -35,4 +35,13 @@ public class CaminhaoRepository {
     public static boolean excluir(int id) {
         return caminhoes.removeIf(cam -> cam.getId() == id);
     }
+
+    public static Caminhao getCaminhaoPorId(int id) {
+        for (Caminhao c : caminhoes) {
+            if (c.getId() == id) {
+                return c;
+            }
+        }
+        return null;
+    }
 }

@@ -1,6 +1,7 @@
 package controller;
 
 import java.util.List;
+
 import model.Carreta;
 import model.EtapasTransporte;
 import repository.CarretaRepository;
@@ -10,18 +11,21 @@ import view.delete.CarretaDeleteView;
 import view.form.CarretaFormView;
 import view.list.CarretaListView;
 import view.menu.CarretaMenuView;
+import view.update.CarretaUpdateView;
 
 public class CarretaController {
     private CarretaMenuView menuView;
     private CarretaFormView formView;
     private CarretaListView listView;
     private CarretaDeleteView deleteView;
+    private CarretaUpdateView updateView;
 
     public CarretaController() {
         this.menuView = new CarretaMenuView();
         this.formView = new CarretaFormView();
         this.listView = new CarretaListView();
         this.deleteView = new CarretaDeleteView();
+        this.updateView = new CarretaUpdateView();
     }
 
     public void cadastrar() {
@@ -67,6 +71,34 @@ public class CarretaController {
         } else {
             System.out.println("Carreta não encontrada");
         }
+        AguardarVoltar.Voltar();
+
+    }
+
+    public void atualizarCarreta() {
+
+        List<Carreta> carretas = CarretaRepository.listar();
+
+        Carreta alterada = updateView.updateCarreta(carretas);
+
+        if (alterada == null) {
+            return;
+        }
+
+        Carreta carretaSelecionadaParaAlterar = CarretaRepository.getCarretaPorId(alterada.getId());
+
+        carretaSelecionadaParaAlterar
+                .setPlaca(alterada.getPlaca());
+        carretaSelecionadaParaAlterar
+                .setTipo(alterada.getTipo());
+        carretaSelecionadaParaAlterar
+                .setPeso_max(alterada.getPeso_max());
+        carretaSelecionadaParaAlterar
+                .setMetragem(alterada.getMetragem());
+        carretaSelecionadaParaAlterar
+                .setStatus(alterada.getStatus());
+
+        System.out.println("Carreta alterada com sucesso!");
         AguardarVoltar.Voltar();
 
     }

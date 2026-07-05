@@ -6,13 +6,13 @@ import view.menu.MenuPrincipalView;
 public class MenuController {
 
     private SubMenuController submenu;
-    private CargasController listview;
+    private CargasController cargasController;
     private MenuPrincipalView menuView;
 
     public MenuController() {
         this.menuView = new MenuPrincipalView();
         this.submenu = new SubMenuController();
-        this.listview = new CargasController();
+        this.cargasController = new CargasController();
     }
 
     public void exibirMenu(int tipoUsuario) {
@@ -75,7 +75,13 @@ public class MenuController {
 
             switch (opcao) {
                 case 1:
-                    listview.listarComEtapa();
+                    Limpar.terminal();
+                    cargasController.listarComEtapa();
+                    break;
+
+                case 2:
+                    Limpar.terminal();
+                    cargasController.cadastrar();
                     break;
 
                 case 0:

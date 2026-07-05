@@ -14,7 +14,7 @@ import util.AguardarVoltar;
 
 public class EtapaUpdateView {
 
-    Scanner input = new Scanner(System.in);
+    Scanner Input = new Scanner(System.in);
     Carga cargaSelecionada;
     Carreta carretaSelecionada, carretaSelecionada2;
     EtapasTransporte etapaSelecionada;
@@ -39,7 +39,7 @@ public class EtapaUpdateView {
             }
 
             System.out.print("\nEscolha o Caminhão (número): ");
-            int opcaoCaminhao = Integer.parseInt(input.nextLine());
+            int opcaoCaminhao = Integer.parseInt(Input.nextLine());
 
             if (verificaValores(opcaoCaminhao)) {
                 caminhaoSelecionado = etapaSelecionada.getCaminhao();
@@ -64,7 +64,7 @@ public class EtapaUpdateView {
             }
 
             System.out.print("\nEscolha a carreta (número): ");
-            int opcaoCarreta = Integer.parseInt(input.nextLine());
+            int opcaoCarreta = Integer.parseInt(Input.nextLine());
 
             if (verificaValores(opcaoCarreta)) {
                 carretaSelecionada = etapaSelecionada.getCarreta1();
@@ -89,8 +89,8 @@ public class EtapaUpdateView {
                 }
             }
 
-            System.out.print("\nEscolha a carreta (número): ");
-            int opcaoCarreta2 = Integer.parseInt(input.nextLine());
+            System.out.print("\nEscolha a segunda carreta (número): ");
+            int opcaoCarreta2 = Integer.parseInt(Input.nextLine());
 
             if (opcaoCarreta2 != 0) {
 
@@ -115,7 +115,7 @@ public class EtapaUpdateView {
             }
 
             System.out.print("\nEscolha o motorista (número): ");
-            int opcaoMotorista = Integer.parseInt(input.nextLine());
+            int opcaoMotorista = Integer.parseInt(Input.nextLine());
 
             if (verificaValores(opcaoMotorista)) {
                 motoristaSelecionado = etapaSelecionada.getMotorista();
@@ -130,7 +130,7 @@ public class EtapaUpdateView {
             }
 
             System.out.print("\nPróxima parada: ");
-            String proximaParada = input.nextLine();
+            String proximaParada = Input.nextLine();
 
             if (verificaValoresString(proximaParada))
                 respProximaParada = etapaSelecionada.getproxParada();

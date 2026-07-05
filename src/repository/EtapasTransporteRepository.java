@@ -28,4 +28,8 @@ public class EtapasTransporteRepository {
         }
         return etapasSelecionadas;
     }
+
+    public static boolean excluir(int id) {
+        return etapasTransportes.removeIf(et -> et.getId() == id);
+    }
 }

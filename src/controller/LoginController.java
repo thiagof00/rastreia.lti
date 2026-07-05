@@ -6,6 +6,11 @@ import util.ConfigLoader;
 
 public class LoginController {
 
+    private static boolean usuarioAdmin;
+    public static boolean isUsuarioAdmin() {
+        return usuarioAdmin;
+    }
+
     public int fazerLogin() {
         LoginView view = new LoginView();
         view.boasVindas();
@@ -30,9 +35,11 @@ public class LoginController {
             String senha = view.pedirSenha();
 
             if (usuario.equals(admin.getUsername()) && senha.equals(admin.getPassword())) {
+                usuarioAdmin = true;
                 view.sucessoAdmin(usuario);
                 return 1;
             } else if (usuario.equals(cliente.getUsername()) && senha.equals(cliente.getPassword())) {
+                usuarioAdmin = false;
                 view.sucessoCliente();
                 return 0;
             } else {

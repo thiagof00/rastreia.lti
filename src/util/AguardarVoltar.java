@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class AguardarVoltar {
 
-    private static final Scanner input = new Scanner(System.in);
+    private static final Scanner Input = new Scanner(System.in);
 
     private AguardarVoltar() {
     }
@@ -15,7 +15,7 @@ public class AguardarVoltar {
 
         while (true) {
             try {
-                int opcao = Integer.parseInt(input.nextLine());
+                int opcao = Integer.parseInt(Input.nextLine());
                 if (opcao == 0) {
                     Limpar.terminal();
                     break;

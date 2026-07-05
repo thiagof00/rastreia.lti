@@ -10,18 +10,21 @@ import view.delete.CaminhaoDeleteView;
 import view.form.CaminhaoFormView;
 import view.list.CaminhaoListView;
 import view.menu.CaminhaoMenuView;
+import view.update.CaminhaoUpdateView;
 
 public class CaminhoesController {
     private CaminhaoFormView formView;
     private CaminhaoListView listView;
     private CaminhaoDeleteView deleteView;
     private CaminhaoMenuView menuView;
+    private CaminhaoUpdateView updateView;
 
     public CaminhoesController() {
         this.formView = new CaminhaoFormView();
         this.listView = new CaminhaoListView();
         this.deleteView = new CaminhaoDeleteView();
         this.menuView = new CaminhaoMenuView();
+        this.updateView = new CaminhaoUpdateView();
     }
 
     public void cadastrar() {
@@ -68,6 +71,30 @@ public class CaminhoesController {
         } else {
             System.out.println("Caminhão não encontrado");
         }
+        AguardarVoltar.Voltar();
+
+    }
+
+    public void atualizarCaminhao() {
+
+        List<Caminhao> caminhoes = CaminhaoRepository.listar();
+
+        Caminhao alterado = updateView.updateCaminhao(caminhoes);
+
+        if (alterado == null) {
+            return;
+        }
+
+        Caminhao caminhaoSelecionadoParaAlterar = CaminhaoRepository.getCaminhaoPorId(alterado.getId());
+
+        caminhaoSelecionadoParaAlterar
+                .setPlaca(alterado.getPlaca());
+        caminhaoSelecionadoParaAlterar
+                .setTipo(alterado.getTipo());
+        caminhaoSelecionadoParaAlterar
+                .setStatus(alterado.getStatus());
+
+        System.out.println("Caminhão alterado com sucesso!");
         AguardarVoltar.Voltar();
 
     }

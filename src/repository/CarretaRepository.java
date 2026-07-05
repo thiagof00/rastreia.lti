@@ -36,4 +36,13 @@ public class CarretaRepository {
     public static boolean excluir(int id) {
         return carretas.removeIf(car -> car.getId() == id);
     }
+
+    public static Carreta getCarretaPorId(int id) {
+        for (Carreta c : carretas) {
+            if (c.getId() == id) {
+                return c;
+            }
+        }
+        return null;
+    }
 }

@@ -7,7 +7,7 @@ import model.Caminhao;
 import repository.CaminhaoRepository;
 
 public class CaminhaoDeleteView {
-    Scanner input = new Scanner(System.in);
+    Scanner Input = new Scanner(System.in);
 
     public int formularioExcluirCaminhao() {
 
@@ -26,7 +26,7 @@ public class CaminhaoDeleteView {
         }
 
         System.out.println("Digite o ID do caminhão a ser excluido: ");
-        int id = Integer.parseInt(input.nextLine());
+        int id = Integer.parseInt(Input.nextLine());
 
         return id;
 

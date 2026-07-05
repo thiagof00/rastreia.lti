@@ -5,17 +5,17 @@ import java.util.Scanner;
 import util.Limpar;
 
 public class LoginView {
-    private Scanner input = new Scanner(System.in);
+    private Scanner Input = new Scanner(System.in);
 
     public String pedirUsuario() {
         System.out.print("Usuário (Digite 0 para encerrar): ");
-        return input.nextLine();
+        return Input.nextLine();
 
     }
 
     public String pedirSenha() {
         System.out.print("Senha: ");
-        return input.nextLine();
+        return Input.nextLine();
     }
 
     public void boasVindas() {

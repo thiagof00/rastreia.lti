@@ -38,19 +38,24 @@ public class SubMenuController {
 
                 case 3:
                     Limpar.terminal();
-                    cargasController.alterar();
+                    cargasController.listarCargasPendentes();
                     break;
 
                 case 4:
                     Limpar.terminal();
+                    cargasController.alterar();
+                    break;
+
+                case 5:
+                    Limpar.terminal();
                     cargasController.alterarStatus();
                     break;
-                
-                case 5:
+
+                case 6:
                     Limpar.terminal();
                     cargasController.excluirCarga();
                     break;
-                    
+
                 case 0:
                     Limpar.terminal();
                     break;
@@ -83,6 +88,9 @@ public class SubMenuController {
                     Limpar.terminal();
                     motoristasController.excluir();
                     break;
+                case 4:
+                    Limpar.terminal();
+                    motoristasController.atualizarMotorista();
                 case 0:
                     Limpar.terminal();
                     break;
@@ -113,6 +121,9 @@ public class SubMenuController {
                     Limpar.terminal();
                     carretasController.excluir();
                     break;
+                case 4:
+                    Limpar.terminal();
+                    carretasController.atualizarCarreta();
                 case 0:
                     Limpar.terminal();
                     break;
@@ -138,11 +149,13 @@ public class SubMenuController {
                     Limpar.terminal();
                     caminhoesController.cadastrar();
                     break;
-
                 case 3:
                     Limpar.terminal();
                     caminhoesController.excluir();
                     break;
+                case 4:
+                    Limpar.terminal();
+                    caminhoesController.atualizarCaminhao();
                 case 0:
                     Limpar.terminal();
                     break;
